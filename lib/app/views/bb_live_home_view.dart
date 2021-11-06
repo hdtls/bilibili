@@ -25,7 +25,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
   void initState() {
     super.initState();
     _refreshController = RefreshController();
-    _bLoC = BBLiveHomeBLoC()..add(Load());
+    _bLoC = BBLiveHomeBLoC()..add(LiveHomeLoadEvent());
   }
 
   @override
@@ -38,17 +38,17 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
   Widget build(BuildContext context) {
     return BlocBuilder(
       bloc: _bLoC,
-      builder: (BuildContext context, LoadState state) {
+      builder: (BuildContext context, LiveHomeState state) {
         Widget subview;
-        if (state is Loading) {
+        if (state is LiveHomeLoading) {
           subview = BBLoadingView();
-        } else if (state is Success) {
+        } else if (state is LiveHomeLoadSuccess) {
           _refreshController.refreshCompleted();
           subview = Stack(
             children: <Widget>[
               SmartRefresher(
                 controller: _refreshController,
-                onRefresh: () => _bLoC.add(Load()),
+                onRefresh: () => _bLoC.add(LiveHomeLoadEvent()),
                 child: CustomScrollView(
                   slivers: _buildSlivers(state.value),
                 ),

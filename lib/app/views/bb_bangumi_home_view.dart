@@ -37,7 +37,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
     super.initState();
     _refreshController = RefreshController();
     _scrollController = ScrollController();
-    _bLoC = BBBangumiHomeBLoC()..add(Load(path: widget.path));
+    _bLoC = BBBangumiHomeBLoC()..add(BangumiHomePaginationLoadEvent(path: widget.path));
   }
 
   @override
@@ -53,16 +53,16 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
     super.build(context);
     return BlocBuilder(
       bloc: _bLoC,
-      builder: (BuildContext context, LoadState state) {
+      builder: (BuildContext context, BangumiHomeState state) {
         Widget subview;
-        if (state is Loading) {
+        if (state is BangumiHomeLoading) {
           subview = BBLoadingView();
-        } else if (state is Success) {
+        } else if (state is BangumiHomeLoadSuccess) {
           _refreshController.refreshCompleted();
           subview =
               SmartRefresher(
                 controller: _refreshController,
-                onRefresh: () => _bLoC.add(Load()),
+                onRefresh: () => _bLoC.add(BangumiHomePaginationLoadEvent()),
                 child: CustomScrollView(
                   slivers: _buildSlivers(state.value),
                 ),

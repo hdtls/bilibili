@@ -1,39 +1,37 @@
 import 'package:bloc/bloc.dart';
-
-import 'bb_load_event.dart';
-import 'bb_load_state.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 import '../api/bb_api.dart';
 
-export 'bb_load_event.dart';
-export 'bb_load_state.dart';
+part 'bb_live_home_event.dart';
+part 'bb_live_home_state.dart';
 
-class BBLiveHomeBLoC extends Bloc<LoadEvent, LoadState> {
-  @override
-  LoadState get initialState => Loading();
+class BBLiveHomeBLoC extends Bloc<LiveHomeEvent, LiveHomeState> {
 
-  @override
-  Stream<LoadState> mapEventToState(LoadEvent event) async* {
-    if (event is Load) {
-      yield Loading();
-      try {
-        HttpBody<LiveHomeBody> body = await BBApi.requestAllLive();
-        List<LiveGroup> copy = [];
+  BBLiveHomeBLoC(): super(LiveHomeLoading()) {
+    on<LiveHomeLoadEvent>(performLoading);
+  }
 
-        copy.addAll(body?.data?.banner ?? []);
-        copy.addAll(body?.data?.areaEntranceV2 ?? []);
-        copy.addAll(body?.data?.activityCardV2 ?? []);
-        copy.addAll(body?.data?.myIdol ?? []);
-        copy.addAll(body?.data?.roomList ?? []);
-        copy.addAll(body?.data?.hourRank ?? []);
+  void performLoading(LiveHomeEvent event, Emitter<LiveHomeState> emit) async {
+    emit(LiveHomeLoading());
+    try {
+      HttpBody<LiveHomeBody> body = await BBApi.requestAllLive();
+      List<LiveGroup> copy = [];
 
-        copy = copy.where((e) => e.list?.isNotEmpty ?? false).toList();
-        copy.sort((lhs, rhs) => lhs.module.sort.compareTo(rhs.module.sort));
+      copy.addAll(body?.data?.banner ?? []);
+      copy.addAll(body?.data?.areaEntranceV2 ?? []);
+      copy.addAll(body?.data?.activityCardV2 ?? []);
+      copy.addAll(body?.data?.myIdol ?? []);
+      copy.addAll(body?.data?.roomList ?? []);
+      copy.addAll(body?.data?.hourRank ?? []);
 
-        yield Success(copy);
-      } catch (e) {
-        yield Failure(e.toString());
-      }
+      copy = copy.where((e) => e.list?.isNotEmpty ?? false).toList();
+      copy.sort((lhs, rhs) => lhs.module.sort.compareTo(rhs.module.sort));
+
+      emit(LiveHomeLoadSuccess(copy));
+    } catch (e) {
+      emit(LiveHomeLoadFailure(e.toString()));
     }
   }
 }

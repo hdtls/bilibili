@@ -30,7 +30,7 @@ class _BBFeaturedListViewState extends State<BBFeaturedListView>
   void initState() {
     super.initState();
     _refreshController = RefreshController();
-    _bLoC = BBFeaturedBLoC()..add(Load());
+    _bLoC = BBFeaturedBLoC()..add(FeaturedLoadEvent());
   }
 
   @override
@@ -44,15 +44,15 @@ class _BBFeaturedListViewState extends State<BBFeaturedListView>
     super.build(context);
     return BlocBuilder(
       bloc: _bLoC,
-      builder: (BuildContext context, LoadState state) {
+      builder: (BuildContext context, FeaturedState state) {
         Widget subview;
-        if (state is Loading) {
+        if (state is FeaturedLoading) {
           subview = BBLoadingView();
-        } else if (state is Success) {
+        } else if (state is FeaturedLoadSuccess) {
           _refreshController.refreshCompleted();
           subview = SmartRefresher(
             controller: _refreshController,
-            onRefresh: () => _bLoC.add(Load()),
+            onRefresh: () => _bLoC.add(FeaturedLoadEvent()),
             child: StaggeredGridView.countBuilder(
               crossAxisCount: 2,
               staggeredTileBuilder: (int index) {
