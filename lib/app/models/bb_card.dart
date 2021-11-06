@@ -17,36 +17,36 @@ part 'bb_card.g.dart';
 
 abstract class Card implements Built<Card, CardBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "card_type")
-  int get cardType;
-  @nullable
-  String get title;
-  @nullable
-  BuiltList<Cover> get covers;
-  @nullable
+  int? get cardType;
+
+  String? get title;
+
+  BuiltList<Cover>? get covers;
+
   @BuiltValueField(wireName: "jump_url")
-  String get jumpUrl;
-  @nullable
-  String get desc;
-  @nullable
+  String? get jumpUrl;
+
+  String? get desc;
+
   @BuiltValueField(wireName: "callup_url")
-  String get callupUrl;
-  @nullable
+  String? get callupUrl;
+
   @BuiltValueField(wireName: "long_desc")
-  String get longDesc;
-  @nullable
+  String? get longDesc;
+
   @BuiltValueField(wireName: "ad_tag")
-  String get adTag;
-  @nullable
+  String? get adTag;
+
   @BuiltValueField(wireName: "extra_desc")
-  String get extraDesc;
-  @nullable
+  String? get extraDesc;
+
   @BuiltValueField(wireName: "ad_tag_style")
-  AdTagStyle get adTagStyle;
-  @nullable
+  AdTagStyle? get adTagStyle;
+
   @BuiltValueField(wireName: "feedback_panel")
-  FeedbackPanel get feedbackPanel;
+  FeedbackPanel? get feedbackPanel;
 
   Card._();
 
@@ -56,7 +56,7 @@ abstract class Card implements Built<Card, CardBuilder> {
     return json.encode(serializers.serializeWith(Card.serializer, this));
   }
 
-  static Card fromJson(String jsonString) {
+  static Card? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Card.serializer, json.decode(jsonString));
   }

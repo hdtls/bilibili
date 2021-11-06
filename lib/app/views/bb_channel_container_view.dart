@@ -5,14 +5,16 @@ import '../models/bb_tab_bar_item.dart';
 import '../routers/bb_route_mgr.dart';
 
 class BBChannelContainerView extends StatefulWidget {
+  const BBChannelContainerView({Key? key}) : super(key: key);
+
   @override
   _BBChannelContainerViewState createState() => _BBChannelContainerViewState();
 }
 
 class _BBChannelContainerViewState extends State<BBChannelContainerView>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  List<TabBarItem> _tabBarItems;
-  TabController _tabCtr;
+  late List<TabBarItem> _tabBarItems;
+  late TabController _tabCtr;
 
   @override
   bool get wantKeepAlive => true;
@@ -63,9 +65,12 @@ class _BBChannelContainerViewState extends State<BBChannelContainerView>
         child: Material(
           child: TabBarView(
             children: _tabBarItems.map((e) {
-              Handler handler = FluroRouter.appRouter.match(e.uri)?.route?.handler ??
+              if (e.uri != null) {
+                  Handler handler = FluroRouter.appRouter.match(e.uri!)?.route.handler ??
                   FluroRouter.appRouter.notFoundHandler;
-              return handler.handlerFunc(context, null);
+                return handler.handlerFunc(context, {}) ?? Container();
+              }
+              return Container();
             }).toList(),
             controller: _tabCtr,
           ),

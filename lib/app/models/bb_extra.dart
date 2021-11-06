@@ -17,53 +17,53 @@ part 'bb_extra.g.dart';
 
 abstract class Extra implements Built<Extra, ExtraBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "sales_type")
-  int get salesType;
-  @nullable
+  int? get salesType;
+
   @BuiltValueField(wireName: "share_info")
-  ShareInfo get shareInfo;
-  @nullable
+  ShareInfo? get shareInfo;
+
   @BuiltValueField(wireName: "use_ad_web_v2")
-  bool get useAdWebV2;
-  @nullable
+  bool? get useAdWebV2;
+
   @BuiltValueField(wireName: "show_urls")
-  BuiltList<String> get showUrls;
-  @nullable
+  BuiltList<String>? get showUrls;
+
   @BuiltValueField(wireName: "click_urls")
-  BuiltList<String> get clickUrls;
-  @nullable
+  BuiltList<String>? get clickUrls;
+
   @BuiltValueField(wireName: "upzone_entrance_report_id")
-  int get upzoneEntranceReportId;
-  @nullable
+  int? get upzoneEntranceReportId;
+
   @BuiltValueField(wireName: "special_industry")
-  bool get specialIndustry;
-  @nullable
+  bool? get specialIndustry;
+
   @BuiltValueField(wireName: "appstore_priority")
-  int get appstorePriority;
-  @nullable
+  int? get appstorePriority;
+
   @BuiltValueField(wireName: "upzone_entrance_type")
-  int get upzoneEntranceType;
-  @nullable
+  int? get upzoneEntranceType;
+
   @BuiltValueField(wireName: "report_time")
-  int get reportTime;
-  @nullable
+  int? get reportTime;
+
   @BuiltValueField(wireName: "preload_landingpage")
-  int get preloadLandingpage;
-  @nullable
+  int? get preloadLandingpage;
+
   @BuiltValueField(wireName: "open_white_list")
-  BuiltList<dynamic> get openWhitelist;
-  @nullable
+  BuiltList<dynamic>? get openWhitelist;
+
   @BuiltValueField(wireName: "special_industry_tips")
-  String get specialIndustryTips;
-  @nullable
+  String? get specialIndustryTips;
+
   @BuiltValueField(wireName: "download_whitelist")
-  BuiltList<Whitelist> get downloadWhitelist;
-  @nullable
+  BuiltList<Whitelist>? get downloadWhitelist;
+
   @BuiltValueField(wireName: "enable_share")
-  bool get enableShare;
-  @nullable
-  Card get card;
+  bool? get enableShare;
+
+  Card? get card;
 
   Extra._();
 
@@ -73,7 +73,7 @@ abstract class Extra implements Built<Extra, ExtraBuilder> {
     return json.encode(serializers.serializeWith(Extra.serializer, this));
   }
 
-  static Extra fromJson(String jsonString) {
+  static Extra? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Extra.serializer, json.decode(jsonString));
   }

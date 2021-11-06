@@ -7,7 +7,8 @@ import '../compenents/bb_ui.dart';
 
 class BBFeaturedListItemMultipleColumView extends StatelessWidget {
   final Media media;
-  BBFeaturedListItemMultipleColumView({this.media});
+  const BBFeaturedListItemMultipleColumView({Key? key, required this.media})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,36 +66,36 @@ class BBFeaturedListItemMultipleColumView extends StatelessWidget {
 
   // Media tag.
   Widget _getTagView(
-      BuildContext context, TextAttributesDifinations textAttributes) {
-    return textAttributes == null ||
-            textAttributes.text == null ||
-            textAttributes.text.isEmpty
+      BuildContext context, TextAttributesDifinations? textAttributes) {
+    return (textAttributes?.text?.isEmpty ?? true)
         ? SizedBox.shrink()
         : Container(
             margin: EdgeInsets.only(right: defaultMargin.right),
             decoration: BoxDecoration(
-              color: BBColor.from(
-                  Theme.of(context).brightness == Brightness.light
-                      ? textAttributes?.backgroundColor
-                      : textAttributes?.darkModeBackgroundColor),
+              color: BBColor.fromHexString(
+                Theme.of(context).brightness == Brightness.light
+                    ? textAttributes?.backgroundColor
+                    : textAttributes?.darkModeBackgroundColor,
+              ),
               border: Border.all(
-                color: BBColor.from(
-                        Theme.of(context).brightness == Brightness.light
-                            ? textAttributes.borderColor
-                            : textAttributes.darkModeBorderColor) ??
-                    Colors.transparent,
+                color: BBColor.fromHexString(
+                      Theme.of(context).brightness == Brightness.light
+                          ? textAttributes?.borderColor
+                          : textAttributes?.darkModeBorderColor,
+                    ) ?? Colors.transparent,
               ),
               borderRadius: BorderRadius.circular(3.0),
             ),
             padding: EdgeInsets.symmetric(horizontal: 1),
             child: Center(
               child: Text(
-                textAttributes.text,
-                style: Theme.of(context).textTheme.overline.copyWith(
-                      color: BBColor.from(
-                          Theme.of(context).brightness == Brightness.light
-                              ? textAttributes.textColor
-                              : textAttributes.darkModeTextColor),
+                textAttributes?.text ?? "",
+                style: Theme.of(context).textTheme.overline?.copyWith(
+                      color: BBColor.fromHexString(
+                        Theme.of(context).brightness == Brightness.light
+                            ? textAttributes?.textColor
+                            : textAttributes?.darkModeTextColor,
+                      ),
                     ),
               ),
             ),
@@ -109,7 +110,7 @@ class BBFeaturedListItemMultipleColumView extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.transparent, Colors.black26],
+          colors: const [Colors.transparent, Colors.black26],
         ),
       ),
       child: Padding(
@@ -135,7 +136,7 @@ class BBFeaturedListItemMultipleColumView extends StatelessWidget {
   }
 
   Widget _getPreviewExtraMsgIndicatorView(
-      BuildContext context, String text, int index) {
+      BuildContext context, String? text, int? index) {
     List<String> icons = [
       "pegasus_card_ic_star16x16.png",
       "pegasus_card_ic_play16x16.png",
@@ -158,14 +159,20 @@ class BBFeaturedListItemMultipleColumView extends StatelessWidget {
               SizedBox(width: 3),
               Text(
                 media.coverLeftText1 ?? "-",
-                style: Theme.of(context).textTheme.overline.copyWith(color: Colors.white),
+                style: Theme.of(context)
+                    .textTheme
+                    .overline
+                    ?.copyWith(color: Colors.white),
               )
             ],
           )
         : text != null
             ? Text(
-                text ?? "-",
-                style: Theme.of(context).textTheme.overline.copyWith(color: Colors.white),
+                text,
+                style: Theme.of(context)
+                    .textTheme
+                    .overline
+                    ?.copyWith(color: Colors.white),
               )
             : SizedBox.shrink();
   }

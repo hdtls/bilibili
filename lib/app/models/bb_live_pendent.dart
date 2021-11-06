@@ -9,14 +9,13 @@ part 'bb_live_pendent.g.dart';
 
 abstract class LivePendent implements Built<LivePendent, LivePendentBuilder> {
   // Fields
-  @nullable
-  String get content;
-  @nullable
-  int get position;
-  @nullable
-  String get color;
-  @nullable
-  String get pic;
+  String? get content;
+
+  int? get position;
+
+  String? get color;
+
+  String? get pic;
 
   LivePendent._();
 
@@ -27,7 +26,7 @@ abstract class LivePendent implements Built<LivePendent, LivePendentBuilder> {
     return json.encode(serializers.serializeWith(LivePendent.serializer, this));
   }
 
-  static LivePendent fromJson(String jsonString) {
+  static LivePendent? fromJson(String jsonString) {
     return serializers.deserializeWith(
         LivePendent.serializer, json.decode(jsonString));
   }

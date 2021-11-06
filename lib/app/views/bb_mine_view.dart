@@ -8,12 +8,14 @@ import '../models/bb_models.dart';
 import 'bb_mine_header_view.dart';
 
 class BBMineView extends StatefulWidget {
+  const BBMineView({Key? key}) : super(key: key);
+
   @override
   _BBMineViewState createState() => _BBMineViewState();
 }
 
 class _BBMineViewState extends State<BBMineView> {
-  Mine _mine;
+  Mine _mine = Mine();
 
   @override
   void initState() {
@@ -29,24 +31,22 @@ class _BBMineViewState extends State<BBMineView> {
             BBMineHeaderView(mine: _mine),
             Expanded(
               child: CustomScrollView(
-                slivers: _mine?.sections
-                        ?.toList()
-                        ?.map((services) => <Widget>[
+                slivers: (_mine.sections?.toList() ?? [])
+                        .map((services) => <Widget>[
                               _sliverSectionHeader(context, services),
-                              _sliverGrid(services.items.toList()),
+                              _sliverGrid(services.items?.toList() ?? []),
                               SliverToBoxAdapter(
-                                child: services != _mine.sections.toList().last
+                                child: services != _mine.sections?.toList().last
                                     ? Container(
                                         height: defaultMargin.bottom,
                                         color:
                                             Theme.of(context).backgroundColor,
                                       )
-                                    : SizedBox.shrink(),
+                                    : const SizedBox.shrink(),
                               )
                             ])
-                        ?.expand((sliver) => sliver)
-                        ?.toList() ??
-                    [],
+                        .expand((sliver) => sliver)
+                        .toList(),
               ),
             )
           ],
@@ -69,7 +69,7 @@ class _BBMineViewState extends State<BBMineView> {
                   Text(services.title ?? "",
                       style: Theme.of(context).textTheme.headline6),
                   // Creative center need a post button to support user contribution.
-                  services.type == 1 && _mine?.showCreative == 1
+                  services.type == 1 && _mine.showCreative == 1
                       ? GestureDetector(
                           child: Stack(
                             children: <Widget>[
@@ -104,8 +104,7 @@ class _BBMineViewState extends State<BBMineView> {
                                       "投稿",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .button
-                                          .copyWith(
+                                          .button?.copyWith(
                                               color: Theme.of(context)
                                                   .accentColor),
                                     ),
@@ -115,15 +114,16 @@ class _BBMineViewState extends State<BBMineView> {
                             ],
                           ),
                           onTap: () {
+                            // ignore: avoid_print
                             print("CONTRIBUTION !!!");
                           },
                         )
-                      : SizedBox.shrink(),
+                      : const SizedBox.shrink(),
                 ],
               ),
             ),
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
     );
@@ -138,14 +138,14 @@ class _BBMineViewState extends State<BBMineView> {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Spacer(),
+                const Spacer(),
                 Stack(
                   // alignment: Alignment.center,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: 30.0),
+                        constraints: const BoxConstraints(maxWidth: 30.0),
                         child: BBNetworkImage(
                           services[index].icon,
                           aspectRatio: 1.0,
@@ -161,13 +161,13 @@ class _BBMineViewState extends State<BBMineView> {
                   services[index].title ?? "",
                   style: Theme.of(context).textTheme.caption,
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             );
           },
-          childCount: services?.length ?? 0,
+          childCount: services.length,
         ),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
         ),
       ),
@@ -206,7 +206,7 @@ class _BBMineViewState extends State<BBMineView> {
 
     if (mounted) {
       setState(() {
-        _mine = httpBody?.data;
+        _mine = httpBody.data!;
       });
     }
   }

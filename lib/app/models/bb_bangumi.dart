@@ -26,108 +26,108 @@ part 'bb_bangumi.g.dart';
 
 abstract class Bangumi implements Built<Bangumi, BangumiBuilder> {
   // Fields
-  @nullable
-  Activity get activity;
-  @nullable
-  Actor get actor;
-  @nullable
-  String get alias;
-  @nullable
-  BuiltList<Area> get areas;
-  @nullable
-  String get badge;
+
+  Activity? get activity;
+
+  Actor? get actor;
+
+  String? get alias;
+
+  BuiltList<Area>? get areas;
+
+  String? get badge;
+  
   @BuiltValueField(wireName: "badge_type")
-  @nullable
-  int get badgeType;
-  @nullable
-  BuiltList<dynamic> get celebrity;
-  @nullable
-  String get cover;
-  @nullable
+  int? get badgeType;
+
+  BuiltList<dynamic>? get celebrity;
+
+  String? get cover;
+  
   String get detail;
-  @nullable
+
   @BuiltValueField(wireName: "dynamic_subtitle")
-  String get dynamicSubtitle;
-  @nullable
-  BuiltList<Episode> get episodes;
-  @nullable
-  String get evaluate;
-  @nullable
-  String get link;
-  @nullable
+  String? get dynamicSubtitle;
+
+  BuiltList<Episode>? get episodes;
+
+  String? get evaluate;
+
+  String? get link;
+
   @BuiltValueField(wireName: "media_id")
-  int get mediaId;
-  @nullable
-  int get mode;
+  int? get mediaId;
+
+  int? get mode;
+  
   @BuiltValueField(wireName: "new_ep")
-  @nullable
-  NewEp get newEp;
-  @nullable
+  NewEp? get newEp;
+
   @BuiltValueField(wireName: "origin_name")
-  String get originName;
-  @nullable
-  Paster get paster;
-  @nullable
-  Payment get payment;
-  @nullable
-  BuiltList<Episode> get playlist;
-  @nullable
-  Publish get publish;
-  @nullable
-  Rating get rating;
-  @nullable
-  String get record;
-  @nullable
+  String? get originName;
+
+  Paster? get paster;
+
+  Payment? get payment;
+
+  BuiltList<Episode>? get playlist;
+
+  Publish? get publish;
+
+  Rating? get rating;
+
+  String? get record;
+
   @BuiltValueField(wireName: "relate_section")
-  BuiltList<dynamic> get relateSection;
-  @nullable
-  Copyright get rights;
-  @nullable
+  BuiltList<dynamic>? get relateSection;
+
+  Copyright? get rights;
+
   @BuiltValueField(wireName: "season_id")
-  int get seasonId;
-  @nullable
+  int? get seasonId;
+
   @BuiltValueField(wireName: "seaon_title")
-  String get seasonTitle;
-  @nullable
-  BuiltList<Season> get seasons;
-  @nullable
-  BuiltList<Section> get section;
-  @nullable
-  Serial get series;
-  @nullable
+  String? get seasonTitle;
+
+  BuiltList<Season>? get seasons;
+
+  BuiltList<Section>? get section;
+
+  Serial? get series;
+
   @BuiltValueField(wireName: "share_copy")
-  String get shareCopy;
-  @nullable
+  String? get shareCopy;
+
   @BuiltValueField(wireName: "share_url")
-  String get shareUrl;
-  @nullable
+  String? get shareUrl;
+
   @BuiltValueField(wireName: "short_link")
-  String get shortLink;
-  @nullable
+  String? get shortLink;
+
   @BuiltValueField(wireName: "square_cover")
-  String get squareCover;
-  @nullable
-  Actor get staff;
-  @nullable
-  BangumiStatus get stat;
-  @nullable
-  int get status;
-  @nullable
-  BuiltList<Tag> get styles;
-  @nullable
-  String get subtitle;
-  @nullable
-  String get title;
-  @nullable
-  int get total;
-  @nullable
-  int get type;
-  @nullable
+  String? get squareCover;
+
+  Actor? get staff;
+
+  BangumiStatus? get stat;
+
+  int? get status;
+
+  BuiltList<Tag>? get styles;
+
+  String? get subtitle;
+  
+  String? get title;
+
+  int? get total; 
+
+  int? get type;
+
   @BuiltValueField(wireName: "type_name")
-  String get typeName;
-  @nullable
+  String? get typeName;
+
   @BuiltValueField(wireName: "user_status")
-  BangumiUserStatus get userStatus;
+  BangumiUserStatus? get userStatus;
 
   Bangumi._();
 
@@ -137,7 +137,7 @@ abstract class Bangumi implements Built<Bangumi, BangumiBuilder> {
     return json.encode(serializers.serializeWith(Bangumi.serializer, this));
   }
 
-  static Bangumi fromJson(String jsonString) {
+  static Bangumi? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Bangumi.serializer, json.decode(jsonString));
   }

@@ -17,28 +17,27 @@ part 'bb_channel_module.g.dart';
 abstract class ChannelModule
     implements Built<ChannelModule, ChannelModuleBuilder> {
   // Fields
-  @nullable
-  String get offset;
-  @nullable
+  String? get offset;
+
   @BuiltValueField(wireName: "items")
-  BuiltList<Channel> get items;
-  @nullable
+  BuiltList<Channel>? get items;
+
   @BuiltValueField(wireName: "items")
-  ChannelGroup get item;
-  @nullable
+  ChannelGroup? get item;
+
   @BuiltValueField(wireName: "model_type")
-  String get type;
-  @nullable
+  String? get type;
+
   @BuiltValueField(wireName: "model_title")
-  String get title;
-  @nullable
-  String get label;
-  @nullable
+  String? get title;
+
+  String? get label;
+
   @BuiltValueField(wireName: "has_more")
-  int get hasMore;
-  @nullable
+  int? get hasMore;
+
   @BuiltValueField(wireName: "desc_button")
-  ButtonDescription get descButton;
+  ButtonDescription? get descButton;
 
   ChannelModule._();
 
@@ -50,7 +49,7 @@ abstract class ChannelModule
         .encode(serializers.serializeWith(ChannelModule.serializer, this));
   }
 
-  static ChannelModule fromJson(String jsonString) {
+  static ChannelModule? fromJson(String jsonString) {
     return serializers.deserializeWith(
         ChannelModule.serializer, json.decode(jsonString));
   }
@@ -60,7 +59,7 @@ abstract class ChannelModule
 }
 
 Serializer<ChannelModule> _$channelModuleSerializer =
-    new _$ChannelModuleSerializer();
+    _$ChannelModuleSerializer();
 
 class _$ChannelModuleSerializer implements StructuredSerializer<ChannelModule> {
   @override
@@ -69,9 +68,9 @@ class _$ChannelModuleSerializer implements StructuredSerializer<ChannelModule> {
   final String wireName = 'ChannelModule';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, ChannelModule object,
+  Iterable<Object?> serialize(Serializers serializers, ChannelModule object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
+    final result = <Object?>[];
     if (object.offset != null) {
       result
         ..add('offset')
@@ -118,17 +117,16 @@ class _$ChannelModuleSerializer implements StructuredSerializer<ChannelModule> {
       result
         ..add('items')
         ..add(serializers.serialize(object.items,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(Channel)])));
+            specifiedType: const FullType(BuiltList, [FullType(Channel)])));
     }
     return result;
   }
 
   @override
   ChannelModule deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new ChannelModuleBuilder();
+    final result = ChannelModuleBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -143,8 +141,8 @@ class _$ChannelModuleSerializer implements StructuredSerializer<ChannelModule> {
         case 'items':
           if (value is List<dynamic>) {
             result.items.replace(serializers.deserialize(value,
-                    specifiedType: const FullType(
-                        BuiltList, const [const FullType(Channel)]))
+                    specifiedType:
+                        const FullType(BuiltList, [FullType(Channel)]))
                 as BuiltList<Object>);
           } else if (value is Map<String, dynamic>) {
             result.item.replace(serializers.deserialize(value,

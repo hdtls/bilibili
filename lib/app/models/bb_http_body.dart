@@ -10,16 +10,16 @@ part 'bb_http_body.g.dart';
 
 abstract class HttpBody<Body>
     implements Built<HttpBody<Body>, HttpBodyBuilder<Body>> {
-  @nullable
-  int get code;
-  @nullable
-  String get message;
-  @nullable
-  int get ttl;
-  @nullable
-  Body get data;
-  @nullable
-  Body get result;
+  
+  int? get code;
+  
+  String? get message;
+  
+  int? get ttl;
+
+  Body? get data;
+
+  Body? get result;
 
   HttpBody._();
 
@@ -31,11 +31,11 @@ abstract class HttpBody<Body>
         specifiedType: FullType(HttpBody, [FullType(Body)])));
   }
 
-  static HttpBody<Body> fromJson<Body>(String jsonString) {
+  static HttpBody<Body>? fromJson<Body>(String jsonString) {
     return serializers.deserialize(
       json.decode(jsonString),
       specifiedType: FullType(HttpBody, [FullType(Body)]),
-    );
+    ) as HttpBody<Body>?;
   }
 
   static Serializer<HttpBody> get serializer => _$httpBodySerializer;
@@ -44,14 +44,13 @@ abstract class HttpBody<Body>
 abstract class HttpListBody<Body>
     implements Built<HttpListBody<Body>, HttpListBodyBuilder<Body>> {
   // Fields
-  @nullable
-  int get code;
-  @nullable
-  String get message;
-  @nullable
-  int get ttl;
-  @nullable
-  BuiltList<Body> get data;
+  int? get code;
+
+  String? get message;
+  
+  int? get ttl;
+
+  BuiltList<Body>? get data;
 
   HttpListBody._();
 
@@ -63,14 +62,14 @@ abstract class HttpListBody<Body>
         specifiedType: FullType(HttpListBody, [FullType(Body)])));
   }
 
-  static HttpListBody<Body> fromJson<Body>(String jsonString) {
+  static HttpListBody<Body>? fromJson<Body>(String jsonString) {
     return serializers.deserialize(
       json.decode(jsonString),
       specifiedType: FullType(
         HttpListBody,
         [FullType(Body)],
       ),
-    );
+    ) as HttpListBody<Body>?;
   }
 
   static Serializer<HttpListBody> get serializer => _$httpListBodySerializer;

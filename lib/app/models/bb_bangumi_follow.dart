@@ -15,20 +15,20 @@ part 'bb_bangumi_follow.g.dart';
 abstract class BangumiFollow
     implements Built<BangumiFollow, BangumiFollowBuilder> {
   // Fields
-  @nullable
-  ButtonDescription get desc;
-  @nullable
+
+  ButtonDescription? get desc;
+
   @BuiltValueField(wireName: "is_finish")
-  int get isFinish;
-  @nullable
+  int? get isFinish;
+
   @BuiltValueField(wireName: "is_started")
-  int get isStarted;
-  @nullable
+  int? get isStarted;
+
   @BuiltValueField(wireName: "new_ep")
-  NewEp get newEp;
-  @nullable
+  NewEp? get newEp;
+
   @BuiltValueField(wireName: "total_count")
-  int get totalCount;
+  int? get totalCount;
 
   BangumiFollow._();
 
@@ -40,7 +40,7 @@ abstract class BangumiFollow
         .encode(serializers.serializeWith(BangumiFollow.serializer, this));
   }
 
-  static BangumiFollow fromJson(String jsonString) {
+  static BangumiFollow? fromJson(String jsonString) {
     return serializers.deserializeWith(
         BangumiFollow.serializer, json.decode(jsonString));
   }

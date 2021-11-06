@@ -9,19 +9,18 @@ part 'bb_paster.g.dart';
 
 abstract class Paster implements Built<Paster, PasterBuilder> {
   // Fields
-  @nullable
-  int get aid;
-  @nullable
+  int? get aid;
+
   @BuiltValueField(wireName: "allow_jump")
-  int get allowJump;
-  @nullable
-  int get cid;
-  @nullable
-  int get duration;
-  @nullable
-  int get type;
-  @nullable
-  String get url;
+  int? get allowJump;
+
+  int? get cid; 
+  
+  int? get duration;
+
+  int? get type;
+  
+  String? get url;
 
   Paster._();
 
@@ -31,7 +30,7 @@ abstract class Paster implements Built<Paster, PasterBuilder> {
     return json.encode(serializers.serializeWith(Paster.serializer, this));
   }
 
-  static Paster fromJson(String jsonString) {
+  static Paster? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Paster.serializer, json.decode(jsonString));
   }

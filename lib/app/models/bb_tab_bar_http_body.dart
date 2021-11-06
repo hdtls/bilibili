@@ -15,14 +15,14 @@ part 'bb_tab_bar_http_body.g.dart';
 abstract class TabBarHttpBody
     implements Built<TabBarHttpBody, TabBarHttpBodyBuilder> {
   // Fields
-  @nullable
-  int get code;
-  @nullable
-  String get message;
-  @nullable
-  TabBarConfig get config;
-  @nullable
-  TabBarDisplay get data;
+
+  int? get code;
+  
+  String? get message;
+
+  TabBarConfig? get config;
+
+  TabBarDisplay? get data;
 
   TabBarHttpBody._();
 
@@ -34,7 +34,7 @@ abstract class TabBarHttpBody
         .encode(serializers.serializeWith(TabBarHttpBody.serializer, this));
   }
 
-  static TabBarHttpBody fromJson(String jsonString) {
+  static TabBarHttpBody? fromJson(String jsonString) {
     return serializers.deserializeWith(
         TabBarHttpBody.serializer, json.decode(jsonString));
   }

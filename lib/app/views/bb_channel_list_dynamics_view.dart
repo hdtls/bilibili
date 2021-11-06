@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
 import '../models/bb_channel.dart';
 import '../utils/bb_args.dart';
@@ -8,7 +8,7 @@ import '../compenents/bb_ui.dart';
 
 class BBChannelListSliverDynamics extends StatelessWidget {
   final List<Channel> channels;
-  BBChannelListSliverDynamics(this.channels);
+  const BBChannelListSliverDynamics(this.channels, {Key? key}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,7 @@ class BBChannelListSliverDynamics extends StatelessWidget {
   }
 
   void _onTap(BuildContext context, Channel c) {
+    // ignore: avoid_print
     print("CHANNEL CLICKED !!!");
   }
 
@@ -82,9 +83,9 @@ class BBChannelListSliverDynamics extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          channel.button.text,
+                          channel.button?.text ?? "",
                           style:
-                              Theme.of(context).textTheme.button.copyWith(color: Colors.white),
+                              Theme.of(context).textTheme.button?.copyWith(color: Colors.white),
                         ),
                       ),
                     ),

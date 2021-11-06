@@ -9,22 +9,21 @@ part 'bb_new_ep.g.dart';
 
 abstract class NewEp implements Built<NewEp, NewEpBuilder> {
   // Fields
-  @nullable
-  String get cover;
-  @nullable
-  int get id;
-  @nullable
-  String get desc;
-  @nullable
+  String? get cover;
+
+  int? get id;
+
+  String? get desc;
+
   @BuiltValueField(wireName: "is_new")
-  int get isNew;
-  @nullable
-  String get more;
-  @nullable 
-  String get title;
-  @nullable
+  int? get isNew;
+
+  String? get more;
+  
+  String? get title;
+
   @BuiltValueField(wireName: "index_show")
-  String get indexShow;
+  String? get indexShow;
 
   NewEp._();
 
@@ -34,7 +33,7 @@ abstract class NewEp implements Built<NewEp, NewEpBuilder> {
     return json.encode(serializers.serializeWith(NewEp.serializer, this));
   }
 
-  static NewEp fromJson(String jsonString) {
+  static NewEp? fromJson(String jsonString) {
     return serializers.deserializeWith(
         NewEp.serializer, json.decode(jsonString));
   }

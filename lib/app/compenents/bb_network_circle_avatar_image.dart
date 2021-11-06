@@ -7,21 +7,22 @@ import 'bb_network_image.dart';
 export 'bb_network_image.dart';
 
 class BBNetworkCircleAvatarImage extends StatelessWidget {
-  final String url;
+  final String? url;
   final String placeholder;
-  final String pendant;
-  final Widget extra;
+  final String? pendant;
+  final Widget? extra;
   final double radius;
-  final void Function() onTap;
+  final void Function()? onTap;
 
-  BBNetworkCircleAvatarImage(
+  const BBNetworkCircleAvatarImage(
     this.url, {
+    Key? key,
     this.placeholder = Images.defaultAvatar,
     this.pendant,
     this.onTap,
     this.extra,
-    this.radius,
-  }) : assert(radius != null);
+    required this.radius,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class BBNetworkCircleAvatarImage extends StatelessWidget {
       children.add(Positioned(
         bottom: radius * 1.7 - sin(45 * pi / 180) * radius * 1.7,
         right: radius * 1.7 - sin(45 * pi / 180) * radius * 1.7,
-        child: extra,
+        child: extra!,
       ));
     }
     return children;

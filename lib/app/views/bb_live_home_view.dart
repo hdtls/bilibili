@@ -13,13 +13,15 @@ import 'bb_live_home_rank_view.dart';
 import 'bb_live_home_activity_view.dart';
 
 class BBLiveHomeView extends StatefulWidget {
+  const BBLiveHomeView({Key? key}) : super(key: key);
+
   @override
   _BBLiveHomeViewState createState() => _BBLiveHomeViewState();
 }
 
 class _BBLiveHomeViewState extends State<BBLiveHomeView> {
-  RefreshController _refreshController;
-  BBLiveHomeBLoC _bLoC;
+  late RefreshController _refreshController;
+  late BBLiveHomeBLoC _bLoC;
 
   @override
   void initState() {
@@ -50,7 +52,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
                 controller: _refreshController,
                 onRefresh: () => _bLoC.add(LiveHomeLoadEvent()),
                 child: CustomScrollView(
-                  slivers: _buildSlivers(state.value),
+                  slivers: _buildSlivers(state.value as List<LiveGroup<dynamic>>),
                 ),
               ),
               Positioned(
@@ -81,7 +83,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
                     borderRadius: BorderRadius.circular(5),
                     itemBuilder: (BuildContext context, int index) {
                       return BBNetworkImage(
-                        section.list[index].pic,
+                        section.list?[index].pic,
                         placeholder: Images.placeholder,
                       );
                     },
@@ -92,7 +94,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
             return [
               sliverGrid<LiveTag>(
                   padding: defaultMargin,
-                  items: section.list?.toList(),
+                  items: section.list?.toList() as List<LiveTag>?,
                   crossAxisCount: 5,
                   lineSpacing: defaultMargin.bottom,
                   itemBuilder: (BuildContext context, LiveTag e) {
@@ -107,7 +109,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
             return [
               sliverToBoxAdapter(
                   padding: defaultMargin.copyWith(top: 0.0, bottom: 0.0),
-                  child: BBLiveHomeActivityView(activities: section))
+                  child: BBLiveHomeActivityView(activities: section as LiveGroup<LiveHomeActivity>))
             ];
           } else if (section.module?.id == 4) {
             return [
@@ -129,7 +131,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
               ),
               sliverToBoxAdapter(
                   padding: defaultMargin,
-                  child: BBLiveHomeRankView(section: section)),
+                  child: BBLiveHomeRankView(section: section as LiveGroup<Room>)),
               sliverToBoxAdapter(child: Divider()),
             ];
           } else {
@@ -138,15 +140,15 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
                 padding: defaultMargin,
                 child: BBHeadView(
                   title: section.module?.title,
-                  accessory: section?.module?.id == 3 ? "换一换" : "查看更多",
-                  image: section?.module?.id == 3
+                  accessory: section.module?.id == 3 ? "换一换" : "查看更多",
+                  image: section.module?.id == 3
                       ? Images.liveExchange
                       : Images.rightArrow,
                 ),
               ),
               sliverGrid<Room>(
                 padding: defaultMargin.copyWith(top: 0.0, bottom: 0.0),
-                items: section.list?.toList(),
+                items: section.list?.toList() as List<Room>?,
                 crossAxisCount: 2,
                 aspectRatio: 1.2,
                 itemBuilder: (BuildContext context, Room liveRoom) {
@@ -166,9 +168,9 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "更多${section.module.count}个${section.module.title}",
+                            "更多${section.module?.count}个${section.module?.title}",
                             style:
-                                Theme.of(context).textTheme.button.copyWith(color: pinkColor),
+                                Theme.of(context).textTheme.button?.copyWith(color: pinkColor),
                           ),
                           Image.asset(Images.rightArrow, color: pinkColor),
                         ],
@@ -189,9 +191,9 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
           children: <Widget>[
             DecoratedBox(
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: Theme.of(context).dividerTheme.color,
-                ),
+                border: Theme.of(context).dividerTheme.color != null ? Border.all(
+                  color: Theme.of(context).dividerTheme.color!,
+                ) : null,
                 borderRadius: BorderRadius.circular(3.0),
               ),
               child: Padding(

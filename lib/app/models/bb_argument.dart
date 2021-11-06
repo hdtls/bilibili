@@ -9,26 +9,20 @@ part 'bb_argument.g.dart';
 
 abstract class Argument implements Built<Argument, ArgumentBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "up_id")
-  int get upId;
-  @nullable
+  int? get upId;
+
   @BuiltValueField(wireName: "up_name")
-  String get upName;
-  @nullable
-  int get rid;
-  @nullable
-  String get rname;
-  @nullable
-  int get tid;
-  @nullable
-  String get tname;
-  @nullable
-  int get aid;
-  @nullable
-  int get cid;
-  @nullable
-  String get type;
+  String? get upName;
+  
+  int? get rid;
+  String? get rname;
+  int? get tid;
+  String? get tname;
+  int? get aid;
+  int? get cid;
+  String? get type;
 
   Argument._();
 
@@ -38,7 +32,7 @@ abstract class Argument implements Built<Argument, ArgumentBuilder> {
     return json.encode(serializers.serializeWith(Argument.serializer, this));
   }
 
-  static Argument fromJson(String jsonString) {
+  static Argument? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Argument.serializer, json.decode(jsonString));
   }

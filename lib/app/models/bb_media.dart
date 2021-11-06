@@ -22,81 +22,81 @@ part 'bb_media.g.dart';
 
 abstract class Media implements Built<Media, MediaBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "card_type")
-  String get cardType;
-  @nullable
+  String? get cardType;
+
   @BuiltValueField(wireName: "card_goto")
-  String get cardGoto;
-  @nullable
-  String get goto;
-  @nullable
-  String get param;
-  @nullable
-  String get cover;
-  @nullable
-  String get title;
-  @nullable
-  String get uri;
-  @nullable
+  String? get cardGoto;
+
+  String? get goto;
+  
+  String? get param;
+  
+  String? get cover;
+
+  String? get title;
+
+  String? get uri;
+
   @BuiltValueField(wireName: "three_point")
-  ThreePoint get threePoint;
-  @nullable
-  Argument get args;
-  @nullable
+  ThreePoint? get threePoint;
+
+  Argument? get args;
+
   @BuiltValueField(wireName: "player_args")
-  Argument get playerArgs;
-  @nullable
-  int get idx;
-  @nullable
+  Argument? get playerArgs;
+
+  int? get idx;
+
   @BuiltValueField(wireName: "three_point_v2")
-  BuiltList<ThreePointV2> get threePointV2;
-  @nullable
-  @BuiltValueField(wireName: "cover_left_text_1")
-  String get coverLeftText1;
-  @nullable
+  BuiltList<ThreePointV2>? get threePointV2;
+
+  @BuiltValueField(wireName: "cover_left_text_1") 
+  String? get coverLeftText1;
+
   @BuiltValueField(wireName: "cover_left_icon_1")
-  int get coverLeftIcon1;
-  @nullable
+  int? get coverLeftIcon1;
+
   @BuiltValueField(wireName: "cover_left_text_2")
-  String get coverLeftText2;
-  @nullable
+  String? get coverLeftText2;
+
   @BuiltValueField(wireName: "cover_left_icon_2")
-  int get coverLeftIcon2;
-  @nullable
+  int? get coverLeftIcon2;
+
   @BuiltValueField(wireName: "cover_left_text_3")
-  String get coverLeftText3;
-  @nullable
+  String? get coverLeftText3;
+
   @BuiltValueField(wireName: "cover_right_text")
-  String get coverRightText;
-  @nullable
-  Badge get badge;
-  @nullable
+  String? get coverRightText;
+
+  Badge? get badge;
+
   @BuiltValueField(wireName: "badge")
-  String get badgeString;
-  @nullable
+  String? get badgeString;
+
   @BuiltValueField(wireName: "badge_style")
-  TextAttributes get badgeStyle;
-  @nullable
+  TextAttributes? get badgeStyle;
+
   @BuiltValueField(wireName: "desc_button")
-  ButtonDescription get descButton;
-  @nullable
+  ButtonDescription? get descButton;
+
   @BuiltValueField(wireName: "can_play")
-  int get canPlay;
-  @nullable
+  int? get canPlay;
+
   @BuiltValueField(wireName: "official_icon")
-  int get officialIcon;
-  @nullable
+  int? get officialIcon;
+
   @BuiltValueField(wireName: "rcmd_reason")
-  String get rcmdReason;
-  @nullable
+  String? get rcmdReason;
+
   @BuiltValueField(wireName: "rcmd_reason_style")
-  TextAttributes get rcmdReasonStyle;
-  @nullable
+  TextAttributes? get rcmdReasonStyle;
+
   @BuiltValueField(wireName: "ad_info")
-  Advertisement get adInfo;
-  @nullable
-  int get position;
+  Advertisement? get adInfo;
+
+  int? get position;
 
   Media._();
 
@@ -106,7 +106,7 @@ abstract class Media implements Built<Media, MediaBuilder> {
     return json.encode(serializers.serializeWith(Media.serializer, this));
   }
 
-  static Media fromJson(String jsonString) {
+  static Media? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Media.serializer, json.decode(jsonString));
   }
@@ -115,7 +115,7 @@ abstract class Media implements Built<Media, MediaBuilder> {
   static Serializer<Media> get serializer => _$mediaSerializer;
 }
 
-Serializer<Media> _$mediaSerializer = new _$MediaSerializer();
+Serializer<Media> _$mediaSerializer = _$MediaSerializer();
 
 class _$MediaSerializer implements StructuredSerializer<Media> {
   @override
@@ -124,9 +124,9 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
   final String wireName = 'Media';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Media object,
+  Iterable<Object?> serialize(Serializers serializers, Media object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
+    final result = <Object?>[];
     if (object.cardType != null) {
       result
         ..add('card_type')
@@ -197,8 +197,8 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
       result
         ..add('three_point_v2')
         ..add(serializers.serialize(object.threePointV2,
-            specifiedType: const FullType(
-                BuiltList, const [const FullType(ThreePointV2)])));
+            specifiedType:
+                const FullType(BuiltList, [FullType(ThreePointV2)])));
     }
     if (object.coverLeftText1 != null) {
       result
@@ -300,9 +300,9 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
   }
 
   @override
-  Media deserialize(Serializers serializers, Iterable<Object> serialized,
+  Media deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new MediaBuilder();
+    final result = MediaBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -356,8 +356,8 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
           break;
         case 'three_point_v2':
           result.threePointV2.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(ThreePointV2)]))
+                  specifiedType:
+                      const FullType(BuiltList, [FullType(ThreePointV2)]))
               as BuiltList<Object>);
           break;
         case 'cover_left_text_1':
@@ -387,10 +387,10 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
         case 'badge':
           if (value is String) {
             result.badgeString = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+                specifiedType: const FullType(String)) as String;
           } else if (value is Map<String, dynamic>) {
             result.badge.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Badge)) as Badge);
+                specifiedType: const FullType(Badge)) as Badge);
           }
           break;
         case 'badge_style':

@@ -9,11 +9,10 @@ part 'bb_badge.g.dart';
 
 abstract class Badge implements Built<Badge, BadgeBuilder> {
   // Fields
-  @nullable
-  String get text;
-  @nullable
+  String? get text;
+
   @BuiltValueField(wireName: "icon_bg_url")
-  String get imageUrl;
+  String? get imageUrl;
 
   Badge._();
 
@@ -23,8 +22,9 @@ abstract class Badge implements Built<Badge, BadgeBuilder> {
     return json.encode(serializers.serializeWith(Badge.serializer, this));
   }
 
-  static Badge fromJson(String jsonString) {
-    return serializers.deserializeWith(Badge.serializer, json.decode(jsonString));
+  static Badge? fromJson(String jsonString) {
+    return serializers.deserializeWith(
+        Badge.serializer, json.decode(jsonString));
   }
 
   static Serializer<Badge> get serializer => _$badgeSerializer;

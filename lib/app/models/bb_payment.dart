@@ -12,22 +12,22 @@ part 'bb_payment.g.dart';
 
 abstract class Payment implements Built<Payment, PaymentBuilder> {
   // Fields
-  @nullable
-  Dialog get dialog;
-  @nullable
+
+  Dialog? get dialog;
+
   @BuiltValueField(wireName: "pay_tip")
-  PaymentTip get payTip;
-  @nullable
+  PaymentTip? get payTip;
+
   @BuiltValueField(wireName: "pay_type")
-  PaymentType get payType;
-  @nullable
-  String get price;
-  @nullable
+  PaymentType? get payType;
+
+  String? get price;
+
   @BuiltValueField(wireName: "tv_price")
-  String get tvPrice;
-  @nullable
+  String? get tvPrice;
+
   @BuiltValueField(wireName: "vip_promotion")
-  String get vipPromotion;
+  String? get vipPromotion;
 
   Payment._();
 
@@ -37,7 +37,7 @@ abstract class Payment implements Built<Payment, PaymentBuilder> {
     return json.encode(serializers.serializeWith(Payment.serializer, this));
   }
 
-  static Payment fromJson(String jsonString) {
+  static Payment? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Payment.serializer, json.decode(jsonString));
   }

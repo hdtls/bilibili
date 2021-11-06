@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tuple/tuple.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/bb_args.dart';
@@ -11,7 +10,7 @@ import '../models/bb_live_pendent.dart';
 class BBLiveHomeCardView extends StatelessWidget {
   final Room item;
   final bool showAvatar;
-  const BBLiveHomeCardView({this.item, this.showAvatar = false});
+  const BBLiveHomeCardView({Key? key, required this.item, this.showAvatar = false}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +26,10 @@ class BBLiveHomeCardView extends StatelessWidget {
             topRightIconAndDescriptions:
                 _pendent(item.pendentList?.toList(), 1),
             bottomLeftIconAndDescriptions: [
-              Tuple2(null, item.uname),
+              ThumbnailImageLabel(label: item.uname),
             ],
             bottomRightIconAndDescriptions: [
-              Tuple2(9, "${item.online}"),
+              ThumbnailImageLabel(icon: 9, label: "${item.online}"),
             ],
           ),
         ),
@@ -75,12 +74,10 @@ class BBLiveHomeCardView extends StatelessWidget {
     );
   }
 
-  List<Tuple2<dynamic, String>> _pendent(
-      List<LivePendent> pendents, int position) {
-    LivePendent pendent = pendents?.isNotEmpty ?? false
-        ? pendents.firstWhere((e) => e.pic != null && e.position == position,
-            orElse: () => null)
-        : null;
-    return pendent != null ? [Tuple2(pendent.pic, pendent.content)] : null;
+  List<ThumbnailImageLabel>? _pendent(
+      List<LivePendent>? pendents, int position) {
+    LivePendent? pendent = pendents?.firstWhereOrNull((e) => e.pic != null && e.position == position);
+
+    return pendent != null ? [ThumbnailImageLabel(icon: pendent.pic, label: pendent.content)] : null;
   }
 }

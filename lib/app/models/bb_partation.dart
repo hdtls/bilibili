@@ -8,22 +8,22 @@ import 'bb_serializers.dart';
 part 'bb_partation.g.dart';
 
 abstract class Partation implements Built<Partation, PartationBuilder> {
-  @nullable
-  String get logo;
-  @nullable
-  int get reid;
-  @nullable
-  String get uri;
-  @nullable
-  String get goto;
-  @nullable
-  String get param;
-  @nullable
-  int get type;
-  @nullable
-  int get tid;
-  @nullable
-  String get name;
+  
+  String? get logo;
+  
+  int? get reid;
+  
+  String? get uri;
+  
+  String? get goto;
+
+  String? get param;
+
+  int? get type;  
+
+  int? get tid;
+
+  String? get name;
 
   Partation._();
 
@@ -31,7 +31,7 @@ abstract class Partation implements Built<Partation, PartationBuilder> {
 
   static Serializer<Partation> get serializer => _$partationSerializer;
 
-  static Partation fromJson(String jsonString) {
+  static Partation? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Partation.serializer, json.decode(jsonString));
   }

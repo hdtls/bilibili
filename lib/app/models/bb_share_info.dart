@@ -9,13 +9,13 @@ part 'bb_share_info.g.dart';
 
 abstract class ShareInfo implements Built<ShareInfo, ShareInfoBuilder> {
   // Fields
-  @nullable
-  String get title;
-  @nullable
-  String get subtitle;
-  @nullable
+  
+  String? get title;
+  
+  String? get subtitle;
+
   @BuiltValueField(wireName: "image_url")
-  String get imageUrl;
+  String? get imageUrl;
 
   ShareInfo._();
 
@@ -25,7 +25,7 @@ abstract class ShareInfo implements Built<ShareInfo, ShareInfoBuilder> {
     return json.encode(serializers.serializeWith(ShareInfo.serializer, this));
   }
 
-  static ShareInfo fromJson(String jsonString) {
+  static ShareInfo? fromJson(String jsonString) {
     return serializers.deserializeWith(
         ShareInfo.serializer, json.decode(jsonString));
   }

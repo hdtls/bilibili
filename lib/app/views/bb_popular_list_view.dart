@@ -8,14 +8,16 @@ import 'bb_popular_list_item_view.dart';
 import 'bb_popular_list_item_idol_relative_media_view.dart';
 
 class BBPopularListView extends StatefulWidget {
+  const BBPopularListView({Key? key}) : super(key: key);
+
   @override
   _BBPopularListViewState createState() => _BBPopularListViewState();
 }
 
 class _BBPopularListViewState extends State<BBPopularListView>
     with AutomaticKeepAliveClientMixin {
-  List<dynamic> _items;
-  RefreshController _refreshController;
+  List<dynamic> _items = [];
+  RefreshController _refreshController = RefreshController();
 
   @override
   bool get wantKeepAlive => true;

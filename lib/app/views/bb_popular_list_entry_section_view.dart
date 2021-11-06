@@ -7,14 +7,14 @@ import '../compenents/bb_ui.dart';
 class BBPopularListEntrySectionView extends StatelessWidget {
 
   final List<dynamic> entries;
-  BBPopularListEntrySectionView({this.entries});
+  const BBPopularListEntrySectionView({Key? key, required this.entries}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
         padding: EdgeInsets.symmetric(horizontal: defaultMargin.left),
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
             childAspectRatio: 1,
@@ -23,9 +23,9 @@ class BBPopularListEntrySectionView extends StatelessWidget {
         itemCount: entries.length,
         itemBuilder: (context, i) {
           return BBAppView(
-                      title: "e.title",
-                      image: "e.pic",
-                      imageSize: Size(44.0, 44.0),
+                      title: "entries[i].title",
+                      image: null,
+                      imageSize: const Size(44.0, 44.0),
                     );
         },
       );

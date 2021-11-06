@@ -10,9 +10,9 @@ class FeaturedLoading extends FeaturedState {
   List<Object> get props => [];
 }
 
-class FeaturedLoadSuccess<Value> extends FeaturedState {
+class FeaturedLoadSuccess<Value extends Object> extends FeaturedState {
   final Value value;
-  FeaturedLoadSuccess(this.value);
+  const FeaturedLoadSuccess(this.value);
 
   @override
   List<Object> get props => [value];
@@ -20,7 +20,7 @@ class FeaturedLoadSuccess<Value> extends FeaturedState {
 
 class FeaturedLoadFailure extends FeaturedState {
   final String description;
-  FeaturedLoadFailure(this.description);
+  const FeaturedLoadFailure(this.description);
 
   @override
   List<Object> get props => [description];

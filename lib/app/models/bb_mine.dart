@@ -19,61 +19,60 @@ part 'bb_mine.g.dart';
 
 abstract class Mine implements Built<Mine, MineBuilder> {
   // Fields
-  @nullable
-  int get rank;
-  @nullable
-  int get follower;
-  @nullable
+  int? get rank; 
+
+  int? get follower;
+
   @BuiltValueField(wireName: "official_verify")
-  OfficialVerify get officialVerify;
-  @nullable
-  Pendant get pendant;
-  @nullable
-  int get bcoin;
-  @nullable
-  int get mid;
-  @nullable
-  int get silence;
-  @nullable
+  OfficialVerify? get officialVerify;
+
+  Pendant? get pendant;
+    
+  int? get bcoin;
+  
+  int? get mid;
+
+  int? get silence;
+
   @BuiltValueField(wireName: "vip_type")
-  int get vipType;
-  @nullable
+  int? get vipType;
+
   @BuiltValueField(wireName: "new_followers")
-  int get newFollowers;
-  @nullable
-  int get sex;
-  @nullable
+  int? get newFollowers;
+
+  int? get sex;
+
   @BuiltValueField(wireName: "vip_section_v2")
-  Module<Service> get vipSectionV2;
-  @nullable
-  BuiltList<Module<Service>> get sections;
-  @nullable
+  Module<Service>? get vipSectionV2;
+
+  BuiltList<Module<Service>>? get sections;
+
   @BuiltValueField(wireName: "show_videoup")
-  int get showVideoup;
-  @nullable
-  String get name;
+  int? get showVideoup;
+
+  String? get name;
+  
   @BuiltValueField(wireName: "show_creative")
-  @nullable
-  int get showCreative;
-  @nullable
+  int? get showCreative;
+
   @BuiltValueField(wireName: "dynamic")
-  int get dynamics;
+  int? get dynamics;
+
   @BuiltValueField(wireName: "vip_section")
-  @nullable
-  Module<Service> get vipSection;
-  @nullable
-  int get level;
-  @nullable
-  double get coin;
-  @nullable
+  Module<Service>? get vipSection;
+
+  int? get level;
+
+  double? get coin;
+
   @BuiltValueField(wireName: "audio_type")
-  int get audioType;
-  @nullable
-  int get following;
-  @nullable
-  String get face;
-  @nullable
-  Vip get vip;
+  int? get audioType;
+
+  int? get following;
+  
+  String? get face;
+
+  Vip? get vip;
 
   Mine._();
 
@@ -83,7 +82,7 @@ abstract class Mine implements Built<Mine, MineBuilder> {
     return json.encode(serializers.serializeWith(Mine.serializer, this));
   }
 
-  static Mine fromJson(String jsonString) {
+  static Mine? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Mine.serializer, json.decode(jsonString));
   }

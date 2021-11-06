@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class BBNetworkImage extends StatelessWidget {
-  final String url;
-  final String placeholder;
+  final String? url;
+  final String? placeholder;
   final BoxFit fit;
   final BoxFit pfit;
-  final Size size;
-  final double aspectRatio;
+  final Size? size;
+  final double? aspectRatio;
 
-  BBNetworkImage(
+  const BBNetworkImage(
     this.url, {
-    Key key,
+    Key? key,
     this.placeholder,
     this.fit = BoxFit.cover,
     this.pfit = BoxFit.none,
@@ -22,9 +22,9 @@ class BBNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _aspectRatio(url?.isNotEmpty ?? false
+    return _aspectRatio(url != null && (url?.isNotEmpty ?? false)
         ? CachedNetworkImage(
-            imageUrl: url,
+            imageUrl: url!,
             placeholder: ((context, url) => _box(placeholder)),
             width: size?.width,
             height: size?.height,
@@ -33,10 +33,10 @@ class BBNetworkImage extends StatelessWidget {
         : _box(placeholder));
   }
 
-  Widget _box(String placeholder) {
+  Widget _box(String? placeholder) {
     return SizedBox.fromSize(
       size: size,
-      child: placeholder?.isNotEmpty ?? false
+      child: placeholder != null && placeholder.isNotEmpty
           ? Image.asset(
               placeholder,
               fit: pfit,
@@ -48,7 +48,7 @@ class BBNetworkImage extends StatelessWidget {
   Widget _aspectRatio(Widget child) {
     return aspectRatio != null
         ? AspectRatio(
-            aspectRatio: aspectRatio,
+            aspectRatio: aspectRatio!,
             child: child,
           )
         : child;

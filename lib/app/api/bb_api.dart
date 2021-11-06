@@ -22,40 +22,40 @@ class BBApi {
   static Future<TabBarHttpBody> requestTabConfig() {
     return rootBundle
         .loadString("assets/files/bb_tab_display.json")
-        .then((value) => TabBarHttpBody.fromJson(value));
+        .then((value) => TabBarHttpBody.fromJson(value)!);
   }
 
   static Future<HttpBody<LiveHomeBody>> requestAllLive() {
     return rootBundle
         .loadString("assets/files/bb_live_stream_list.json")
-        .then((value) => HttpBody.fromJson(value));
+        .then((value) => HttpBody.fromJson(value)!);
   }
 
   static Future<HttpBody<FeaturedBody>> requestAllFeatured() {
     return rootBundle
         .loadString("assets/files/bb_featured_list.json")
-        .then((value) => HttpBody.fromJson(value));
+        .then((value) => HttpBody.fromJson(value)!);
   }
 
   static Future<HttpListBody<ChannelModule>> requestChannelHomeData() {
     return rootBundle
         .loadString("assets/files/bb_channel_list.json")
-        .then((value) => HttpListBody.fromJson(value));
+        .then((value) => HttpListBody.fromJson(value)!);
   }
 
   static Future<HttpListBody<Partation>> requestAllPartion() {
     return rootBundle
         .loadString("assets/files/bb_partation_list.json")
-        .then((value) => HttpListBody.fromJson(value));
+        .then((value) => HttpListBody.fromJson(value)!);
   }
 
   static Future<HttpBody<Mine>> requestMine() {
     return rootBundle
         .loadString("assets/files/bb_mine.json")
-        .then((value) => HttpBody.fromJson(value));
+        .then((value) => HttpBody.fromJson(value)!);
   }
 
-  static Future<HttpBody<BangumiHomeBody>> requestAllBangumi({String path}) {
+  static Future<HttpBody<BangumiHomeBody>> requestAllBangumi(String path) {
     String assetPath;
     switch (path) {
       case "cinema-tab":
@@ -67,6 +67,6 @@ class BBApi {
     }
     return rootBundle
         .loadString("assets/files/$assetPath.json")
-        .then((value) => HttpBody.fromJson(value));
+        .then((value) => HttpBody.fromJson(value)!);
   }
 }

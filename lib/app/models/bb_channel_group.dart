@@ -13,13 +13,13 @@ part 'bb_channel_group.g.dart';
 abstract class ChannelGroup
     implements Built<ChannelGroup, ChannelGroupBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "dynamic")
-  BuiltList<Channel> get dynamics;
-  @nullable
-  BuiltList<Channel> get rcmd;
-  @nullable
-  BuiltList<Channel> get list;
+  BuiltList<Channel>? get dynamics;
+
+  BuiltList<Channel>? get rcmd;
+
+  BuiltList<Channel>? get list;
 
   ChannelGroup._();
 
@@ -31,7 +31,7 @@ abstract class ChannelGroup
         .encode(serializers.serializeWith(ChannelGroup.serializer, this));
   }
 
-  static ChannelGroup fromJson(String jsonString) {
+  static ChannelGroup? fromJson(String jsonString) {
     return serializers.deserializeWith(
         ChannelGroup.serializer, json.decode(jsonString));
   }

@@ -8,22 +8,23 @@ import '../compenents/bb_ui.dart';
 import '../models/bb_tab_bar_item.dart';
 
 class BBHomeView extends StatefulWidget {
+  const BBHomeView({Key? key}) : super(key: key);
+
   @override
   _BBHomeViewState createState() => _BBHomeViewState();
 }
 
 class _BBHomeViewState extends State<BBHomeView>
     with SingleTickerProviderStateMixin {
-  List<TabBarItem> _tabBarItems;
-  TabController _tabCtr;
+  late List<TabBarItem> _tabBarItems;
+  late TabController _tabCtr;
 
   @override
   void initState() {
     super.initState();
 
     _tabBarItems =
-        BBAppMgr.shared.tabLayout?.tab?.where((e) => e.uri != null)?.toList() ??
-            [];
+        BBAppMgr.shared.tabLayout?.tab?.where((e) => e.uri != null).toList() ?? [];
 
     _tabCtr = TabController(length: _tabBarItems.length, vsync: this);
   }
@@ -44,7 +45,7 @@ class _BBHomeViewState extends State<BBHomeView>
               SliverToBoxAdapter(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).appBarTheme.color,
+                    color: Theme.of(context).appBarTheme.backgroundColor,
                   ),
                   padding: defaultMargin.copyWith(top: 0.0, bottom: 0.0),
                   child: _getTopView(),
@@ -56,10 +57,10 @@ class _BBHomeViewState extends State<BBHomeView>
                     tabs: _tabBarItems.map((e) {
                       return Tab(
                         text:
-                            e.ext?.inactiveIcon != null ? null : (e.name ?? ""),
+                            e.ext?.inactiveIcon != null ? null : e.name,
                         icon: e.ext?.inactiveIcon != null
                             ? BBNetworkImage(
-                                e.ext.inactiveIcon,
+                                e.ext?.inactiveIcon,
                                 size: Size(54, 20),
                               )
                             : null,
@@ -82,9 +83,12 @@ class _BBHomeViewState extends State<BBHomeView>
           },
           body: TabBarView(
             children: _tabBarItems.map((e) {
-              AppRouteMatch match = FluroRouter.appRouter.match(e.uri);
-              Handler handler = match?.route?.handler ?? FluroRouter.appRouter.notFoundHandler;
-              return handler.handlerFunc(context, match?.parameters);
+              if (e.uri != null) {
+                AppRouteMatch? match = FluroRouter.appRouter.match(e.uri!);
+                Handler handler = match?.route.handler ?? FluroRouter.appRouter.notFoundHandler;
+                return handler.handlerFunc(context, match?.parameters ?? {}) ?? Container();
+              }
+              return Container();
             }).toList(),
             controller: _tabCtr,
           ),
@@ -148,7 +152,7 @@ class _BBHomeViewState extends State<BBHomeView>
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
 
-  _SliverAppBarDelegate({this.tabBar});
+  _SliverAppBarDelegate({required this.tabBar});
 
   @override
   double get minExtent => 44.0;
@@ -164,7 +168,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
         color: Theme.of(context).appBarTheme.color,
         border: Border(
           bottom: BorderSide(
-            color: Theme.of(context).dividerTheme.color,
+            color: Theme.of(context).dividerTheme.color ?? Colors.grey[200]!,
             width: 0.75,
           ),
         ),

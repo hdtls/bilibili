@@ -9,16 +9,15 @@ part 'bb_cover.g.dart';
 
 abstract class Cover implements Built<Cover, CoverBuilder> {
   // Fields
-  @nullable
-  String get url;
-  @nullable
-  int get loop;
-  @nullable
+  String? get url;
+
+  int? get loop;
+
   @BuiltValueField(wireName: "image_height")
-  int get imageHeight;
-  @nullable
+  int? get imageHeight;
+
   @BuiltValueField(wireName: "image_width")
-  int get imageWidth;
+  int? get imageWidth;
 
   Cover._();
 
@@ -28,7 +27,7 @@ abstract class Cover implements Built<Cover, CoverBuilder> {
     return json.encode(serializers.serializeWith(Cover.serializer, this));
   }
 
-  static Cover fromJson(String jsonString) {
+  static Cover? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Cover.serializer, json.decode(jsonString));
   }

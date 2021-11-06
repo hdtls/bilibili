@@ -8,7 +8,7 @@ class BBBangumiCardView extends StatelessWidget {
   final BangumiListItem bangumi;
   final double aspectRatio;
 
-  BBBangumiCardView(this.bangumi, {this.aspectRatio = 16.0 / 9.0});
+  const BBBangumiCardView(this.bangumi, {Key? key, this.aspectRatio = 16.0 / 9.0}): super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -9,12 +9,11 @@ part 'bb_tag.g.dart';
 
 abstract class Tag implements Built<Tag, TagBuilder> {
   // Fields
-  @nullable
   int get id;
-  @nullable
-  String get name;
-  @nullable
-  String get url;
+  
+  String? get name;
+
+  String? get url;
 
   Tag._();
 
@@ -24,7 +23,7 @@ abstract class Tag implements Built<Tag, TagBuilder> {
     return json.encode(serializers.serializeWith(Tag.serializer, this));
   }
 
-  static Tag fromJson(String jsonString) {
+  static Tag? fromJson(String jsonString) {
     return serializers.deserializeWith(Tag.serializer, json.decode(jsonString));
   }
 

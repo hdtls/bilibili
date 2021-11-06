@@ -9,13 +9,13 @@ part 'bb_dialog.g.dart';
 
 abstract class Dialog implements Built<Dialog, DialogBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "btn_right")
-  DialogButtonDescription get btnRight;
-  @nullable
-  String get desc;
-  @nullable
-  String get title;
+  DialogButtonDescription? get btnRight;
+
+  String? get desc;
+
+  String? get title;
 
   Dialog._();
 
@@ -25,7 +25,7 @@ abstract class Dialog implements Built<Dialog, DialogBuilder> {
     return json.encode(serializers.serializeWith(Dialog.serializer, this));
   }
 
-  static Dialog fromJson(String jsonString) {
+  static Dialog? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Dialog.serializer, json.decode(jsonString));
   }
@@ -36,10 +36,9 @@ abstract class Dialog implements Built<Dialog, DialogBuilder> {
 abstract class DialogButtonDescription
     implements Built<DialogButtonDescription, DialogButtonDescriptionBuilder> {
   // Fields
-  @nullable
-  String get title;
-  @nullable
-  String get type;
+  String? get title;
+
+  String? get type;
 
   DialogButtonDescription._();
 
@@ -52,7 +51,7 @@ abstract class DialogButtonDescription
         serializers.serializeWith(DialogButtonDescription.serializer, this));
   }
 
-  static DialogButtonDescription fromJson(String jsonString) {
+  static DialogButtonDescription? fromJson(String jsonString) {
     return serializers.deserializeWith(
         DialogButtonDescription.serializer, json.decode(jsonString));
   }

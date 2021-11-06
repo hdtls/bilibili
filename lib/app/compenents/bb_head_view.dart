@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import '../utils/bb_utils.dart';
 
 class BBHeadView extends StatelessWidget {
-  final String title;
-  final Widget leading;
-  final String accessory;
-  final String image;
-  final Widget accessoryView;
-  final String destination;
-  final Object arguments;
-  final void Function() onTap;
-  final Widget trailing;
+  final String? title;
+  final Widget? leading;
+  final String? accessory;
+  final String? image;
+  final Widget? accessoryView;
+  final String? destination;
+  final Object? arguments;
+  final void Function()? onTap;
+  final Widget? trailing;
 
-  BBHeadView({
-    Key key,
+  const BBHeadView({
+    Key? key,
     this.title,
     this.destination,
     this.arguments,
@@ -39,8 +39,8 @@ class BBHeadView extends StatelessWidget {
           onTap: onTap,
           child: Row(
             children: <Widget>[
-              accessoryView ?? Text(this.accessory ?? "", style: Theme.of(context).textTheme.button,),
-              image != null ? Image.asset(image) : SizedBox.shrink(),
+              accessoryView ?? Text(accessory ?? "", style: Theme.of(context).textTheme.button,),
+              image != null ? Image.asset(image!) : SizedBox.shrink(),
             ],
           ),
         ),

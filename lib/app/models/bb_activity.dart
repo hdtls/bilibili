@@ -11,18 +11,12 @@ part 'bb_activity.g.dart';
 
 abstract class Activity implements Built<Activity, ActivityBuilder> {
   // Fields
-  @nullable
-  String get cover;
-  @nullable
+  String? get cover;
   int get id;
-  @nullable
-  String get link;
-  @nullable
-  BuiltList<Threshold> get threshold;
-  @nullable
-  String get title;
-  @nullable
-  int get type;
+  String? get link;
+  BuiltList<Threshold>? get threshold;
+  String? get title;
+  int? get type;
 
   Activity._();
 
@@ -32,7 +26,7 @@ abstract class Activity implements Built<Activity, ActivityBuilder> {
     return json.encode(serializers.serializeWith(Activity.serializer, this));
   }
 
-  static Activity fromJson(String jsonString) {
+  static Activity? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Activity.serializer, json.decode(jsonString));
   }

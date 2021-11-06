@@ -9,14 +9,14 @@ part 'bb_review.g.dart';
 
 abstract class Review implements Built<Review, ReviewBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "article_url")
-  String get articleUrl;
-  @nullable
+  String? get articleUrl;
+
   @BuiltValueField(wireName: "is_open")
-  int get isOpen;
-  @nullable
-  int get score;
+  int? get isOpen;
+  
+  int? get score;
 
   Review._();
 
@@ -26,7 +26,7 @@ abstract class Review implements Built<Review, ReviewBuilder> {
     return json.encode(serializers.serializeWith(Review.serializer, this));
   }
 
-  static Review fromJson(String jsonString) {
+  static Review? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Review.serializer, json.decode(jsonString));
   }

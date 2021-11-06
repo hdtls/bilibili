@@ -4,6 +4,8 @@ import 'package:bilibili/app/utils/bb_args.dart';
 import 'package:bilibili/app/compenents/bb_media_thumbnail_view.dart';
 
 class BBPopularListItemIdolRelativeMediaItemView extends StatelessWidget {
+  const BBPopularListItemIdolRelativeMediaItemView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 Widget sliverGrid<T>({
   EdgeInsetsGeometry padding = EdgeInsets.zero,
-  List<T> items,
-  int crossAxisCount,
+  List<T>? items,
+  required int crossAxisCount,
   double aspectRatio = 1.0,
   double lineSpacing = 8.0,
   double interitemSpacing = 8.0,
-  Widget Function(BuildContext, T) itemBuilder,
+  required Widget Function(BuildContext, T) itemBuilder,
 }) {
   return padding != EdgeInsets.zero
       ? SliverPadding(
@@ -31,19 +31,19 @@ Widget sliverGrid<T>({
 }
 
 Widget _sliverGrid<T>({
-  List<T> items,
-  int crossAxisCount,
-  double aspectRatio,
-  double lineSpacing,
-  double interitemSpacing,
-  Widget Function(BuildContext, T) itemBuilder,
+  List<T>? items,
+  required int crossAxisCount,
+  double aspectRatio = 1.0,
+  double lineSpacing = 8.0,
+  double interitemSpacing = 8.0,
+  required Widget Function(BuildContext, T) itemBuilder,
 }) {
   return SliverGrid(
     delegate: SliverChildBuilderDelegate(
       (BuildContext context, int index) {
-        return itemBuilder(context, items[index]);
+        return itemBuilder(context, items![index]);
       },
-      childCount: items?.length ?? 0,
+      childCount: items?.length,
     ),
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: crossAxisCount,
@@ -54,7 +54,7 @@ Widget _sliverGrid<T>({
   );
 }
 
-Widget sliverToBoxAdapter({EdgeInsetsGeometry padding = EdgeInsets.zero, Widget child}) {
+Widget sliverToBoxAdapter({EdgeInsetsGeometry padding = EdgeInsets.zero, required Widget child}) {
   return SliverToBoxAdapter(
     child: padding != EdgeInsets.zero
         ? Padding(

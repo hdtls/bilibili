@@ -18,7 +18,7 @@ class BBFeaturedBLoC extends Bloc<FeaturedEvent, FeaturedState> {
     try {
         HttpBody<FeaturedBody> body = await BBApi.requestAllFeatured();
 
-        emit(FeaturedLoadSuccess(body?.data?.items?.toList() ?? []));
+        emit(FeaturedLoadSuccess(body.data?.items?.toList() ?? []));
       } catch (e) {
         emit(FeaturedLoadFailure(e.toString()));
       }

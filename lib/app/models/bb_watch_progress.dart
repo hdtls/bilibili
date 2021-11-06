@@ -10,20 +10,19 @@ part 'bb_watch_progress.g.dart';
 abstract class WatchProgress
     implements Built<WatchProgress, WatchProgressBuilder> {
   // Fields
-  @nullable
-  int get bar;
-  @nullable
+  int? get bar;
+
   @BuiltValueField(wireName: "last_ep_desc")
-  String get lastEpDesc;
-  @nullable
+  String? get lastEpDesc;
+
   @BuiltValueField(wireName: "last_ep_id")
-  int get lastEpId;
-  @nullable
+  int? get lastEpId;
+
   @BuiltValueField(wireName: "last_ep_index")
-  String get lastEpIndex;
-  @nullable
+  String? get lastEpIndex;
+
   @BuiltValueField(wireName: "last_time")
-  int get lastTime;
+  int? get lastTime;
 
   WatchProgress._();
 
@@ -35,7 +34,7 @@ abstract class WatchProgress
         .encode(serializers.serializeWith(WatchProgress.serializer, this));
   }
 
-  static WatchProgress fromJson(String jsonString) {
+  static WatchProgress? fromJson(String jsonString) {
     return serializers.deserializeWith(
         WatchProgress.serializer, json.decode(jsonString));
   }

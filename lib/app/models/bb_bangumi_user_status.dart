@@ -12,27 +12,26 @@ part 'bb_bangumi_user_status.g.dart';
 abstract class BangumiUserStatus
     implements Built<BangumiUserStatus, BangumiUserStatusBuilder> {
   // Fields
-  @nullable
-  int get follow;
-  @nullable
+  int? get follow;
+
   @BuiltValueField(wireName: "follow_status")
-  int get followStatus;
-  @nullable
+  int? get followStatus;
+
   @BuiltValueField(wireName: "follow_bubble")
-  int get followBubble;
-  @nullable
-  int get pay;
-  @nullable
-  WatchProgress get progress;
-  @nullable
-  Review get review;
-  @nullable
-  int get sponsor;
-  @nullable
-  int get vip;
-  @nullable
+  int? get followBubble;
+  
+  int? get pay;
+
+  WatchProgress? get progress;
+
+  Review? get review;
+  
+  int? get sponsor; 
+  
+  int? get vip;
+
   @BuiltValueField(wireName: "vip_frozen")
-  int get vipFrozen;
+  int? get vipFrozen;
 
   BangumiUserStatus._();
 
@@ -44,7 +43,7 @@ abstract class BangumiUserStatus
         .encode(serializers.serializeWith(BangumiUserStatus.serializer, this));
   }
 
-  static BangumiUserStatus fromJson(String jsonString) {
+  static BangumiUserStatus? fromJson(String jsonString) {
     return serializers.deserializeWith(
         BangumiUserStatus.serializer, json.decode(jsonString));
   }

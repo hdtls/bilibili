@@ -8,7 +8,7 @@ class BBBangumiRankRow extends StatelessWidget {
   final BangumiListItem bangumi;
   final int rank;
 
-  BBBangumiRankRow(this.bangumi, this.rank);
+  const BBBangumiRankRow(this.bangumi, this.rank, {Key? key}): super(key: key);
 
   @override
   Widget build(BuildContext context) {

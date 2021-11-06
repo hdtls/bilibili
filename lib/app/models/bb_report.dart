@@ -9,23 +9,23 @@ part 'bb_report.g.dart';
 
 abstract class Report implements Built<Report, ReportBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "card_type")
-  String get cardType;
-  @nullable
+  String? get cardType;
+
   @BuiltValueField(wireName: "item_id")
-  String get itemId;
-  @nullable
+  String? get itemId;
+
   @BuiltValueField(wireName: "module_id")
-  String get moduleId;
-  @nullable
+  String? get moduleId;
+
   @BuiltValueField(wireName: "module_type")
-  String get moduleType;
-  @nullable
-  String get oid;
-  @nullable
+  String? get moduleType;
+
+  String? get oid;
+
   @BuiltValueField(wireName: "season_type")
-  String get seasonType;
+  String? get seasonType;
 
   Report._();
 
@@ -35,7 +35,7 @@ abstract class Report implements Built<Report, ReportBuilder> {
     return json.encode(serializers.serializeWith(Report.serializer, this));
   }
 
-  static Report fromJson(String jsonString) {
+  static Report? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Report.serializer, json.decode(jsonString));
   }

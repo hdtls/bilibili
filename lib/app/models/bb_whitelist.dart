@@ -9,23 +9,22 @@ part 'bb_whitelist.g.dart';
 
 abstract class Whitelist implements Built<Whitelist, WhitelistBuilder> {
   // Fields
-  @nullable
-  int get size;
-  @nullable
+  int? get size;
+
   @BuiltValueField(wireName: "display_name")
-  String get displayName;
-  @nullable
+  String? get displayName;
+
   @BuiltValueField(wireName: "apk_name")
-  String get apkName;
-  @nullable
-  String get url;
-  @nullable
-  String get md5;
-  @nullable
-  String get icon;
-  @nullable
+  String? get apkName;
+  
+  String? get url;
+  
+  String? get md5;
+
+  String? get icon;
+
   @BuiltValueField(wireName: "bili_url")
-  String get biliUrl;
+  String? get biliUrl;
 
   Whitelist._();
 
@@ -35,7 +34,7 @@ abstract class Whitelist implements Built<Whitelist, WhitelistBuilder> {
     return json.encode(serializers.serializeWith(Whitelist.serializer, this));
   }
 
-  static Whitelist fromJson(String jsonString) {
+  static Whitelist? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Whitelist.serializer, json.decode(jsonString));
   }

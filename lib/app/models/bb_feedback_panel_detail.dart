@@ -10,37 +10,42 @@ export 'bb_secondary_panel.dart';
 
 part 'bb_feedback_panel_detail.g.dart';
 
-abstract class FeedbackPanelDetail implements Built<FeedbackPanelDetail, FeedbackPanelDetailBuilder> {
+abstract class FeedbackPanelDetail
+    implements Built<FeedbackPanelDetail, FeedbackPanelDetailBuilder> {
   // Fields
-  @nullable
-  String get text;
-  @nullable
+  String? get text;
+
   @BuiltValueField(wireName: "module_id")
-  int get moduleId;
-  @nullable
+  int? get moduleId;
+
   @BuiltValueField(wireName: "jump_type")
-  int get jumpType;
-  @nullable
+  int? get jumpType;
+
   @BuiltValueField(wireName: "icon_url")
-  String get iconUrl;
-  @nullable
+  String? get iconUrl;
+
   @BuiltValueField(wireName: "jump_url")
-  String get jumpUrl;
-  @nullable
+  String? get jumpUrl;
+
   @BuiltValueField(wireName: "secondary_panel")
-  List<SecondaryPanel> get secondaryPanel;
+  List<SecondaryPanel>? get secondaryPanel;
 
   FeedbackPanelDetail._();
 
-  factory FeedbackPanelDetail([void Function(FeedbackPanelDetailBuilder) updates]) = _$FeedbackPanelDetail;
+  factory FeedbackPanelDetail(
+          [void Function(FeedbackPanelDetailBuilder) updates]) =
+      _$FeedbackPanelDetail;
 
   String toJson() {
-    return json.encode(serializers.serializeWith(FeedbackPanelDetail.serializer, this));
+    return json.encode(
+        serializers.serializeWith(FeedbackPanelDetail.serializer, this));
   }
 
-  static FeedbackPanelDetail fromJson(String jsonString) {
-    return serializers.deserializeWith(FeedbackPanelDetail.serializer, json.decode(jsonString));
+  static FeedbackPanelDetail? fromJson(String jsonString) {
+    return serializers.deserializeWith(
+        FeedbackPanelDetail.serializer, json.decode(jsonString));
   }
 
-  static Serializer<FeedbackPanelDetail> get serializer => _$feedbackPanelDetailSerializer;
+  static Serializer<FeedbackPanelDetail> get serializer =>
+      _$feedbackPanelDetailSerializer;
 }

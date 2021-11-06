@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/bb_args.dart';
+import '../utils/bb_additions.dart';
 import '../compenents/bb_network_circle_avatar_image.dart';
 import '../models/bb_live_group.dart';
 import '../models/bb_room.dart';
@@ -8,17 +9,17 @@ import '../models/bb_room.dart';
 class BBLiveHomeRankView extends StatelessWidget {
   final LiveGroup<Room> section;
 
-  BBLiveHomeRankView({this.section});
+  const BBLiveHomeRankView({Key? key, required this.section}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Fix sort order with 2 1 3;
-    Room goldMedal =
-        section.list?.firstWhere((e) => e.rank == 1, orElse: () => null);
-    Room silverMedal =
-        section.list?.firstWhere((e) => e.rank == 2, orElse: () => null);
-    Room bronzeMedal =
-        section.list?.firstWhere((e) => e.rank == 3, orElse: () => null);
+    Room? goldMedal =
+        section.list?.firstWhereOrNull((e) => e.rank == 1);
+    Room? silverMedal =
+        section.list?.firstWhereOrNull((e) => e.rank == 2);
+    Room? bronzeMedal =
+        section.list?.firstWhereOrNull((e) => e.rank == 3);
 
     List<Room> models = [];
     if (silverMedal != null) {
@@ -58,7 +59,7 @@ class BBLiveHomeRankView extends StatelessWidget {
         Text(rank.uname ?? ""),
         Text(
           rank.areaV2ParentName ?? "",
-          style: Theme.of(context).textTheme.caption.copyWith(color: Theme.of(context).hintColor),
+          style: Theme.of(context).textTheme.caption?.copyWith(color: Theme.of(context).hintColor),
         ),
       ],
     );

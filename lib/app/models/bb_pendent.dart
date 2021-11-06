@@ -9,8 +9,7 @@ part 'bb_pendent.g.dart';
 
 abstract class Pendant implements Built<Pendant, PendantBuilder> {
   // Fields
-  @nullable
-  String get image;
+  String? get image;
 
   Pendant._();
 
@@ -20,8 +19,9 @@ abstract class Pendant implements Built<Pendant, PendantBuilder> {
     return json.encode(serializers.serializeWith(Pendant.serializer, this));
   }
 
-  static Pendant fromJson(String jsonString) {
-    return serializers.deserializeWith(Pendant.serializer, json.decode(jsonString));
+  static Pendant? fromJson(String jsonString) {
+    return serializers.deserializeWith(
+        Pendant.serializer, json.decode(jsonString));
   }
 
   static Serializer<Pendant> get serializer => _$pendantSerializer;

@@ -23,100 +23,103 @@ export 'bb_watch_progress.dart';
 
 part 'bb_bangumi_list_item.g.dart';
 
-abstract class BangumiListItem implements Built<BangumiListItem, BangumiListItemBuilder> {
+abstract class BangumiListItem
+    implements Built<BangumiListItem, BangumiListItemBuilder> {
   // Fields
-  @nullable
-  String get cover;
-  @nullable
+  String? get cover;
+
   @BuiltValueField(wireName: "is_preview")
-  int get isPreview;
-  @nullable
+  int? get isPreview;
+
   @BuiltValueField(wireName: "item_id")
-  int get itemId;
-  @nullable
-  String get link;
-  @nullable
-  Report get report;
-  @nullable
+  int? get itemId;
+
+  String? get link;
+
+  Report? get report;
+
   @BuiltValueField(wireName: "source_content")
-  SourceContent get sourceContent;
-  @nullable
-  String get title;
-  @nullable
-  int get wid;
-  @nullable
-  String get badge;
-  @nullable
+  SourceContent? get sourceContent;
+  
+  String? get title;
+  
+  int? get wid;
+  
+  String? get badge;
+
   @BuiltValueField(wireName: "badge_type")
-  int get badgeType;
-  @nullable
-  String get desc;
-  @nullable
+  int? get badgeType;
+  
+  String? get desc;
+
   @BuiltValueField(wireName: "desc_type")
-  int get descType;
-  @nullable
-  BangumiFollow get follow;
-  @nullable
-  WatchProgress get progress;
-  @nullable
+  int? get descType;
+
+  BangumiFollow? get follow;
+
+  WatchProgress? get progress;
+
   @BuiltValueField(wireName: "season_id")
-  int get seasonId;
-  @nullable
+  int? get seasonId;
+
   @BuiltValueField(wireName: "season_type")
-  int get seasonType;
-  @nullable
-  String get desc2;
-  @nullable
+  int? get seasonType;
+  
+  String? get desc2;
+
   @BuiltValueField(wireName: "can_watch")
-  int get canWatch;
-  @nullable
+  int? get canWatch;
+
   @BuiltValueField(wireName: "is_auto")
-  int get isAuto;
-  @nullable
-  int get oid;
-  @nullable
-  BangumiStatus get stat;
-  @nullable
-  BangumiUserStatus get status;
-  @nullable
-  String get type;
-  @nullable
-  String get date;
-  @nullable
+  int? get isAuto;
+  
+  int? get oid;
+
+  BangumiStatus? get stat;
+
+  BangumiUserStatus? get status;
+  
+  String? get type;
+  
+  String? get date;
+
   @BuiltValueField(wireName: "date_ts")
-  int get dateTs;
-  @nullable
+  int? get dateTs;
+
   @BuiltValueField(wireName: "day_of_week")
-  int get dayOfWeek;
-  @nullable
-  BuiltList<Trailer> get episodes;
-  @nullable
+  int? get dayOfWeek;
+
+  BuiltList<Trailer>? get episodes;
+
   @BuiltValueField(wireName: "is_today")
-  int get isToday;
-  @nullable
-  BuiltList<BangumiListItem> get cards;
-  @nullable
-  String get pts;
-  @nullable
+  int? get isToday;
+
+  BuiltList<BangumiListItem>? get cards;
+  
+  String? get pts;
+
   @BuiltValueField(wireName: "is_new")
-  int get isNew;
-  @nullable
-  String get cursor;
-  @nullable
-  String get hat;
+  int? get isNew;
+  
+  String? get cursor;
+  
+  String? get hat;
 
   BangumiListItem._();
 
-  factory BangumiListItem([void Function(BangumiListItemBuilder) updates]) = _$BangumiListItem;
+  factory BangumiListItem([void Function(BangumiListItemBuilder) updates]) =
+      _$BangumiListItem;
 
   String toJson() {
-    return json.encode(serializers.serializeWith(BangumiListItem.serializer, this));
+    return json
+        .encode(serializers.serializeWith(BangumiListItem.serializer, this));
   }
 
-  static BangumiListItem fromJson(String jsonString) {
+  static BangumiListItem? fromJson(String jsonString) {
     return serializers.deserializeWith(
         BangumiListItem.serializer, json.decode(jsonString));
   }
 
-  static Serializer<BangumiListItem> get serializer => _$bangumiListItemSerializer;
+  static Serializer<BangumiListItem> get serializer =>
+      _$bangumiListItemSerializer;
 }

@@ -9,12 +9,11 @@ part 'bb_attr.g.dart';
 
 abstract class Attr implements Built<Attr, AttrBuilder> {
   // Fields
-  @nullable
-  int get follow;
-  @nullable
-  int get header;
-  @nullable
-  int get random;
+  int? get follow;
+
+  int? get header;
+
+  int? get random;
 
   Attr._();
 
@@ -24,7 +23,7 @@ abstract class Attr implements Built<Attr, AttrBuilder> {
     return json.encode(serializers.serializeWith(Attr.serializer, this));
   }
 
-  static Attr fromJson(String jsonString) {
+  static Attr? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Attr.serializer, json.decode(jsonString));
   }

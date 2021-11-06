@@ -1,15 +1,22 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 extension BBColor on Color {
-  static from(String hexString, {int alpha = 100}) {
+  static Color? fromHexString(String? hexString, {int alpha = 100}) {
     if (hexString?.isEmpty ?? true) {
       return null;
     }
 
-    hexString = hexString.replaceAll("#", "");
+    hexString = hexString!.replaceAll("#", "");
 
     try {
-      return Color(int.tryParse(hexString, radix: 16))?.withOpacity(alpha / 100);
+      var intValue = int.tryParse(hexString, radix: 16);
+
+      if (intValue == null) {
+        return null;
+      }
+      return Color(intValue).withOpacity(alpha / 100);
     } on Exception {
       return null;
     }

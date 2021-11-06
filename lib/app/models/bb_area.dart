@@ -9,10 +9,9 @@ part 'bb_area.g.dart';
 
 abstract class Area implements Built<Area, AreaBuilder> {
   // Fields
-  @nullable
+
   int get id;
-  @nullable
-  String get name;
+  String? get name;
 
   Area._();
 
@@ -22,7 +21,7 @@ abstract class Area implements Built<Area, AreaBuilder> {
     return json.encode(serializers.serializeWith(Area.serializer, this));
   }
 
-  static Area fromJson(String jsonString) {
+  static Area? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Area.serializer, json.decode(jsonString));
   }

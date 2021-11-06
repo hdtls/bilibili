@@ -6,29 +6,29 @@ part 'bb_module_style.g.dart';
 
 class ModuleStyle extends EnumClass {
   @BuiltValueEnumConst(wireName: "banner")
-  static const ModuleStyle BANNER = _$BANNER;
+  static const ModuleStyle banner = _$BANNER;
   @BuiltValueEnumConst(wireName: "function")
-  static const ModuleStyle FUNCTION = _$FUNCTION;
+  static const ModuleStyle function = _$FUNCTION;
   @BuiltValueEnumConst(wireName: "follow")
-  static const ModuleStyle FOLLOW = _$FOLLOW;
+  static const ModuleStyle follow = _$FOLLOW;
   @BuiltValueEnumConst(wireName: "tip")
-  static const ModuleStyle TIP = _$TIP;
+  static const ModuleStyle tip = _$TIP;
   @BuiltValueEnumConst(wireName: "card")
-  static const ModuleStyle CARD = _$CARD;
+  static const ModuleStyle card = _$CARD;
   @BuiltValueEnumConst(wireName: "v_card")
-  static const ModuleStyle VCARD = _$VCARD;
+  static const ModuleStyle vcard = _$VCARD;
   @BuiltValueEnumConst(wireName: "timeline")
-  static const ModuleStyle TIMELINE = _$TIMELINE;
+  static const ModuleStyle timeline = _$TIMELINE;
   @BuiltValueEnumConst(wireName: "rank")
-  static const ModuleStyle RANK = _$RANK;
+  static const ModuleStyle rank = _$RANK;
   @BuiltValueEnumConst(wireName: "flow")
-  static const ModuleStyle FLOW = _$FLOW;
+  static const ModuleStyle flow = _$FLOW;
   @BuiltValueEnumConst(wireName: "topic")
-  static const ModuleStyle TOPIC = _$TOPIC;
+  static const ModuleStyle topic = _$TOPIC;
   @BuiltValueEnumConst(wireName: "list")
-  static const ModuleStyle LIST = _$LIST;
+  static const ModuleStyle list = _$LIST;
   @BuiltValueEnumConst(wireName: "h_list")
-  static const ModuleStyle HLIST = _$HLIST;
+  static const ModuleStyle hlist = _$HLIST;
 
   const ModuleStyle._(String name) : super(name);
 
@@ -39,36 +39,36 @@ class ModuleStyle extends EnumClass {
   static Serializer<ModuleStyle> get serializer => _$moduleStyleSerializer;
 }
 
-Serializer<ModuleStyle> _$moduleStyleSerializer = new _$ModuleStyleSerializer();
+Serializer<ModuleStyle> _$moduleStyleSerializer = _$ModuleStyleSerializer();
 
 class _$ModuleStyleSerializer implements PrimitiveSerializer<ModuleStyle> {
-  static const Map<String, String> _toWire = const <String, String>{
-    'BANNER': 'banner',
-    'FUNCTION': 'function',
-    'FOLLOW': 'follow',
-    'TIP': 'tip',
-    'CARD': 'card',
-    'VCARD': 'v_card',
-    'TIMELINE': 'timeline',
-    'RANK': 'rank',
-    'FLOW': 'flow',
-    'TOPIC': 'topic',
-    'LIST' : 'list',
-    'HLIST': 'h_list',
+  static const Map<String, String> _toWire = <String, String>{
+    'banner': 'banner',
+    'function': 'function',
+    'follow': 'follow',
+    'tip': 'tip',
+    'card': 'card',
+    'vcard': 'v_card',
+    'timeline': 'timeline',
+    'rank': 'rank',
+    'flow': 'flow',
+    'topic': 'topic',
+    'list' : 'list',
+    'hlist': 'h_list',
   };
-  static const Map<String, String> _fromWire = const <String, String>{
-    'banner': 'BANNER',
-    'function': 'FUNCTION',
-    'follow': 'FOLLOW',
-    'tip': 'TIP',
-    'card': 'CARD',
-    'v_card': 'VCARD',
-    'timeline': 'TIMELINE',
-    'rank': 'RANK',
-    'flow': 'FLOW',
-    'topic': 'TOPIC',
-    'list' : 'LIST',
-    'h_list': 'HLIST',
+  static const Map<String, String> _fromWire = <String, String>{
+    'banner': 'banner',
+    'function': 'function',
+    'follow': 'follow',
+    'tip': 'tip',
+    'card': 'card',
+    'v_card': 'vcard',
+    'timeline': 'timeline',
+    'rank': 'rank',
+    'flow': 'flow',
+    'topic': 'topic',
+    'list' : 'list',
+    'h_list': 'hlist',
   };
 
   @override

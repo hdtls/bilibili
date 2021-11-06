@@ -7,19 +7,20 @@ import 'bb_serializers.dart';
 
 part 'bb_button_description.g.dart';
 
-abstract class ButtonDescription implements Built<ButtonDescription, ButtonDescriptionBuilder> {
+abstract class ButtonDescription
+    implements Built<ButtonDescription, ButtonDescriptionBuilder> {
   // Fields
-  @nullable
-  String get text;
-  @nullable
-  String get uri;
-  @nullable
-  String get event;
-  @nullable
-  int get type;
-  @nullable
+  
+  String? get text;
+  
+  String? get uri;
+
+  String? get event;
+
+  int? get type;
+
   @BuiltValueField(wireName: "event_v2")
-  String get eventV2;
+  String? get eventV2;
 
   ButtonDescription._();
 
@@ -27,13 +28,15 @@ abstract class ButtonDescription implements Built<ButtonDescription, ButtonDescr
       _$ButtonDescription;
 
   String toJson() {
-    return json.encode(serializers.serializeWith(ButtonDescription.serializer, this));
+    return json
+        .encode(serializers.serializeWith(ButtonDescription.serializer, this));
   }
 
-  static ButtonDescription fromJson(String jsonString) {
+  static ButtonDescription? fromJson(String jsonString) {
     return serializers.deserializeWith(
         ButtonDescription.serializer, json.decode(jsonString));
   }
 
-  static Serializer<ButtonDescription> get serializer => _$buttonDescriptionSerializer;
+  static Serializer<ButtonDescription> get serializer =>
+      _$buttonDescriptionSerializer;
 }

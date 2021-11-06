@@ -14,11 +14,12 @@ part 'bb_feedback_panel.g.dart';
 abstract class FeedbackPanel
     implements Built<FeedbackPanel, FeedbackPanelBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "pannel_type_text")
-  String get panelTypeText;
+  String? get panelTypeText;
+
   @BuiltValueField(wireName: "feedback_pannel_detail")
-  BuiltList<FeedbackPanelDetail> get feedbackPanelDetail;
+  BuiltList<FeedbackPanelDetail>? get feedbackPanelDetail;
 
   FeedbackPanel._();
 
@@ -30,7 +31,7 @@ abstract class FeedbackPanel
         .encode(serializers.serializeWith(FeedbackPanel.serializer, this));
   }
 
-  static FeedbackPanel fromJson(String jsonString) {
+  static FeedbackPanel? fromJson(String jsonString) {
     return serializers.deserializeWith(
         FeedbackPanel.serializer, json.decode(jsonString));
   }

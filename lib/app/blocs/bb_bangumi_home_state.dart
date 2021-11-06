@@ -10,9 +10,9 @@ class BangumiHomeLoading extends BangumiHomeState {
   List<Object> get props => [];
 }
 
-class BangumiHomeLoadSuccess<Value> extends BangumiHomeState {
+class BangumiHomeLoadSuccess<Value extends Object> extends BangumiHomeState {
   final Value value;
-  BangumiHomeLoadSuccess(this.value);
+  const BangumiHomeLoadSuccess(this.value);
 
   @override
   List<Object> get props => [value];
@@ -20,7 +20,7 @@ class BangumiHomeLoadSuccess<Value> extends BangumiHomeState {
 
 class BangumiHomeLoadFailure extends BangumiHomeState {
   final String description;
-  BangumiHomeLoadFailure(this.description);
+  const BangumiHomeLoadFailure(this.description);
 
   @override
   List<Object> get props => [description];

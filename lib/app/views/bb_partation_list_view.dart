@@ -8,12 +8,14 @@ import '../models/bb_http_body.dart';
 import '../models/bb_partation.dart';
 
 class BBPartationListView extends StatefulWidget {
+  const BBPartationListView({Key? key}) : super(key: key);
+
   @override
   _BBPartationListViewState createState() => _BBPartationListViewState();
 }
 
 class _BBPartationListViewState extends State<BBPartationListView> {
-  List<Partation> _partations;
+  late List<Partation> _partations;
 
   @override
   void initState() {
@@ -44,12 +46,19 @@ class _BBPartationListViewState extends State<BBPartationListView> {
   }
 
   void _onLoading() async {
-    HttpListBody<Partation> p = await BBApi.requestAllPartion();
-
-    if (mounted) {
-      setState(() {
-        _partations = p?.data?.toList() ?? [];
-      });
+    try {
+      HttpListBody<Partation> p = await BBApi.requestAllPartion();
+      if (mounted) {
+        setState(() {
+          _partations = p.data?.toList() ?? [];
+        });
+      }
+    } catch (e) {
+      _handleError(e);
     }
+  }
+
+  void _handleError(Object e) {
+
   }
 }

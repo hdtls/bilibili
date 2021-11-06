@@ -9,21 +9,20 @@ part 'bb_vip.g.dart';
 
 abstract class Vip implements Built<Vip, VipBuilder> {
   // Fields
-  @nullable
-  int get status;
-  @nullable
+  int? get status;
+
   @BuiltValueField(wireName: "vip_pay_type")
-  int get vipPayType;
-  @nullable
+  int? get vipPayType;
+
   @BuiltValueField(wireName: "theme_type")
-  int get themeType;
-  @nullable
-  VipLabel get label;
-  @nullable
-  int get type;
-  @nullable
+  int? get themeType;
+
+  VipLabel? get label;
+
+  int? get type;
+
   @BuiltValueField(wireName: "due_date")
-  int get dueDate;
+  int? get dueDate;
 
   Vip._();
 
@@ -33,7 +32,7 @@ abstract class Vip implements Built<Vip, VipBuilder> {
     return json.encode(serializers.serializeWith(Vip.serializer, this));
   }
 
-  static Vip fromJson(String jsonString) {
+  static Vip? fromJson(String jsonString) {
     return serializers.deserializeWith(Vip.serializer, json.decode(jsonString));
   }
 
@@ -42,8 +41,7 @@ abstract class Vip implements Built<Vip, VipBuilder> {
 
 abstract class VipLabel implements Built<VipLabel, VipLabelBuilder> {
   // Fields
-  @nullable
-  String get path;
+  String? get path;
 
   VipLabel._();
 
@@ -53,7 +51,7 @@ abstract class VipLabel implements Built<VipLabel, VipLabelBuilder> {
     return json.encode(serializers.serializeWith(VipLabel.serializer, this));
   }
 
-  static VipLabel fromJson(String jsonString) {
+  static VipLabel? fromJson(String jsonString) {
     return serializers.deserializeWith(
         VipLabel.serializer, json.decode(jsonString));
   }

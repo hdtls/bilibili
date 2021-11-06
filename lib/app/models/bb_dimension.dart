@@ -9,12 +9,11 @@ part 'bb_dimension.g.dart';
 
 abstract class Dimension implements Built<Dimension, DimensionBuilder> {
   // Fields
-  @nullable
-  int get height;
-  @nullable
-  int get rotate;
-  @nullable
-  int get width;
+  int? get height;
+  
+  int? get rotate;
+
+  int? get width;
 
   Dimension._();
 
@@ -24,7 +23,7 @@ abstract class Dimension implements Built<Dimension, DimensionBuilder> {
     return json.encode(serializers.serializeWith(Dimension.serializer, this));
   }
 
-  static Dimension fromJson(String jsonString) {
+  static Dimension? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Dimension.serializer, json.decode(jsonString));
   }

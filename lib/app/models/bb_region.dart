@@ -12,16 +12,16 @@ part 'bb_region.g.dart';
 
 abstract class Region implements Built<Region, RegionBuilder> {
   // Fields
-  @nullable
-  String get icon;
-  @nullable
-  int get isExpand;
-  @nullable
-  String get title;
-  @nullable
-  String get url;
-  @nullable
-  Report get report;
+  
+  String? get icon;
+  
+  int? get isExpand;
+  
+  String? get title;
+  
+  String? get url;
+
+  Report? get report;
 
   Region._();
 
@@ -31,7 +31,7 @@ abstract class Region implements Built<Region, RegionBuilder> {
     return json.encode(serializers.serializeWith(Region.serializer, this));
   }
 
-  static Region fromJson(String jsonString) {
+  static Region? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Region.serializer, json.decode(jsonString));
   }

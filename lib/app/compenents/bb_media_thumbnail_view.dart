@@ -1,42 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:tuple/tuple.dart';
 
 import '../utils/bb_assets.dart';
 import 'bb_network_image.dart';
 
+class ThumbnailImageLabel {
+  final dynamic icon;
+  final String? label;
+
+  const ThumbnailImageLabel({this.icon, this.label});
+}
+
 // Media preview contains image, tag and other extra message
 // like number of visited and danmuku.
 class BBThumbnailView extends StatelessWidget {
-  final String url;
+  final String? url;
 
   // The view located in top left of image, if the value is not null
   // `topLeftIconAndDescriptions` will be ignored.
-  final Widget topLeftView;
+  final Widget? topLeftView;
 
   // The icon and icon description, icon maybe index of local images
   // set see `_imageURLs` for more information, or network image url.
-  final List<Tuple2<dynamic, String>> topLeftIconAndDescriptions;
+  final List<ThumbnailImageLabel>? topLeftIconAndDescriptions;
 
   // see `topLeftView` for more info.
-  final Widget topRightView;
-  final List<Tuple2<dynamic, String>> topRightIconAndDescriptions;
+  final Widget? topRightView;
+  final List<ThumbnailImageLabel>? topRightIconAndDescriptions;
 
   // see `topLeftView` for more info.
-  final Widget bottomLeftView;
-  final List<Tuple2<dynamic, String>> bottomLeftIconAndDescriptions;
+  final Widget? bottomLeftView;
+  final List<ThumbnailImageLabel>? bottomLeftIconAndDescriptions;
 
   // see `topLeftView` for more info.
-  final Widget bottomRightView;
-  final List<Tuple2<dynamic, String>> bottomRightIconAndDescriptions;
+  final Widget? bottomRightView;
+  final List<ThumbnailImageLabel>? bottomRightIconAndDescriptions;
 
-  final Color foregroundColor;
-  final Color backgroundColor;
+  final Color? foregroundColor;
+  final Color? backgroundColor;
   final BorderRadius borderRadius;
 
   final EdgeInsets _edgeInsets = EdgeInsets.fromLTRB(4.0, 2.0, 4.0, 4.0);
 
   BBThumbnailView({
-    Key key,
+    Key? key,
     this.url,
     this.topLeftView,
     this.topLeftIconAndDescriptions,
@@ -49,8 +55,7 @@ class BBThumbnailView extends StatelessWidget {
     this.foregroundColor,
     this.backgroundColor,
     this.borderRadius = BorderRadius.zero,
-  })  : assert(borderRadius != null),
-        super(key: key);
+  }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -88,8 +93,7 @@ class BBThumbnailView extends StatelessWidget {
             ),
           ),
           ClipRRect(
-            borderRadius: borderRadius == BorderRadius.zero ||
-                    borderRadius.topLeft == null
+            borderRadius: borderRadius == BorderRadius.zero
                 ? BorderRadius.zero
                 : BorderRadius.only(topLeft: borderRadius.topLeft),
             child: _getTopLeftView(),
@@ -99,7 +103,7 @@ class BBThumbnailView extends StatelessWidget {
     });
   }
 
-  Widget _getGridientView({double height}) {
+  Widget _getGridientView({double? height}) {
     return Positioned(
       left: 0.0,
       bottom: 0.0,
@@ -110,7 +114,7 @@ class BBThumbnailView extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.transparent, Colors.black38],
+            colors: const [Colors.transparent, Colors.black38],
           ),
         ),
       ),
@@ -125,16 +129,15 @@ class BBThumbnailView extends StatelessWidget {
           )
         : SizedBox(
             height: 20.0,
-            child: (topLeftIconAndDescriptions == null ||
-                    topLeftIconAndDescriptions.isEmpty
+            child: (topLeftIconAndDescriptions?.isEmpty ?? true)
                 ? SizedBox.shrink()
                 : Stack(children: <Widget>[
-                    BBNetworkImage(topLeftIconAndDescriptions.first.item1),
+                    BBNetworkImage(topLeftIconAndDescriptions?.first.icon),
                     Positioned(
                       top: 3.0,
                       left: 25.0,
                       child: Text(
-                        topLeftIconAndDescriptions.first.item2 ?? "",
+                        topLeftIconAndDescriptions?.first.label ?? "",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 10.5,
@@ -143,7 +146,7 @@ class BBThumbnailView extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ])),
+                  ]),
           );
   }
 
@@ -154,10 +157,9 @@ class BBThumbnailView extends StatelessWidget {
       child: topRightView ??
           SizedBox(
             height: 20.0,
-            child: topRightIconAndDescriptions == null ||
-                    topRightIconAndDescriptions.isEmpty
+            child: (topRightIconAndDescriptions?.isEmpty ?? true)
                 ? SizedBox.shrink()
-                : BBNetworkImage(topRightIconAndDescriptions.first.item1),
+                : BBNetworkImage(topRightIconAndDescriptions?.first.icon),
           ),
     );
   }
@@ -183,9 +185,7 @@ class BBThumbnailView extends StatelessWidget {
           padding: EdgeInsets.only(
               left: _edgeInsets.left, bottom: _edgeInsets.bottom),
           child: Row(
-            children: bottomLeftView != null
-                ? [bottomLeftView]
-                : _getIconAndDescriptionViews(
+            children: _getIconAndDescriptionViews(
                     context, bottomLeftIconAndDescriptions),
           ),
         );
@@ -197,35 +197,33 @@ class BBThumbnailView extends StatelessWidget {
           padding: EdgeInsets.only(
               right: _edgeInsets.right, bottom: _edgeInsets.bottom),
           child: Row(
-            children: bottomRightView != null
-                ? [bottomRightView]
-                : _getIconAndDescriptionViews(
+            children: _getIconAndDescriptionViews(
                     context, bottomRightIconAndDescriptions),
           ),
         );
   }
 
   List<Widget> _getIconAndDescriptionViews(
-      BuildContext context, List<Tuple2<dynamic, String>> iconAndDescriptions) {
+      BuildContext context, List<ThumbnailImageLabel>? iconAndDescriptions) {
     List<Widget> views = [];
-    (iconAndDescriptions ?? []).forEach((e) {
-      if (e.item1 is int &&
-          e.item1 >= 0 &&
-          e.item1 < Images.thumbnailOverlays.length) {
+    for (var e in (iconAndDescriptions ?? [])) {
+      if (e.icon is int &&
+          e.icon >= 0 &&
+          e.icon < Images.thumbnailOverlays.length) {
         views.add(Image.asset(
-          Images.thumbnailOverlays[e.item1],
+          Images.thumbnailOverlays[e.icon],
           color: Colors.white,
         ));
         views.add(SizedBox(width: 2.0));
       }
 
-      if (e.item1 is String && (e.item1 as String).isNotEmpty) {
-        views.add(BBNetworkImage(e.item1));
+      if (e.icon is String && (e.icon as String).isNotEmpty) {
+        views.add(BBNetworkImage(e.icon));
       }
 
-      if (e.item2 != null) {
+      if (e.label != null) {
         views.add(Text(
-          e.item2,
+          e.label,
           style: TextStyle(
             color: Colors.white,
             fontSize: 10.5,
@@ -237,7 +235,7 @@ class BBThumbnailView extends StatelessWidget {
           width: 8.0,
         ));
       }
-    });
+    }
     if (views.isNotEmpty && views.last is SizedBox) {
       views.removeLast();
     }

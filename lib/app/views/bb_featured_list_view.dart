@@ -12,7 +12,7 @@ import '../blocs/bb_featured_bloc.dart';
 import 'bb_featured_list_item_multiple_colum_view.dart';
 
 class BBFeaturedListView extends StatefulWidget {
-  BBFeaturedListView({Key key}) : super(key: key);
+  const BBFeaturedListView({Key? key}) : super(key: key);
 
   @override
   _BBFeaturedListViewState createState() => _BBFeaturedListViewState();
@@ -20,8 +20,8 @@ class BBFeaturedListView extends StatefulWidget {
 
 class _BBFeaturedListViewState extends State<BBFeaturedListView>
     with AutomaticKeepAliveClientMixin {
-  RefreshController _refreshController;
-  BBFeaturedBLoC _bLoC;
+  late RefreshController _refreshController;
+  late BBFeaturedBLoC _bLoC;
 
   @override
   bool get wantKeepAlive => true;
@@ -48,7 +48,7 @@ class _BBFeaturedListViewState extends State<BBFeaturedListView>
         Widget subview;
         if (state is FeaturedLoading) {
           subview = BBLoadingView();
-        } else if (state is FeaturedLoadSuccess) {
+        } else if (state is FeaturedLoadSuccess<List<Media>>) {
           _refreshController.refreshCompleted();
           subview = SmartRefresher(
             controller: _refreshController,
@@ -60,7 +60,7 @@ class _BBFeaturedListViewState extends State<BBFeaturedListView>
                 // need more info to choose item type for each media.
                 Media media = state.value[index];
                 if (media.cardType == "cm_v2" &&
-                    media?.adInfo?.cardType == 2) {
+                    media.adInfo?.cardType == 2) {
                   return StaggeredTile.fit(2);
                 }
                 return StaggeredTile.fit(1);

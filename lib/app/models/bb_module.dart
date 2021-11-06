@@ -23,33 +23,33 @@ part 'bb_module.g.dart';
 abstract class Module<Element>
     implements Built<Module<Element>, ModuleBuilder<Element>> {
   // Fields
-  @nullable
-  Attr get attr;
-  @nullable
-  BuiltList<Region> get headers;
-  @nullable
-  BuiltList<Element> get items;
-  @nullable
+
+  Attr? get attr;
+
+  BuiltList<Region>? get headers;
+
+  BuiltList<Element>? get items;
+
   @BuiltValueField(wireName: "module_id")
-  int get moduleId;
-  @nullable
-  Report get report;
-  @nullable
-  int get size;
-  @nullable
-  ModuleStyle get style;
-  @nullable
-  String get title;
-  @nullable
-  String get subtitle;
-  @nullable
-  String get url;
-  @nullable
-  int get type;
-  @nullable
-  BuiltList<int> get wid;
-  @nullable
-  ModuleFollow get follow;
+  int? get moduleId;
+
+  Report? get report;
+
+  int? get size;
+  
+  ModuleStyle? get style;
+
+  String? get title;
+
+  String? get subtitle;
+
+  String? get url;
+
+  int? get type;
+
+  BuiltList<int>? get wid;
+
+  ModuleFollow? get follow;
 
   Module._();
 
@@ -61,11 +61,11 @@ abstract class Module<Element>
         specifiedType: FullType(Module, [FullType(Element)])));
   }
 
-  static Module<Element> fromJson<Element>(String jsonString) {
+  static Module<Element>? fromJson<Element>(String jsonString) {
     return serializers.deserialize(
       json.decode(jsonString),
       specifiedType: FullType(Module, [FullType(Element)]),
-    );
+    ) as Module<Element>?;
   }
 
   static Serializer<Module> get serializer => _$moduleSerializer;

@@ -11,14 +11,11 @@ part 'bb_bangumi_home_body_popular.g.dart';
 abstract class BangumiHomeBodyPopular
     implements Built<BangumiHomeBodyPopular, BangumiHomeBodyPopularBuilder> {
   // Fields
-  @nullable
-  String get desc;
-  @nullable
-  BuiltList<dynamic> get items;
-  @nullable
-  String get title;
-  @nullable
-  int get wid;
+  String? get desc;
+
+  BuiltList<dynamic>? get items;
+  String? get title;
+  int? get wid;
 
   BangumiHomeBodyPopular._();
 
@@ -31,7 +28,7 @@ abstract class BangumiHomeBodyPopular
         serializers.serializeWith(BangumiHomeBodyPopular.serializer, this));
   }
 
-  static BangumiHomeBodyPopular fromJson(String jsonString) {
+  static BangumiHomeBodyPopular? fromJson(String jsonString) {
     return serializers.deserializeWith(
         BangumiHomeBodyPopular.serializer, json.decode(jsonString));
   }

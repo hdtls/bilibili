@@ -10,14 +10,13 @@ part 'bb_payment_primary.g.dart';
 abstract class PaymentPrimary
     implements Built<PaymentPrimary, PaymentPrimaryBuilder> {
   // Fields
-  @nullable
-  String get icon;
-  @nullable
-  String get title;
-  @nullable
-  int get type;
-  @nullable
-  String get url;
+  String? get icon;
+
+  String? get title;
+
+  int? get type;
+  
+  String? get url;
 
   PaymentPrimary._();
 
@@ -29,7 +28,7 @@ abstract class PaymentPrimary
         .encode(serializers.serializeWith(PaymentPrimary.serializer, this));
   }
 
-  static PaymentPrimary fromJson(String jsonString) {
+  static PaymentPrimary? fromJson(String jsonString) {
     return serializers.deserializeWith(
         PaymentPrimary.serializer, json.decode(jsonString));
   }

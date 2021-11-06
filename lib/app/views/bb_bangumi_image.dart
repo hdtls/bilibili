@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tuple/tuple.dart';
 
 import '../utils/bb_utils.dart';
 import '../compenents/bb_ui.dart';
@@ -9,7 +8,7 @@ class BBBangumiImage extends StatelessWidget {
   final BangumiListItem bangumi;
   final double aspectRatio;
 
-  BBBangumiImage(this.bangumi, {this.aspectRatio = 16.0 / 9.0});
+  const BBBangumiImage(this.bangumi, {Key? key, this.aspectRatio = 16.0 / 9.0}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +47,7 @@ class BBBangumiImage extends StatelessWidget {
           ),
         ),
         bottomLeftIconAndDescriptions: [
-          Tuple2(null,
-              bangumi.follow?.newEp?.indexShow ?? bangumi.stat?.followView)
+          ThumbnailImageLabel(label: bangumi.follow?.newEp?.indexShow ?? bangumi.stat?.followView)
         ],
       ),
     );

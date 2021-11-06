@@ -4,6 +4,8 @@ import '../utils/bb_args.dart';
 import 'bb_related_bagumi_row.dart';
 
 class BBRelatedMediaListView extends StatefulWidget {
+  const BBRelatedMediaListView({Key? key}) : super(key: key);
+
   @override
   _BBRelatedMediaListViewState createState() => _BBRelatedMediaListViewState();
 }
@@ -21,7 +23,7 @@ class _BBRelatedMediaListViewState extends State<BBRelatedMediaListView> {
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   return Column(
-                    children: <Widget>[
+                    children: const <Widget>[
                       Expanded(child: BBRelatedBangumiRow()),
                       Divider(),
                     ],

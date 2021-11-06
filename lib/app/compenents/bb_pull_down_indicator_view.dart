@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class BBRefreshHeader extends RefreshIndicator {
-  BBRefreshHeader() : super(height: 60.0, refreshStyle: RefreshStyle.Follow);
+  const BBRefreshHeader({Key? key}) : super(key: key, height: 60.0, refreshStyle: RefreshStyle.Follow);
 
   @override
   _BBRefreshHeaderState createState() => _BBRefreshHeaderState();
@@ -10,8 +10,8 @@ class BBRefreshHeader extends RefreshIndicator {
 
 class _BBRefreshHeaderState extends RefreshIndicatorState<BBRefreshHeader>
     with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<int> _animation;
+  late AnimationController _controller;
+  late Animation<int> _animation;
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _BBRefreshHeaderState extends RefreshIndicatorState<BBRefreshHeader>
   }
 
   @override
-  void onModeChange(RefreshStatus mode) {
+  void onModeChange(RefreshStatus? mode) {
     if (mode == RefreshStatus.canRefresh && !_controller.isAnimating) {
       _controller.repeat();
     } else if (mode == RefreshStatus.idle) {
@@ -47,7 +47,7 @@ class _BBRefreshHeaderState extends RefreshIndicatorState<BBRefreshHeader>
       height: 60.0,
       child: AnimatedBuilder(
         animation: _animation,
-        builder: (BuildContext context, Widget child) {
+        builder: (BuildContext context, Widget? child) {
           String frame = _animation.value.toString();
           return Image.asset(
             "assets/images/pull_loading_${frame}60x60.png",

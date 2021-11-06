@@ -13,15 +13,15 @@ part 'bb_three_point.g.dart';
 
 abstract class ThreePoint implements Built<ThreePoint, ThreePointBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "dislike_reasons")
-  BuiltList<Reason> get dislikeReasons;
-  @nullable
+  BuiltList<Reason>? get dislikeReasons;
+
   @BuiltValueField(wireName: "feedbacks")
-  BuiltList<Reason> get feedbacks;
-  @nullable
+  BuiltList<Reason>? get feedbacks;
+
   @BuiltValueField(wireName: "watch_later")
-  int get watchLater;
+  int? get watchLater;
 
   ThreePoint._();
 
@@ -31,7 +31,7 @@ abstract class ThreePoint implements Built<ThreePoint, ThreePointBuilder> {
     return json.encode(serializers.serializeWith(ThreePoint.serializer, this));
   }
 
-  static ThreePoint fromJson(String jsonString) {
+  static ThreePoint? fromJson(String jsonString) {
     return serializers.deserializeWith(
         ThreePoint.serializer, json.decode(jsonString));
   }
@@ -39,20 +39,18 @@ abstract class ThreePoint implements Built<ThreePoint, ThreePointBuilder> {
   static Serializer<ThreePoint> get serializer => _$threePointSerializer;
 }
 
-
 abstract class ThreePointV2
     implements Built<ThreePointV2, ThreePointV2Builder> {
   // Fields
-  @nullable
-  String get title;
-  @nullable
-  String get type;
-  @nullable
-  String get subtitle;
-  @nullable
-  BuiltList<Reason> get reasons;
-  @nullable
-  int get id;
+  String? get title;
+  
+  String? get type;
+
+  String? get subtitle;
+
+  BuiltList<Reason>? get reasons;
+  
+  int? get id;
 
   ThreePointV2._();
 
@@ -64,7 +62,7 @@ abstract class ThreePointV2
         .encode(serializers.serializeWith(ThreePointV2.serializer, this));
   }
 
-  static ThreePointV2 fromJson(String jsonString) {
+  static ThreePointV2? fromJson(String jsonString) {
     return serializers.deserializeWith(
         ThreePointV2.serializer, json.decode(jsonString));
   }

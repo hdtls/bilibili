@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'compenents/bb_pull_down_indicator_view.dart';
@@ -8,6 +9,8 @@ import 'utils/bb_args.dart';
 
 // This widget is the root of your application.
 class BBApp extends StatelessWidget {
+  const BBApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class BBApp extends StatelessWidget {
         theme: ThemeData(
           brightness: Brightness.light,
           appBarTheme: AppBarTheme(
-            brightness: Brightness.light,
+            systemOverlayStyle: SystemUiOverlayStyle.light,
             color: Colors.white,
           ),
           tabBarTheme: TabBarTheme(
@@ -34,14 +37,13 @@ class BBApp extends StatelessWidget {
             color: Color(0xFFF0F0F0),
             space: 1,
           ),
-          accentColor: Color(0xFFF6749A),
           backgroundColor: Colors.grey[100],
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: Colors.white, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFF6749A)),
         ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,
           appBarTheme: AppBarTheme(
-            brightness: Brightness.dark,
+            systemOverlayStyle: SystemUiOverlayStyle.dark,
             color: Color.fromARGB(255, 44, 45, 46),
           ),
           scaffoldBackgroundColor: Color.fromARGB(255, 26, 27, 28),

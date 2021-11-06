@@ -10,9 +10,9 @@ class LiveHomeLoading extends LiveHomeState {
   List<Object> get props => [];
 }
 
-class LiveHomeLoadSuccess<Value> extends LiveHomeState {
+class LiveHomeLoadSuccess<Value extends Object> extends LiveHomeState {
   final Value value;
-  LiveHomeLoadSuccess(this.value);
+  const LiveHomeLoadSuccess(this.value);
 
   @override
   List<Object> get props => [value];
@@ -20,7 +20,7 @@ class LiveHomeLoadSuccess<Value> extends LiveHomeState {
 
 class LiveHomeLoadFailure extends LiveHomeState {
   final String description;
-  LiveHomeLoadFailure(this.description);
+  const LiveHomeLoadFailure(this.description);
 
   @override
   List<Object> get props => [description];

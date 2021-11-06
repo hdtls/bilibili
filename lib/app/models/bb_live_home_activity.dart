@@ -10,38 +10,38 @@ part 'bb_live_home_activity.g.dart';
 abstract class LiveHomeActivity
     implements Built<LiveHomeActivity, LiveHomeActivityBuilder> {
   // Fields
-  @nullable
-  int get aid;
-  @nullable
-  int get type;
-  @nullable
-  String get title;
-  @nullable
+
+  int? get aid; 
+
+  int? get type;
+
+  String? get title;
+
   @BuiltValueField(wireName: 'logo_url')
-  String get logoUrl;
-  @nullable
+  String? get logoUrl;
+
   @BuiltValueField(wireName: 'start_at')
-  int get startAt;
-  @nullable
+  int? get startAt;
+
   @BuiltValueField(wireName: 'end_at')
-  int get endAt;
-  @nullable
+  int? get endAt;
+
   @BuiltValueField(wireName: 'time_text')
-  String get timeText;
-  @nullable
+  String? get timeText;
+
   @BuiltValueField(wireName: 'button_url')
-  String get buttonUrl;
-  @nullable
+  String? get buttonUrl;
+
   @BuiltValueField(wireName: 'button_text')
-  String get buttonText;
-  @nullable
+  String? get buttonText;
+
   @BuiltValueField(wireName: 'activity_url')
-  String get activityUrl;
-  @nullable
-  int get status;
-  @nullable
+  String? get activityUrl;
+
+  int? get status;
+
   @BuiltValueField(wireName: 'on_live')
-  int get onLive;
+  int? get onLive;
 
   LiveHomeActivity._();
 
@@ -53,7 +53,7 @@ abstract class LiveHomeActivity
         .encode(serializers.serializeWith(LiveHomeActivity.serializer, this));
   }
 
-  static LiveHomeActivity fromJson(String jsonString) {
+  static LiveHomeActivity? fromJson(String jsonString) {
     return serializers.deserializeWith(
         LiveHomeActivity.serializer, json.decode(jsonString));
   }

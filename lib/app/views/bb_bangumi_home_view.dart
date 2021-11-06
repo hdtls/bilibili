@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:tuple/tuple.dart';
 
 import '../utils/bb_utils.dart';
 import '../api/bb_api.dart';
@@ -16,7 +15,7 @@ import 'bb_bangumi_rank_row.dart';
 
 class BBBangumiHomeView extends StatefulWidget {
   final String path;
-  BBBangumiHomeView({this.path});
+  const BBBangumiHomeView({Key? key, required this.path}): super(key: key);
 
   @override
   _BBBangumiHomeViewState createState() => _BBBangumiHomeViewState();
@@ -24,10 +23,10 @@ class BBBangumiHomeView extends StatefulWidget {
 
 class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
     with AutomaticKeepAliveClientMixin {
-  RefreshController _refreshController;
-  StreamController<BangumiListItem> _timeline = StreamController.broadcast();
-  ScrollController _scrollController;
-  BBBangumiHomeBLoC _bLoC;
+  late RefreshController _refreshController;
+  final StreamController<BangumiListItem> _timeline = StreamController.broadcast();
+  late ScrollController _scrollController;
+  late BBBangumiHomeBLoC _bLoC;
 
   @override
   bool get wantKeepAlive => true;
@@ -57,12 +56,12 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
         Widget subview;
         if (state is BangumiHomeLoading) {
           subview = BBLoadingView();
-        } else if (state is BangumiHomeLoadSuccess) {
+        } else if (state is BangumiHomeLoadSuccess<List<Module<BangumiListItem>>>) {
           _refreshController.refreshCompleted();
           subview =
               SmartRefresher(
                 controller: _refreshController,
-                onRefresh: () => _bLoC.add(BangumiHomePaginationLoadEvent()),
+                onRefresh: () => _bLoC.add(BangumiHomePaginationLoadEvent(path: widget.path)),
                 child: CustomScrollView(
                   slivers: _buildSlivers(state.value),
                 ),
@@ -80,15 +79,15 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
     List<Module<BangumiListItem>> modulesCopy =
         modules.where((e) => e.items?.isNotEmpty ?? false).toList();
 
-    int index = modulesCopy.indexWhere((e) => e.style == ModuleStyle.TIP);
+    int index = modulesCopy.indexWhere((e) => e.style == ModuleStyle.tip);
     if (index != -1) {
       modulesCopy.insert(0, modulesCopy.removeAt(index));
     }
-    index = modulesCopy.indexWhere((e) => e.style == ModuleStyle.FUNCTION);
+    index = modulesCopy.indexWhere((e) => e.style == ModuleStyle.function);
     if (index != -1) {
       modulesCopy.insert(0, modulesCopy.removeAt(index));
     }
-    index = modulesCopy.indexWhere((e) => e.style == ModuleStyle.BANNER);
+    index = modulesCopy.indexWhere((e) => e.style == ModuleStyle.banner);
     if (index != -1) {
       modulesCopy.insert(0, modulesCopy.removeAt(index));
     }
@@ -96,28 +95,28 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
     return modulesCopy
         .map((module) {
           switch (module.style) {
-            case ModuleStyle.BANNER:
+            case ModuleStyle.banner:
               return _bannerSlivers(module);
-            case ModuleStyle.FUNCTION:
+            case ModuleStyle.function:
               return _featuresSlivers(module);
-            case ModuleStyle.FOLLOW:
+            case ModuleStyle.follow:
               return _followSlivers(module);
-            case ModuleStyle.TIP:
+            case ModuleStyle.tip:
               return _tipSlivers(module);
-            case ModuleStyle.VCARD:
-            case ModuleStyle.CARD:
+            case ModuleStyle.vcard:
+            case ModuleStyle.card:
               return _cardSlivers(module);
-            case ModuleStyle.TOPIC:
+            case ModuleStyle.topic:
               return _topicSlivers(module);
-            case ModuleStyle.TIMELINE:
+            case ModuleStyle.timeline:
               return _timelineSlivers(module);
-            case ModuleStyle.RANK:
+            case ModuleStyle.rank:
               return _rankSlivers(module);
-            case ModuleStyle.FLOW:
+            case ModuleStyle.flow:
               return _flowSlivers(module);
-            case ModuleStyle.LIST:
+            case ModuleStyle.list:
               return _listSlivers(module);
-            case ModuleStyle.HLIST:
+            case ModuleStyle.hlist:
               return _horizontalListSlivers(module);
             default:
               return <Widget>[];
@@ -145,12 +144,12 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      module.items?.first?.title ?? "",
+                      module.items?.first.title ?? "",
                       style: TextStyle(color: Color(0xFFF7B776)),
                     ),
                     SizedBox(height: defaultMargin.bottom / 2),
                     Text(
-                      module.items?.first?.desc ?? "",
+                      module.items?.first.desc ?? "",
                       style: Theme.of(context).textTheme.caption,
                     ),
                   ],
@@ -166,7 +165,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                             horizontal: 12.0, vertical: 2.0),
                         child: Center(
                           child: Text(
-                            module.items?.first?.desc2 ?? "",
+                            module.items?.first.desc2 ?? "",
                             style: TextStyle(
                               color: Color(0xFFF7B776),
                             ),
@@ -188,9 +187,9 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
   }
 
   List<Widget> _timelineSlivers(Module<BangumiListItem> module) {
-    BangumiListItem initialData =
-        module.items.firstWhere((e) => e.isToday == 1, orElse: () => null) ??
-            module.items.first;
+    BangumiListItem? initialData =
+        module.items?.firstWhere((e) => e.isToday == 1) ??
+            module.items?.first;
 
     return [
       sliverToBoxAdapter(
@@ -209,9 +208,8 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: hashMap.keys.map((d) {
                     bool isSelected = snapshot.data ==
-                        module.items.firstWhere(
-                            (e) => e.dayOfWeek == hashMap[d],
-                            orElse: () => null);
+                        module.items?.firstWhere(
+                            (e) => e.dayOfWeek == hashMap[d]);
                     return GestureDetector(
                       child: Container(
                         height: 28.0,
@@ -224,16 +222,15 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                         child: Center(
                           child: Text(
                             isSelected ? "周$d" : d,
-                            style: Theme.of(context).textTheme.caption.copyWith(
+                            style: Theme.of(context).textTheme.caption?.copyWith(
                                 color:
                                     isSelected ? Colors.white : Colors.black),
                           ),
                         ),
                       ),
                       onTap: () {
-                        BangumiListItem selected = module.items.firstWhere(
-                            (e) => e.dayOfWeek == hashMap[d],
-                            orElse: () => null);
+                        BangumiListItem selected = module.items!.firstWhere(
+                            (e) => e.dayOfWeek == hashMap[d]);
                         _timeline.sink.add(selected);
                       },
                     );
@@ -288,7 +285,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
           Spacer(),
           Text(
             "查看完整时间表",
-            style: Theme.of(context).textTheme.caption.copyWith(
+            style: Theme.of(context).textTheme.caption?.copyWith(
                   color: Color(0xFFF6749A),
                 ),
           ),
@@ -319,7 +316,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                 controller: ScrollController(),
                 padding: defaultMargin.copyWith(top: 0.0, bottom: 0.0),
                 scrollDirection: Axis.horizontal,
-                itemCount: module.items.length,
+                itemCount: module.items?.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
                   mainAxisSpacing: defaultMargin.left,
@@ -343,7 +340,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                         Padding(
                           padding:
                               defaultMargin.copyWith(top: 16.0, bottom: 0.0),
-                          child: Text(module.items[index].title ?? ""),
+                          child: Text(module.items![index].title ?? ""),
                         ),
                         Expanded(
                           child: Padding(
@@ -352,13 +349,13 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                                 BoxConstraints constraints) {
                               return ListView.builder(
                                 itemCount:
-                                    module.items[index].cards?.length ?? 0,
+                                    module.items![index].cards?.length ?? 0,
                                 itemExtent: constraints.maxHeight / 3,
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
                                 itemBuilder: (BuildContext context, int index) {
                                   BangumiListItem bangumi =
-                                      module.items[index].cards[index];
+                                      module.items![index].cards![index];
                                   return BBBangumiRankRow(bangumi, index);
                                 },
                               );
@@ -381,7 +378,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
           Spacer(),
           Text(
             "查看完整榜单",
-            style: Theme.of(context).textTheme.caption.copyWith(
+            style: Theme.of(context).textTheme.caption?.copyWith(
                   color: Color(0xFFF6749A),
                 ),
           ),
@@ -401,14 +398,14 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
       ),
       sliverGrid(
         padding: defaultMargin.copyWith(top: 0.0),
-        aspectRatio: module.style == ModuleStyle.CARD ? 1.25 : 0.53,
-        items: module.items.toList(),
-        crossAxisCount: module.style == ModuleStyle.CARD ? 2 : 3,
+        aspectRatio: module.style == ModuleStyle.card ? 1.25 : 0.53,
+        items: module.items?.toList(),
+        crossAxisCount: module.style == ModuleStyle.card ? 2 : 3,
         itemBuilder: (BuildContext context, BangumiListItem bangumi) {
           return BBBangumiCardView(
             bangumi,
             aspectRatio:
-                module.style == ModuleStyle.CARD ? 16.0 / 9.0 : 3.0 / 4.0,
+                module.style == ModuleStyle.card ? 16.0 / 9.0 : 3.0 / 4.0,
           );
         },
       ),
@@ -427,7 +424,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
           advertise: module.items?.toList(),
           itemBuilder: (BuildContext context, int index) {
             return BBNetworkImage(
-              module.items.toList()[index].cover,
+              module.items?.toList()[index].cover,
               placeholder: Images.placeholder,
             );
           },
@@ -484,7 +481,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
       ),
       sliverToBoxAdapter(
         padding: defaultMargin,
-        child: Container(
+        child: SizedBox(
           height: 120.0,
           child: GridView.builder(
             scrollDirection: Axis.horizontal,
@@ -493,9 +490,9 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
               mainAxisSpacing: defaultMargin.left,
             ),
             itemBuilder: (BuildContext context, int index) {
-              return BBBangumiCardView(module.items[index]);
+              return BBBangumiCardView(module.items![index]);
             },
-            itemCount: module.items.length,
+            itemCount: module.items?.length,
           ),
         ),
       ),
@@ -520,7 +517,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(5.0),
                     child: BBNetworkImage(
-                      module.items[index].cover,
+                      module.items![index].cover,
                       placeholder: Images.placeholder,
                       aspectRatio: 375.0 / 105.0,
                     ),
@@ -528,15 +525,15 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                 ),
                 Padding(
                   padding: defaultMargin.copyWith(top: 0.0),
-                  child: Text(module.items[index].title),
+                  child: Text(module.items?[index].title ?? ""),
                 ),
-                index != module.items.length - 1
+                index != module.items!.length - 1
                     ? Divider()
                     : SizedBox.shrink(),
               ],
             );
           },
-          childCount: module.items.length,
+          childCount: module.items?.length,
         ),
       ),
       sliverToBoxAdapter(child: Divider()),
@@ -555,7 +552,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
       ),
       sliverGrid(
         padding: defaultMargin.copyWith(top: 0.0, bottom: 0.0, right: 0.0),
-        items: module.items.toList(),
+        items: module.items?.toList(),
         crossAxisCount: 1,
         aspectRatio: 375.0 / 80.0,
         lineSpacing: 0.0,
@@ -614,7 +611,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
         ),
       ),
       sliverToBoxAdapter(
-        child: Container(
+        child: SizedBox(
           height: 235.0,
           child: ListView.builder(
             padding: EdgeInsets.only(
@@ -623,7 +620,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
             ),
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              BangumiListItem bangumi = module.items[index];
+              BangumiListItem bangumi = module.items![index];
               return Column(
                 children: <Widget>[
                   LayoutBuilder(builder:
@@ -633,7 +630,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                         Positioned(
                           left: index == 0 ? constraints.maxWidth / 2 : 0,
                           top: 9,
-                          right: index == module.items.length - 1
+                          right: index == module.items!.length - 1
                               ? constraints.maxWidth / 2
                               : 0,
                           height: 2.0,
@@ -692,9 +689,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                               ),
                             ),
                             bottomLeftIconAndDescriptions: [
-                              Tuple2(
-                                  null,
-                                  bangumi.follow?.newEp?.indexShow ??
+                              ThumbnailImageLabel(label: bangumi.follow?.newEp?.indexShow ??
                                       bangumi.stat?.followView)
                             ],
                           ),
@@ -736,7 +731,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                 ],
               );
             },
-            itemCount: module.items.length,
+            itemCount: module.items?.length,
             itemExtent: 120.0,
           ),
         ),
@@ -760,7 +755,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
           runSpacing: defaultMargin.bottom,
           children: module.items
                   ?.where((bangumi) => bangumi.title?.isNotEmpty ?? false)
-                  ?.map(
+                  .map(
                     (bangumi) => Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 18.0, vertical: 4.0),
@@ -769,13 +764,12 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                         borderRadius: BorderRadius.circular(2.0),
                       ),
                       child: Text(
-                        bangumi.title,
+                        bangumi.title ?? "",
                         style: Theme.of(context).textTheme.caption,
                       ),
                     ),
                   )
-                  ?.toList() ??
-              [],
+                  .toList() ?? []
         ),
       ),
       sliverToBoxAdapter(child: Divider()),

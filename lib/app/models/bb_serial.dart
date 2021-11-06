@@ -9,15 +9,15 @@ part 'bb_serial.g.dart';
 
 abstract class Serial implements Built<Serial, SerialBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "movie_title")
-  String get movieName;
-  @nullable
+  String? get movieName;
+
   @BuiltValueField(wireName: "series_id")
-  int get id;
-  @nullable
+  int? get id;
+
   @BuiltValueField(wireName: "series_title")
-  String get serialName;
+  String? get serialName;
 
   Serial._();
 
@@ -27,7 +27,7 @@ abstract class Serial implements Built<Serial, SerialBuilder> {
     return json.encode(serializers.serializeWith(Serial.serializer, this));
   }
 
-  static Serial fromJson(String jsonString) {
+  static Serial? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Serial.serializer, json.decode(jsonString));
   }

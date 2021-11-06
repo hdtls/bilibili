@@ -15,14 +15,14 @@ part 'bb_live_group.g.dart';
 
 abstract class LiveGroup<Element> implements Built<LiveGroup<Element>, LiveGroupBuilder<Element>> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "module_info")
-  LiveModule get module;
-  @nullable
+  LiveModule? get module;
+
   @BuiltValueField(wireName: "extra_info")
-  LiveExtra get extra;
-  @nullable
-  BuiltList<Element> get list;
+  LiveExtra? get extra;
+
+  BuiltList<Element>? get list;
 
   LiveGroup._();
 
@@ -33,11 +33,11 @@ abstract class LiveGroup<Element> implements Built<LiveGroup<Element>, LiveGroup
         specifiedType: FullType(LiveGroup, [FullType(Element)])));
   }
 
-  static LiveGroup<Element> fromJson<Element>(String jsonString) {
+  static LiveGroup<Element>? fromJson<Element>(String jsonString) {
     return serializers.deserialize(
       json.decode(jsonString),
       specifiedType: FullType(LiveGroup, [FullType(Element)]),
-    );
+    ) as LiveGroup<Element>?;
   }
 
   static Serializer<LiveGroup> get serializer => _$liveGroupSerializer;

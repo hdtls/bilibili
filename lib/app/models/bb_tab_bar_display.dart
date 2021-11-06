@@ -14,12 +14,12 @@ part 'bb_tab_bar_display.g.dart';
 abstract class TabBarDisplay
     implements Built<TabBarDisplay, TabBarDisplayBuilder> {
   // Fields
-  @nullable
-  BuiltList<TabBarItem> get bottom;
-  @nullable
-  BuiltList<TabBarItem> get tab;
-  @nullable
-  BuiltList<TabBarItem> get top;
+
+  BuiltList<TabBarItem>? get bottom;
+
+  BuiltList<TabBarItem>? get tab;
+
+  BuiltList<TabBarItem>? get top;
 
   TabBarDisplay._();
 
@@ -31,7 +31,7 @@ abstract class TabBarDisplay
         .encode(serializers.serializeWith(TabBarDisplay.serializer, this));
   }
 
-  static TabBarDisplay fromJson(String jsonString) {
+  static TabBarDisplay? fromJson(String jsonString) {
     return serializers.deserializeWith(
         TabBarDisplay.serializer, json.decode(jsonString));
   }

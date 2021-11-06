@@ -10,11 +10,10 @@ part 'bb_secondary_panel.g.dart';
 abstract class SecondaryPanel
     implements Built<SecondaryPanel, SecondaryPanelBuilder> {
   // Fields
-  @nullable
-  String get text;
-  @nullable
+  String? get text;
+
   @BuiltValueField(wireName: "reason_id")
-  int get reasonId;
+  int? get reasonId;
 
   SecondaryPanel._();
 
@@ -26,7 +25,7 @@ abstract class SecondaryPanel
         .encode(serializers.serializeWith(SecondaryPanel.serializer, this));
   }
 
-  static SecondaryPanel fromJson(String jsonString) {
+  static SecondaryPanel? fromJson(String jsonString) {
     return serializers.deserializeWith(
         SecondaryPanel.serializer, json.decode(jsonString));
   }

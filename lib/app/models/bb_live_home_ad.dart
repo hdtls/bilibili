@@ -12,19 +12,18 @@ part 'bb_live_home_ad.g.dart';
 
 abstract class LiveHomeAd implements Built<LiveHomeAd, LiveHomeAdBuilder> {
   // Fields
-  @nullable
   int get id;
-  @nullable
-  String get link;
-  @nullable
-  String get pic;
-  @nullable
-  String get title;
-  @nullable
-  String get content;
-  @nullable
+
+  String? get link;
+  
+  String? get pic;
+
+  String? get title;
+
+  String? get content;
+
   @BuiltValueField(wireName: 'source_content')
-  SourceContent get sourceContent;
+  SourceContent? get sourceContent;
 
   LiveHomeAd._();
 
@@ -34,7 +33,7 @@ abstract class LiveHomeAd implements Built<LiveHomeAd, LiveHomeAdBuilder> {
     return json.encode(serializers.serializeWith(LiveHomeAd.serializer, this));
   }
 
-  static LiveHomeAd fromJson(String jsonString) {
+  static LiveHomeAd? fromJson(String jsonString) {
     return serializers.deserializeWith(
         LiveHomeAd.serializer, json.decode(jsonString));
   }

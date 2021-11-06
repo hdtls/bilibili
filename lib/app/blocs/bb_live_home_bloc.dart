@@ -19,15 +19,15 @@ class BBLiveHomeBLoC extends Bloc<LiveHomeEvent, LiveHomeState> {
       HttpBody<LiveHomeBody> body = await BBApi.requestAllLive();
       List<LiveGroup> copy = [];
 
-      copy.addAll(body?.data?.banner ?? []);
-      copy.addAll(body?.data?.areaEntranceV2 ?? []);
-      copy.addAll(body?.data?.activityCardV2 ?? []);
-      copy.addAll(body?.data?.myIdol ?? []);
-      copy.addAll(body?.data?.roomList ?? []);
-      copy.addAll(body?.data?.hourRank ?? []);
+      copy.addAll(body.data?.banner?.toList() ?? []);
+      copy.addAll(body.data?.areaEntranceV2?.toList() ?? []);
+      copy.addAll(body.data?.activityCardV2?.toList() ?? []);
+      copy.addAll(body.data?.myIdol?.toList() ?? []);
+      copy.addAll(body.data?.roomList?.toList() ?? []);
+      copy.addAll(body.data?.hourRank?.toList() ?? []);
 
       copy = copy.where((e) => e.list?.isNotEmpty ?? false).toList();
-      copy.sort((lhs, rhs) => lhs.module.sort.compareTo(rhs.module.sort));
+      copy.sort((lhs, rhs) => lhs.module?.sort?.compareTo(rhs.module?.sort ?? 0) ?? 0);
 
       emit(LiveHomeLoadSuccess(copy));
     } catch (e) {

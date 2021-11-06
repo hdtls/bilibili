@@ -15,32 +15,30 @@ import '../views/bb_partation_list_view.dart';
 import '../views/bb_mine_view.dart';
 
 Handler notFoundHandler = Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) =>
+    handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
         BBNotFoundView());
 
 Handler rootHandler = Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) =>
+    handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
         BBInitialView());
 
 Handler homeHandler = Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) =>
+    handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
         BBHomeView());
 
 Handler liveHomeHandler = Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) =>
+    handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
         BBLiveHomeView());
 
 Handler featuredHandler = Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) =>
+    handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
         BBFeaturedListView());
 
 Handler popularHandler = _buildHandler(BBPopularListView());
 
 Handler pgcHandler = Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) =>
-        BBBangumiHomeView(
-          path: params?.isNotEmpty ?? false ? params["path"].first : null,
-        ));
+    handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
+        BBBangumiHomeView(path: params["path"]?.first ?? ""));
 
 Handler channelContainerHandler = _buildHandler(BBChannelContainerView());
 
@@ -54,7 +52,7 @@ Handler videoHandler = _buildHandler(BBMediaView());
 
 Handler _buildHandler(Widget v) {
   return Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
     return v;
   });
 }

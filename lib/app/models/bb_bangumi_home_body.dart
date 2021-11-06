@@ -15,26 +15,31 @@ export 'bb_region.dart';
 
 part 'bb_bangumi_home_body.g.dart';
 
-abstract class BangumiHomeBody implements Built<BangumiHomeBody, BangumiHomeBodyBuilder> {
+abstract class BangumiHomeBody
+    implements Built<BangumiHomeBody, BangumiHomeBodyBuilder> {
   // Fields
-@nullable
-  BangumiHomeBodyPopular get hot;
-  @nullable
-  BuiltList<Module<BangumiListItem>> get modules;
-  @nullable
-  BuiltList<Region> get regions;
+
+  BangumiHomeBodyPopular? get hot;
+
+  BuiltList<Module<BangumiListItem>>? get modules;
+
+  BuiltList<Region>? get regions;
 
   BangumiHomeBody._();
 
-  factory BangumiHomeBody([void Function(BangumiHomeBodyBuilder) updates]) = _$BangumiHomeBody;
+  factory BangumiHomeBody([void Function(BangumiHomeBodyBuilder) updates]) =
+      _$BangumiHomeBody;
 
   String toJson() {
-    return json.encode(serializers.serializeWith(BangumiHomeBody.serializer, this));
+    return json
+        .encode(serializers.serializeWith(BangumiHomeBody.serializer, this));
   }
 
-  static BangumiHomeBody fromJson(String jsonString) {
-    return serializers.deserializeWith(BangumiHomeBody.serializer, json.decode(jsonString));
+  static BangumiHomeBody? fromJson(String jsonString) {
+    return serializers.deserializeWith(
+        BangumiHomeBody.serializer, json.decode(jsonString));
   }
 
-  static Serializer<BangumiHomeBody> get serializer => _$bangumiHomeBodySerializer;
+  static Serializer<BangumiHomeBody> get serializer =>
+      _$bangumiHomeBodySerializer;
 }

@@ -15,98 +15,97 @@ part 'bb_room.g.dart';
 
 abstract class Room implements Built<Room, RoomBuilder> {
   // Fields
-  @nullable
-  int get rank;
-  @nullable
+  int? get rank;
+
   @BuiltValueField(wireName: 'live_status')
-  int get liveStatus;
-  @nullable
+  int? get liveStatus;
+
   @BuiltValueField(wireName: 'accept_quality')
-  BuiltList<int> get acceptQuality;
-  @nullable
+  BuiltList<int>? get acceptQuality;
+
   @BuiltValueField(wireName: "official_verify")
-  int get officialVerify;
-  @nullable
+  int? get officialVerify;
+
   @BuiltValueField(wireName: 'area_v2_id')
-  int get areaV2Id;
-  @nullable
+  int? get areaV2Id;
+
   @BuiltValueField(wireName: 'area_v2_parent_id')
-  int get areaV2ParentId;
-  @nullable
+  int? get areaV2ParentId;
+
   @BuiltValueField(wireName: 'area_v2_name')
-  String get areaV2Name;
-  @nullable
+  String? get areaV2Name;
+
   @BuiltValueField(wireName: 'area_v2_parent_name')
-  String get areaV2ParentName;
-  @nullable
+  String? get areaV2ParentName;
+
   @BuiltValueField(wireName: 'broadcast_type')
-  int get broadcastType;
-  @nullable
-  String get cover;
-  @nullable
+  int? get broadcastType;
+
+  String? get cover;
+
   @BuiltValueField(wireName: 'current_quality')
-  int get currentQuality;
-  @nullable
-  String get face;
-  @nullable
-  String get link;
-  @nullable
-  int get online;
-  @nullable
+  int? get currentQuality;
+  
+  String? get face;
+
+  String? get link;
+
+  int? get online;
+
   @BuiltValueField(wireName: 'pendent_ru')
-  String get pendentRu;
-  @nullable
+  String? get pendentRu;
+
   @BuiltValueField(wireName: 'pendent_ru_color')
-  String get pendentRuColor;
-  @nullable
+  String? get pendentRuColor;
+
   @BuiltValueField(wireName: 'pendent_ru_pic')
-  String get pendentRuPic;
-  @nullable
+  String? get pendentRuPic;
+
   @BuiltValueField(wireName: 'pk_id')
-  int get pkId;
-  @nullable
+  int? get pkId;
+
   @BuiltValueField(wireName: 'play_url')
-  String get playUrl;
-  @nullable
+  String? get playUrl;
+
   @BuiltValueField(wireName: 'rec_type')
-  int get recType;
-  @nullable
-  int get roomid;
-  @nullable
-  String get title;
-  @nullable
-  String get uname;
-  @nullable
+  int? get recType;
+
+  int? get roomid;
+
+  String? get title;
+  
+  String? get uname;
+
   @BuiltValueField(wireName: 'play_url_h265')
-  String get playUrlH265;
-  @nullable
+  String? get playUrlH265;
+
   @BuiltValueField(wireName: 'session_id')
-  String get sessionId;
-  @nullable
+  String? get sessionId;
+
   @BuiltValueField(wireName: 'group_id')
-  int get groupId;
-  @nullable
+  int? get groupId;
+
   @BuiltValueField(wireName: 'show_callback')
-  String get showCallback;
-  @nullable
+  String? get showCallback;
+
   @BuiltValueField(wireName: 'click_callback')
-  String get clickCallback;
-  @nullable
+  String? get clickCallback;
+
   @BuiltValueField(wireName: 'current_qn')
-  int get currentQn;
-  @nullable
+  int? get currentQn;
+
   @BuiltValueField(wireName: 'quality_description')
-  BuiltList<QualityDescription> get qualityDescription;
-  @nullable
+  BuiltList<QualityDescription>? get qualityDescription;
+
   @BuiltValueField(wireName: 'play_url_card')
-  String get playUrlCard;
-  @nullable
-  int get uid;
-  @nullable
-  int get flag;
-  @nullable
+  String? get playUrlCard;
+  
+  int? get uid;  
+  
+  int? get flag;
+
   @BuiltValueField(wireName: 'pendent_list')
-  BuiltList<LivePendent> get pendentList;
+  BuiltList<LivePendent>? get pendentList;
 
   Room._();
 
@@ -116,7 +115,7 @@ abstract class Room implements Built<Room, RoomBuilder> {
     return json.encode(serializers.serializeWith(Room.serializer, this));
   }
 
-  static Room fromJson(String jsonString) {
+  static Room? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Room.serializer, json.decode(jsonString));
   }

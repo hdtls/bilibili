@@ -11,19 +11,19 @@ part 'bb_section.g.dart';
 
 abstract class Section implements Built<Section, SectionBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "episode_id")
-  String get episodeId;
-  @nullable
-  BuiltList<Episode> get episodes;
-  @nullable
-  int get id;
-  @nullable
-  String get more;
-  @nullable
-  String get title;
-  @nullable
-  int get type;
+  String? get episodeId;
+
+  BuiltList<Episode>? get episodes;
+
+  int? get id;
+
+  String? get more;
+
+  String? get title;
+  
+  int? get type;
 
   Section._();
 
@@ -33,7 +33,7 @@ abstract class Section implements Built<Section, SectionBuilder> {
     return json.encode(serializers.serializeWith(Section.serializer, this));
   }
 
-  static Section fromJson(String jsonString) {
+  static Section? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Section.serializer, json.decode(jsonString));
   }

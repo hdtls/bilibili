@@ -13,24 +13,30 @@ part 'bb_ad_tag_style.g.dart';
 abstract class AdTagStyle
     implements Built<AdTagStyle, AdTagStyleBuilder>, TextAttributesDifinations {
   // Fields
-  @nullable
-  int get type;
-  @nullable
-  String get text;
-  @nullable
+  int? get type;
+
+  @override
+  String? get text;
+  
+  @override
   @BuiltValueField(wireName: "text_color")
-  String get textColor;
-  @nullable
+  String? get textColor;
+  
+  @override
   @BuiltValueField(wireName: "bg_border_color")
-  String get borderColor;
-  @nullable
-  String get darkModeTextColor;
-  @nullable
-  String get backgroundColor;
-  @nullable
-  String get darkModeBackgroundColor;
-  @nullable
-  String get darkModeBorderColor;
+  String? get borderColor;
+  
+  @override
+  String? get darkModeTextColor;
+  
+  @override
+  String? get backgroundColor;
+  
+  @override
+  String? get darkModeBackgroundColor;
+  
+  @override
+  String? get darkModeBorderColor;
 
   AdTagStyle._();
 
@@ -40,7 +46,7 @@ abstract class AdTagStyle
     return json.encode(serializers.serializeWith(AdTagStyle.serializer, this));
   }
 
-  static AdTagStyle fromJson(String jsonString) {
+  static AdTagStyle? fromJson(String jsonString) {
     return serializers.deserializeWith(
         AdTagStyle.serializer, json.decode(jsonString));
   }

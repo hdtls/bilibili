@@ -15,66 +15,66 @@ part 'bb_channel.g.dart';
 
 abstract class Channel implements Built<Channel, ChannelBuilder> {
   // Fields
-  @nullable
-  int get id;
-  @nullable
-  String get param;
-  @nullable
-  String get uri;
-  @nullable
-  int get position;
-  @nullable
+  
+  int? get id;
+  
+  String? get param;
+  
+  String? get uri;
+
+  int? get position;
+
   @BuiltValueField(wireName: "s_type")
-  int get sType;
-  @nullable
-  String get goto;
-  @nullable
-  String get title;
-  @nullable
-  String get background;
-  @nullable
-  String get desc;
-  @nullable
+  int? get sType;
+  
+  String? get goto;
+  
+  String? get title;
+
+  String? get background;
+
+  String? get desc;
+
   @BuiltValueField(wireName: "card_type")
-  String get cardType;
-  @nullable
+  String? get cardType;
+
   @BuiltValueField(wireName: "card_goto")
-  String get cardGoto;
-  @nullable
-  String get cover;
-  @nullable
+  String? get cardGoto;
+  
+  String? get cover;
+
   @BuiltValueField(wireName: "cover_label")
-  String get coverLabel;
-  @nullable
+  String? get coverLabel;
+
   @BuiltValueField(wireName: "cover_label2")
-  String get coverLabel2;
-  @nullable
-  int get alpha;
-  @nullable
+  String? get coverLabel2;
+
+  int? get alpha;
+
   @BuiltValueField(wireName: "theme_color")
-  String get themeColor;
-  @nullable
-  int get idx;
-  @nullable
-  ButtonDescription get button;
-  @nullable
+  String? get themeColor;
+
+  int? get idx;
+
+  ButtonDescription? get button;
+
   @BuiltValueField(wireName: "official_verify")
-  int get officialVerify;
-  @nullable
-  String get name;
-  @nullable
+  int? get officialVerify;
+
+  String? get name;
+
   @BuiltValueField(wireName: "desc_button")
-  ButtonDescription get descButton;
-  @nullable
-  BuiltMap<String, Object> get args;
-  @nullable
-  BuiltList<Media> get items;
-  @nullable
+  ButtonDescription? get descButton;
+
+  BuiltMap<String, Object>? get args;
+
+  BuiltList<Media>? get items;
+
   @BuiltValueField(wireName: "desc_1")
-  String get desc1;
-  @nullable
+  String? get desc1;
+
   @BuiltValueField(wireName: "desc_button_2")
-  ButtonDescription get descButton2;
+  ButtonDescription? get descButton2;
 
   Channel._();
 
@@ -84,7 +84,7 @@ abstract class Channel implements Built<Channel, ChannelBuilder> {
     return json.encode(serializers.serializeWith(Channel.serializer, this));
   }
 
-  static Channel fromJson(String jsonString) {
+  static Channel? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Channel.serializer, json.decode(jsonString));
   }

@@ -16,50 +16,48 @@ part 'bb_advertisement.g.dart';
 abstract class Advertisement
     implements Built<Advertisement, AdvertisementBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "creative_id")
-  int get creativeId;
-  @nullable
+  int? get creativeId;
+
   @BuiltValueField(wireName: "creative_type")
-  int get creativeType;
-  @nullable
+  int? get creativeType;
+
   @BuiltValueField(wireName: "card_type")
-  int get cardType;
-  @nullable
+  int? get cardType;
+
   @BuiltValueField(wireName: "creative_content")
-  AdvertisementCreativeContent get creativeContent;
-  @nullable
+  AdvertisementCreativeContent? get creativeContent;
+
   @BuiltValueField(wireName: "ad_cb")
-  String get adCb;
-  @nullable
-  int get resource;
-  @nullable
-  int get source;
-  @nullable
+  String? get adCb;
+  
+  int? get resource; 
+  int? get source;
+
   @BuiltValueField(wireName: "request_id")
-  String get requestId;
-  @nullable
+  String? get requestId;
+
   @BuiltValueField(wireName: "is_ad")
-  bool get isAd;
-  @nullable
+  bool? get isAd;
+
   @BuiltValueField(wireName: "cm_mark")
-  int get cmMark;
-  @nullable
-  int get index;
-  @nullable
+  int? get cmMark;
+  int? get index;
+
   @BuiltValueField(wireName: "is_ad_loc")
-  bool get isAdLoc;
-  @nullable
+  bool? get isAdLoc;
+
   @BuiltValueField(wireName: "card_index")
-  int get cardIndex;
-  @nullable
+  int? get cardIndex;
+
   @BuiltValueField(wireName: "client_ip")
-  String get clientIp;
-  @nullable
-  Extra get extra;
-  @nullable
+  String? get clientIp;
+
+  Extra? get extra;
+
   @BuiltValueField(wireName: "creative_style")
-  int get creativeStyle;
+  int? get creativeStyle;
 
   Advertisement._();
 
@@ -71,7 +69,7 @@ abstract class Advertisement
         .encode(serializers.serializeWith(Advertisement.serializer, this));
   }
 
-  static Advertisement fromJson(String jsonString) {
+  static Advertisement? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Advertisement.serializer, json.decode(jsonString));
   }

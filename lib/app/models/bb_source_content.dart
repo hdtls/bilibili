@@ -14,32 +14,32 @@ part 'bb_source_content.g.dart';
 abstract class SourceContent
     implements Built<SourceContent, SourceContentBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "card_index")
-  int get cardIndex;
-  @nullable
+  int? get cardIndex;
+
   @BuiltValueField(wireName: "client_ip")
-  String get clientIp;
-  @nullable
-  int get index;
-  @nullable
+  String? get clientIp;
+
+  int? get index;
+
   @BuiltValueField(wireName: "is_ad_loc")
-  JsonObject get isAdLoc;
-  @nullable
+  JsonObject? get isAdLoc;
+
   @BuiltValueField(wireName: "request_id")
-  String get requestId;
-  @nullable
+  String? get requestId;
+
   @BuiltValueField(wireName: "resource_id")
-  int get resourceId;
-  @nullable
+  int? get resourceId;
+
   @BuiltValueField(wireName: "server_type")
-  int get serverType;
-  @nullable
+  int? get serverType;
+
   @BuiltValueField(wireName: "source_id")
-  int get sourceId;
-  @nullable
+  int? get sourceId;
+
   @BuiltValueField(wireName: "ad_content")
-  Advertisement get ad;
+  Advertisement? get ad;
 
   SourceContent._();
 
@@ -51,7 +51,7 @@ abstract class SourceContent
         .encode(serializers.serializeWith(SourceContent.serializer, this));
   }
 
-  static SourceContent fromJson(String jsonString) {
+  static SourceContent? fromJson(String jsonString) {
     return serializers.deserializeWith(
         SourceContent.serializer, json.decode(jsonString));
   }

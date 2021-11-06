@@ -10,10 +10,9 @@ part 'bb_quality_description.g.dart';
 abstract class QualityDescription
     implements Built<QualityDescription, QualityDescriptionBuilder> {
   // Fields
-  @nullable
-  String get desc;
-  @nullable
-  int get qn;
+  String? get desc;
+  
+  int? get qn;
 
   QualityDescription._();
 
@@ -26,7 +25,7 @@ abstract class QualityDescription
         .encode(serializers.serializeWith(QualityDescription.serializer, this));
   }
 
-  static QualityDescription fromJson(String jsonString) {
+  static QualityDescription? fromJson(String jsonString) {
     return serializers.deserializeWith(
         QualityDescription.serializer, json.decode(jsonString));
   }

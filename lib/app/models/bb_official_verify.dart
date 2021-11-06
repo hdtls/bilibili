@@ -10,11 +10,10 @@ part 'bb_official_verify.g.dart';
 abstract class OfficialVerify
     implements Built<OfficialVerify, OfficialVerifyBuilder> {
   // Fields
-  @nullable
-  int get type;
-  @nullable
+  int? get type;
+
   @BuiltValueField(wireName: "desc")
-  String get description;
+  String? get description;
 
   OfficialVerify._();
 
@@ -26,7 +25,7 @@ abstract class OfficialVerify
         .encode(serializers.serializeWith(OfficialVerify.serializer, this));
   }
 
-  static OfficialVerify fromJson(String jsonString) {
+  static OfficialVerify? fromJson(String jsonString) {
     return serializers.deserializeWith(
         OfficialVerify.serializer, json.decode(jsonString));
   }

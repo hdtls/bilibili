@@ -9,25 +9,25 @@ part 'bb_service.g.dart';
 
 abstract class Service implements Built<Service, ServiceBuilder> {
   // Fields
-  @nullable
-  int get display;
-  @nullable
-  String get title;
-  @nullable
-  String get icon;
-  @nullable
+  
+  int? get display;
+
+  String? get title;
+
+  String? get icon;
+
   @BuiltValueField(wireName: "need_login")
-  int get needLogin;
-  @nullable
-  String get uri;
-  @nullable
+  int? get needLogin;
+  
+  String? get uri;
+
   @BuiltValueField(wireName: "global_red_dot")
-  int get globalRedDot;
-  @nullable
+  int? get globalRedDot;
+
   @BuiltValueField(wireName: "red_dot")
-  int get redDot;
-  @nullable
-  int get id;
+  int? get redDot;
+  
+  int? get id;
 
   Service._();
 
@@ -37,7 +37,7 @@ abstract class Service implements Built<Service, ServiceBuilder> {
     return json.encode(serializers.serializeWith(Service.serializer, this));
   }
 
-  static Service fromJson(String jsonString) {
+  static Service? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Service.serializer, json.decode(jsonString));
   }

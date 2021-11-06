@@ -9,20 +9,19 @@ part 'bb_config.g.dart';
 
 abstract class Config implements Built<Config, ConfigBuilder> {
   // Fields
-  @nullable
-  int get column;
-  @nullable
+  int? get column;
+
   @BuiltValueField(wireName: "autoplay_card")
-  int get autoplayCard;
-  @nullable
+  int? get autoplayCard;
+
   @BuiltValueField(wireName: "feed_clean_abtest")
-  int get feedCleanAbtest;
-  @nullable
+  int? get feedCleanAbtest;
+
   @BuiltValueField(wireName: "home_transfer_test")
-  int get homeTransferTest;
-  @nullable
+  int? get homeTransferTest;
+
   @BuiltValueField(wireName: "auto_refresh_time")
-  int get autoRefreshTime;
+  int? get autoRefreshTime;
 
   Config._();
 
@@ -32,7 +31,7 @@ abstract class Config implements Built<Config, ConfigBuilder> {
     return json.encode(serializers.serializeWith(Config.serializer, this));
   }
 
-  static Config fromJson(String jsonString) {
+  static Config? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Config.serializer, json.decode(jsonString));
   }

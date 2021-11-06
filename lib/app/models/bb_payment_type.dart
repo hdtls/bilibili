@@ -9,9 +9,9 @@ part 'bb_payment_type.g.dart';
 
 abstract class PaymentType implements Built<PaymentType, PaymentTypeBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "allow_ticket")
-  int get allowTicket;
+  int? get allowTicket;
 
   PaymentType._();
 
@@ -22,7 +22,7 @@ abstract class PaymentType implements Built<PaymentType, PaymentTypeBuilder> {
     return json.encode(serializers.serializeWith(PaymentType.serializer, this));
   }
 
-  static PaymentType fromJson(String jsonString) {
+  static PaymentType? fromJson(String jsonString) {
     return serializers.deserializeWith(
         PaymentType.serializer, json.decode(jsonString));
   }

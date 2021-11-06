@@ -9,46 +9,45 @@ part 'bb_trailer.g.dart';
 
 abstract class Trailer implements Built<Trailer, TrailerBuilder> {
   // Fields
-  @nullable
-  String get cover;
-  @nullable
-  int get delay;
-  @nullable
+  String? get cover;
+
+  int? get delay;
+
   @BuiltValueField(wireName: "delay_id")
-  int get delayId;
-  @nullable
+  int? get delayId;
+
   @BuiltValueField(wireName: "delay_index")
-  String get delayIndex;
-  @nullable
+  String? get delayIndex;
+
   @BuiltValueField(wireName: "delay_reason")
-  String get delayReason;
-  @nullable
+  String? get delayReason;
+
   @BuiltValueField(wireName: "episode_id")
-  int get episodeId;
-  @nullable
-  String get link;
-  @nullable
+  int? get episodeId;
+
+  String? get link;
+
   @BuiltValueField(wireName: "pub_index")
-  String get pubIndex;
-  @nullable
+  String? get pubIndex;
+
   @BuiltValueField(wireName: "pub_time")
-  String get pubTime;
-  @nullable
+  String? get pubTime;
+
   @BuiltValueField(wireName: "pub_ts")
-  int get pubTs;
-  @nullable
-  int get published;
-  @nullable
+  int? get pubTs;
+
+  int? get published;
+
   @BuiltValueField(wireName: "season_id")
-  int get seasonId;
-  @nullable
+  int? get seasonId;
+
   @BuiltValueField(wireName: "season_type")
-  int get seasonType;
-  @nullable
+  int? get seasonType;
+
   @BuiltValueField(wireName: "square_cover")
-  String get squareCover;
-  @nullable
-  String get title;
+  String? get squareCover;
+  
+  String? get title;
 
   Trailer._();
 
@@ -58,7 +57,7 @@ abstract class Trailer implements Built<Trailer, TrailerBuilder> {
     return json.encode(serializers.serializeWith(Trailer.serializer, this));
   }
 
-  static Trailer fromJson(String jsonString) {
+  static Trailer? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Trailer.serializer, json.decode(jsonString));
   }

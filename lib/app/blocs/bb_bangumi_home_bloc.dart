@@ -17,8 +17,8 @@ class BBBangumiHomeBLoC extends Bloc<BangumiHomeEvent, BangumiHomeState> {
     emit(BangumiHomeLoading());
       try {
         HttpBody<BangumiHomeBody> httpBody =
-            await BBApi.requestAllBangumi(path: event.path);
-            emit(BangumiHomeLoadSuccess(httpBody?.result?.modules?.toList() ?? []));
+            await BBApi.requestAllBangumi(event.path);
+            emit(BangumiHomeLoadSuccess(httpBody.result?.modules?.toList() ?? []));
       } catch (e) {
         emit(BangumiHomeLoadFailure(e.toString()));
       }

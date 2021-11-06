@@ -9,31 +9,39 @@ import 'bb_serializers.dart';
 part 'bb_text_attributes.g.dart';
 
 abstract class TextAttributes
-    implements Built<TextAttributes, TextAttributesBuilder>, TextAttributesDifinations {
+    implements
+        Built<TextAttributes, TextAttributesBuilder>,
+        TextAttributesDifinations {
   // Fields
-  @nullable
+  @override
   @BuiltValueField(wireName: "text_color_night")
-  String get darkModeTextColor;
-  @nullable
+  String? get darkModeTextColor;
+  
+  @override
   @BuiltValueField(wireName: "bg_color")
-  String get backgroundColor;
-  @nullable
+  String? get backgroundColor;
+
+  @override
   @BuiltValueField(wireName: "bg_color_night")
-  String get darkModeBackgroundColor;
-  @nullable
+  String? get darkModeBackgroundColor;
+  
+  @override
   @BuiltValueField(wireName: "text_color")
-  String get textColor;
-  @nullable
+  String? get textColor;
+  
+  @override
   @BuiltValueField(wireName: "border_color")
-  String get borderColor;
-  @nullable
+  String? get borderColor;
+
+  @override
   @BuiltValueField(wireName: "border_color_night")
-  String get darkModeBorderColor;
-  @nullable
+  String? get darkModeBorderColor;
+
   @BuiltValueField(wireName: "bg_style")
-  int get bgStyle;
-  @nullable
-  String get text;
+  int? get bgStyle;
+  
+  @override
+  String? get text;
 
   TextAttributes._();
 
@@ -45,7 +53,7 @@ abstract class TextAttributes
         .encode(serializers.serializeWith(TextAttributes.serializer, this));
   }
 
-  static TextAttributes fromJson(String jsonString) {
+  static TextAttributes? fromJson(String jsonString) {
     return serializers.deserializeWith(
         TextAttributes.serializer, json.decode(jsonString));
   }

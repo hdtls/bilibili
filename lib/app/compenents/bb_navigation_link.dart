@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 
 enum BBNaviLinkAnimation {
-  PUSH,
-  POP,
-  PRESENT,
-  DISMISS,
+  push,
+  pop,
+  present,
+  dismiss,
 }
 
 class BBNavigationLink extends StatelessWidget {
   final bool rootNavigator;
-  final String destination;
+  final String? destination;
   final BBNaviLinkAnimation animation;
-  final Object arguments;
-  final Widget child;
-  final void Function() onTap;
+  final Object? arguments;
+  final Widget? child;
+  final void Function()? onTap;
 
-  BBNavigationLink({
+  const BBNavigationLink({
+    Key? key,
     this.rootNavigator = true,
-    this.animation = BBNaviLinkAnimation.PUSH,
+    this.animation = BBNaviLinkAnimation.push,
     this.destination,
     this.arguments,
     this.child,
     this.onTap,
-  });
+  }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +31,20 @@ class BBNavigationLink extends StatelessWidget {
       child: child,
       onTapUp: (TapUpDetails d) {
         if (onTap != null) {
-          onTap();
+          onTap!();
         }
         if (destination?.isEmpty ?? true) {
           return;
         }
 
         switch (animation) {
-          case BBNaviLinkAnimation.PUSH:
-          case BBNaviLinkAnimation.PRESENT:
+          case BBNaviLinkAnimation.push:
+          case BBNaviLinkAnimation.present:
             Navigator.of(context, rootNavigator: rootNavigator)
-                .pushNamed(destination);
+                .pushNamed(destination!);
             break;
-          case BBNaviLinkAnimation.POP:
-          case BBNaviLinkAnimation.DISMISS:
+          case BBNaviLinkAnimation.pop:
+          case BBNaviLinkAnimation.dismiss:
             if (Navigator.canPop(context)) {
               Navigator.pop(context);
             }

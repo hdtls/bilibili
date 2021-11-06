@@ -9,20 +9,19 @@ part 'bb_live_module.g.dart';
 
 abstract class LiveModule implements Built<LiveModule, LiveModuleBuilder> {
   // Fields
-  @nullable
-  int get id;
-  @nullable
-  String get link;
-  @nullable
-  String get pic;
-  @nullable
-  String get title;
-  @nullable
-  int get type;
-  @nullable
-  int get sort;
-  @nullable
-  int get count;
+  int? get id;
+
+  String? get link;
+  
+  String? get pic;
+
+  String? get title;
+  
+  int? get type;  
+  
+  int? get sort;
+
+  int? get count;
 
   LiveModule._();
 
@@ -32,11 +31,10 @@ abstract class LiveModule implements Built<LiveModule, LiveModuleBuilder> {
     return json.encode(serializers.serializeWith(LiveModule.serializer, this));
   }
 
-  static LiveModule fromJson(String jsonString) {
+  static LiveModule? fromJson(String jsonString) {
     return serializers.deserializeWith(
         LiveModule.serializer, json.decode(jsonString));
   }
 
   static Serializer<LiveModule> get serializer => _$liveModuleSerializer;
 }
-

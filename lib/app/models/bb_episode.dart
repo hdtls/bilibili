@@ -12,56 +12,56 @@ part 'bb_episode.g.dart';
 
 abstract class Episode implements Built<Episode, EpisodeBuilder> {
   // Fields
-  @nullable
-  int get aid;
-  @nullable
-  String get badge;
+  int? get aid;
+
+  String? get badge;
+  
   @BuiltValueField(wireName: "badge_type")
-  int get badgeType;
-  @nullable
-  String get bvid;
-  @nullable
-  int get cid;
-  @nullable
-  String get cover;
-  @nullable
-  Dimension get dimension;
-  @nullable
-  String get from;
-  @nullable
-  int get id;
-  @nullable
-  String get link;
-  @nullable
+  int? get badgeType;
+
+  String? get bvid;
+
+  int? get cid;
+  
+  String? get cover;
+
+  Dimension? get dimension;
+  
+  String? get from;
+  
+  int? get id;
+
+  String? get link;
+
   @BuiltValueField(wireName: "long_title")
-  String get longTitle;
-  @nullable
+  String? get longTitle;
+
   @BuiltValueField(wireName: "movie_title")
-  String get movieTitle;
-  @nullable
+  String? get movieTitle;
+
   @BuiltValueField(wireName: "release_date")
-  String get releaseDate;
-  @nullable
-  Copyright get rights;
-  @nullable
+  String? get releaseDate;
+
+  Copyright? get rights;
+
   @BuiltValueField(wireName: "share_copy")
-  String get shareCopy;
-  @nullable
+  String? get shareCopy;
+
   @BuiltValueField(wireName: "share_url")
-  String get shareUrl;
-  @nullable
+  String? get shareUrl;
+
   @BuiltValueField(wireName: "short_link")
-  String get shortLink;
-  @nullable
-  BangumiStatus get stat;
-  @nullable
-  int get status;
-  @nullable
-  String get subtitle;
-  @nullable
-  String get title;
-  @nullable
-  String get vid;
+  String? get shortLink;
+
+  BangumiStatus? get stat;
+
+  int? get status;
+  
+  String? get subtitle;
+  
+  String? get title;
+
+  String? get vid;
 
   Episode._();
 
@@ -71,7 +71,7 @@ abstract class Episode implements Built<Episode, EpisodeBuilder> {
     return json.encode(serializers.serializeWith(Episode.serializer, this));
   }
 
-  static Episode fromJson(String jsonString) {
+  static Episode? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Episode.serializer, json.decode(jsonString));
   }

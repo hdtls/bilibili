@@ -7,38 +7,43 @@ import 'bb_serializers.dart';
 
 part 'bb_advertisement_creative_content.g.dart';
 
-abstract class AdvertisementCreativeContent implements Built<AdvertisementCreativeContent, AdvertisementCreativeContentBuilder> {
+abstract class AdvertisementCreativeContent
+    implements
+        Built<AdvertisementCreativeContent,
+            AdvertisementCreativeContentBuilder> {
   // Fields
-  @nullable
-  String get title;
-  @nullable
+  String? get title;
   String get description;
-  @nullable
+
   @BuiltValueField(wireName: "image_url")
-  String get imageUrl;
-  @nullable
+  String? get imageUrl;
+  
   @BuiltValueField(wireName: "image_md5")
-  String get imageMd5;
-  @nullable
-  String get url;
-  @nullable
+  String? get imageMd5;
+  String? get url;
+
   @BuiltValueField(wireName: "click_url")
-  String get clickUrl;
-  @nullable
+  String? get clickUrl;
+
   @BuiltValueField(wireName: "show_url")
-  String get showUrl;
+  String? get showUrl;
 
   AdvertisementCreativeContent._();
 
-  factory AdvertisementCreativeContent([void Function(AdvertisementCreativeContentBuilder) updates]) = _$AdvertisementCreativeContent;
+  factory AdvertisementCreativeContent(
+          [void Function(AdvertisementCreativeContentBuilder) updates]) =
+      _$AdvertisementCreativeContent;
 
   String toJson() {
-    return json.encode(serializers.serializeWith(AdvertisementCreativeContent.serializer, this));
+    return json.encode(serializers.serializeWith(
+        AdvertisementCreativeContent.serializer, this));
   }
 
-  static AdvertisementCreativeContent fromJson(String jsonString) {
-    return serializers.deserializeWith(AdvertisementCreativeContent.serializer, json.decode(jsonString));
+  static AdvertisementCreativeContent? fromJson(String jsonString) {
+    return serializers.deserializeWith(
+        AdvertisementCreativeContent.serializer, json.decode(jsonString));
   }
 
-  static Serializer<AdvertisementCreativeContent> get serializer => _$advertisementCreativeContentSerializer;
+  static Serializer<AdvertisementCreativeContent> get serializer =>
+      _$advertisementCreativeContentSerializer;
 }

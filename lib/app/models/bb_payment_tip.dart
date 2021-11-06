@@ -10,8 +10,8 @@ part 'bb_payment_tip.g.dart';
 
 abstract class PaymentTip implements Built<PaymentTip, PaymentTipBuilder> {
   // Fields
-  @nullable
-  PaymentPrimary get primary;
+
+  PaymentPrimary? get primary;
 
   PaymentTip._();
 
@@ -21,7 +21,7 @@ abstract class PaymentTip implements Built<PaymentTip, PaymentTipBuilder> {
     return json.encode(serializers.serializeWith(PaymentTip.serializer, this));
   }
 
-  static PaymentTip fromJson(String jsonString) {
+  static PaymentTip? fromJson(String jsonString) {
     return serializers.deserializeWith(
         PaymentTip.serializer, json.decode(jsonString));
   }

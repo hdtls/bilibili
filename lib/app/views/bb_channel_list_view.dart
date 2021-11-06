@@ -12,13 +12,15 @@ import 'bb_channel_list_section.dart';
 import 'bb_channel_list_dynamics_view.dart';
 
 class BBChannelListView extends StatefulWidget {
+  const BBChannelListView({Key? key}) : super(key: key);
+
   @override
   _BBChannelListViewState createState() => _BBChannelListViewState();
 }
 
 class _BBChannelListViewState extends State<BBChannelListView> {
-  List<ChannelModule> _groups;
-  RefreshController _refreshController;
+  late List<ChannelModule> _groups;
+  late RefreshController _refreshController;
 
   @override
   void initState() {
@@ -55,42 +57,43 @@ class _BBChannelListViewState extends State<BBChannelListView> {
             case "search":
               return [_buildSliverSearchBar()];
             case "subscribe":
-              return e.items != null && e.items.isNotEmpty
+              return (e.items?.isNotEmpty ?? false)
                   ? [
-                      _buildSliverEntries(e.items.toList()),
+                      _buildSliverEntries(e.items!.toList()),
                       _buildSliverDivider(),
                     ]
                   : <Widget>[];
             case "new":
-              return e.items != null && e.items.isNotEmpty
+              return (e.items?.isNotEmpty ?? false)
                   ? [
                       _buildSliverSectionHead(
                         context,
                         e,
                         _buildNavigation(context, e),
                       ),
-                      _buildSliverList(e.items.toList()),
+                      _buildSliverList(e.items!.toList()),
                       _buildSliverDivider(),
                     ]
                   : <Widget>[];
             case "scaned":
-              return e.items != null && e.items.isNotEmpty
+              return (e.items?.isNotEmpty ?? false)
                   ? [
                       _buildSliverSectionHead(context, e, null),
-                      _buildSliverHistory(e.items.toList()),
+                      _buildSliverHistory(e.items!.toList()),
                       _buildSliverDivider(),
                     ]
                   : <Widget>[];
             case "rcmd":
               List<Widget> slivers = [];
               if (e.item?.list?.isNotEmpty ?? false) {
-                slivers.add(_buildSliverEntries(e.item.list.toList()));
+                slivers.add(_buildSliverEntries(e.item!.list!.toList()));
               }
               if (e.item?.dynamics?.isNotEmpty ?? false) {
-                slivers.add(BBChannelListSliverDynamics(e.item.dynamics.toList()));
+                slivers.add(
+                    BBChannelListSliverDynamics(e.item!.dynamics!.toList()));
               }
               if (e.item?.rcmd?.isNotEmpty ?? false) {
-                slivers.add(_buildSliverList(e.item.rcmd.toList()));
+                slivers.add(_buildSliverList(e.item!.rcmd!.toList()));
               }
               if (slivers.isNotEmpty) {
                 slivers.insert(
@@ -197,7 +200,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
     return SliverToBoxAdapter(
       child: Padding(
         padding: defaultMargin,
-        child: Container(
+        child: SizedBox(
           height: 150.0,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -213,7 +216,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
                     color: Theme.of(context).scaffoldBackgroundColor,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey[200],
+                        color: Colors.grey[200]!,
                         blurRadius: defaultMargin.bottom,
                         offset: Offset(0, 4),
                       ),
@@ -228,7 +231,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
                           topLeft: Radius.circular(radius),
                           topRight: Radius.circular(radius),
                         ),
-                        child: Container(
+                        child: SizedBox(
                           height: 50.0,
                           child: Stack(
                             fit: StackFit.expand,
@@ -238,7 +241,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
                                 placeholder: Images.placeholder,
                               ),
                               Container(
-                                color: BBColor.from(
+                                color: BBColor.fromHexString(
                                   channel.themeColor,
                                   alpha: channel.alpha ?? 100,
                                 ),
@@ -268,7 +271,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
                         bottom: 0,
                         left: defaultMargin.left,
                         right: defaultMargin.right,
-                        child: Container(
+                        child: SizedBox(
                           height: 60.0,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -289,7 +292,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
                 ),
               );
             },
-            itemCount: e?.length ?? 0,
+            itemCount: e.length,
           ),
         ),
       ),
@@ -297,7 +300,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
   }
 
   Widget _buildSliverSectionHead(
-      BuildContext context, ChannelModule e, Widget accessoryView) {
+      BuildContext context, ChannelModule e, Widget? accessoryView) {
     return SliverToBoxAdapter(
       child: Padding(
         padding: defaultMargin,
@@ -317,7 +320,8 @@ class _BBChannelListViewState extends State<BBChannelListView> {
       child: Row(
         children: <Widget>[
           Text("换一换",
-              style: Theme.of(context).textTheme.button.copyWith(color: color)),
+              style:
+                  Theme.of(context).textTheme.button?.copyWith(color: color)),
           SizedBox(width: defaultMargin.left / 2),
           Image.asset(Images.exchange, color: color),
         ],
@@ -329,7 +333,8 @@ class _BBChannelListViewState extends State<BBChannelListView> {
     return GestureDetector(
       child: Row(
         children: <Widget>[
-          Text(e.descButton.text, style: Theme.of(context).textTheme.button),
+          Text(e.descButton?.text ?? "",
+              style: Theme.of(context).textTheme.button),
           Image.asset(Images.rightArrow),
         ],
       ),
@@ -337,12 +342,16 @@ class _BBChannelListViewState extends State<BBChannelListView> {
   }
 
   void _onRefresh() async {
-    HttpListBody<ChannelModule> body = await BBApi.requestChannelHomeData();
-    if (mounted) {
-      _refreshController.refreshCompleted();
-      setState(() {
-        _groups = body?.data?.toList() ?? [];
-      });
+    try {
+      HttpListBody<ChannelModule> body = await BBApi.requestChannelHomeData();
+      if (mounted) {
+        _refreshController.refreshCompleted();
+        setState(() {
+          _groups = body.data?.toList() ?? [];
+        });
+      }
+    } catch (e) {
+      // TODO: Error handling
     }
   }
 }

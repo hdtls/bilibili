@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:tuple/tuple.dart';
 
 import '../compenents/bb_media_thumbnail_view.dart';
 import '../utils/bb_args.dart';
@@ -8,7 +7,7 @@ import '../models/bb_channel.dart';
 
 class BBChannelListSection extends StatelessWidget {
   final Channel channel;
-  BBChannelListSection({this.channel});
+  const BBChannelListSection({Key? key, required this.channel}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +46,9 @@ class BBChannelListSection extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            channel.descButton.text,
+                            channel.descButton?.text ?? "",
                             style: Theme.of(context).textTheme.button
-                                .copyWith(color: Theme.of(context).accentColor),
+                                ?.copyWith(color: Theme.of(context).accentColor),
                           ),
                         ),
                       ),
@@ -67,7 +66,7 @@ class BBChannelListSection extends StatelessWidget {
               childAspectRatio: 16 / 14,
             ),
             itemBuilder: (BuildContext context, int index) {
-              Media media = channel.items[index];
+              Media media = channel.items![index];
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -76,14 +75,14 @@ class BBChannelListSection extends StatelessWidget {
                     child: BBThumbnailView(
                       url: media.cover,
                       topLeftIconAndDescriptions: [
-                        Tuple2(media.badge?.imageUrl, media.badge?.text),
+                        ThumbnailImageLabel(icon: media.badge?.imageUrl, label: media.badge?.text),
                       ],
                       bottomLeftIconAndDescriptions: [
-                        Tuple2(media.coverLeftIcon1, media.coverLeftText1),
-                        Tuple2(media.coverLeftIcon2, media.coverLeftText2),
+                        ThumbnailImageLabel(icon: media.coverLeftIcon1, label: media.coverLeftText1),
+                        ThumbnailImageLabel(icon: media.coverLeftIcon2, label: media.coverLeftText2),
                       ],
                       bottomRightIconAndDescriptions: [
-                        Tuple2(null, media.coverLeftText3),
+                        ThumbnailImageLabel(label: media.coverLeftText3),
                       ],
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -103,7 +102,7 @@ class BBChannelListSection extends StatelessWidget {
           ),
           channel.descButton2?.text != null
               ? Text(
-                  channel.descButton2.text,
+                  channel.descButton2!.text!,
                   style: Theme.of(context).textTheme.button,
                 )
               : SizedBox.shrink(),

@@ -9,10 +9,8 @@ part 'bb_actor.g.dart';
 
 abstract class Actor implements Built<Actor, ActorBuilder> {
   // Fields
-  @nullable
-  String get info;
-  @nullable
-  String get title;
+  String? get info;
+  String? get title;
 
   Actor._();
 
@@ -22,7 +20,7 @@ abstract class Actor implements Built<Actor, ActorBuilder> {
     return json.encode(serializers.serializeWith(Actor.serializer, this));
   }
 
-  static Actor fromJson(String jsonString) {
+  static Actor? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Actor.serializer, json.decode(jsonString));
   }

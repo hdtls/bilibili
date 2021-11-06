@@ -9,13 +9,12 @@ part 'bb_threshold.g.dart';
 
 abstract class Threshold implements Built<Threshold, ThresholdBuilder> {
   // Fields
-  @nullable
-  int get bp;
-  @nullable
-  int get days;
-  @nullable
+  int? get bp;
+
+  int? get days;
+
   @BuiltValueField(wireName: "days_text")
-  String get daysText;
+  String? get daysText;
 
   Threshold._();
 
@@ -25,7 +24,7 @@ abstract class Threshold implements Built<Threshold, ThresholdBuilder> {
     return json.encode(serializers.serializeWith(Threshold.serializer, this));
   }
 
-  static Threshold fromJson(String jsonString) {
+  static Threshold? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Threshold.serializer, json.decode(jsonString));
   }

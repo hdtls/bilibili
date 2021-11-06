@@ -9,49 +9,49 @@ part 'bb_copyright.g.dart';
 
 abstract class Copyright implements Built<Copyright, CopyrightBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "allow_bp")
-  int get allowBp;
-  @nullable
+  int? get allowBp;
+
   @BuiltValueField(wireName: "allow_bp_rank")
-  int get allowBpRank;
-  @nullable
+  int? get allowBpRank;
+
   @BuiltValueField(wireName: "allow_download")
-  int get allowDownload;
-  @nullable
+  int? get allowDownload;
+
   @BuiltValueField(wireName: "allow_dm")
-  int get allowDm;
-  @nullable
+  int? get allowDm;
+
   @BuiltValueField(wireName: "allow_review")
-  int get allowReview;
-  @nullable
+  int? get allowReview;
+
   @BuiltValueField(wireName: "area_limit")
-  int get areaLimit;
-  @nullable
+  int? get areaLimit;
+
   @BuiltValueField(wireName: "ban_area_show")
-  int get banAreaShow;
-  @nullable
+  int? get banAreaShow;
+
   @BuiltValueField(wireName: "can_watch")
-  int get canWatch;
-  @nullable
-  String get copyright;
-  @nullable
+  int? get canWatch;
+
+  String? get copyright;
+
   @BuiltValueField(wireName: "copyright_name")
-  String get copyrightName;
-  @nullable
+  String? get copyrightName;
+
   @BuiltValueField(wireName: "forbid_pre")
-  int get forbidPre;
-  @nullable
+  int? get forbidPre;
+
   @BuiltValueField(wireName: "is_cover_show")
-  int get isCoverShow;
-  @nullable
+  int? get isCoverShow;
+
   @BuiltValueField(wireName: "is_preview")
-  int get isPreview;
-  @nullable
-  String get resource;
-  @nullable
+  int? get isPreview;
+
+  String? get resource;
+
   @BuiltValueField(wireName: "watch_platform")
-  int get watchPlatform;
+  int? get watchPlatform;
 
   Copyright._();
 
@@ -61,7 +61,7 @@ abstract class Copyright implements Built<Copyright, CopyrightBuilder> {
     return json.encode(serializers.serializeWith(Copyright.serializer, this));
   }
 
-  static Copyright fromJson(String jsonString) {
+  static Copyright? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Copyright.serializer, json.decode(jsonString));
   }

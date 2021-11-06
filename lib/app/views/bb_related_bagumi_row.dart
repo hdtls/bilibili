@@ -5,6 +5,8 @@ import '../utils/bb_utils.dart';
 import '../compenents/bb_ui.dart';
 
 class BBRelatedBangumiRow extends StatefulWidget {
+  const BBRelatedBangumiRow({Key? key}) : super(key: key);
+
   @override
   _BBRelatedBangumiRowState createState() => _BBRelatedBangumiRowState();
 }
@@ -27,7 +29,7 @@ class _BBRelatedBangumiRowState extends State<BBRelatedBangumiRow> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                const Text(
                   "Fate/stay night [Unlimited Blade Works] 第一季",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -60,7 +62,7 @@ class _BBRelatedBangumiRowState extends State<BBRelatedBangumiRow> {
           SizedBox(width: defaultMargin.left),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
+            children: const <Widget>[
               Text.rich(
                 TextSpan(
                   text: "9.3",

@@ -9,7 +9,7 @@ import '../models/bb_live_home_activity.dart';
 class BBLiveHomeActivityView extends StatelessWidget {
   final LiveGroup<LiveHomeActivity> activities;
 
-  BBLiveHomeActivityView({this.activities});
+  const BBLiveHomeActivityView({Key? key, required this.activities}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class BBLiveHomeActivityView extends StatelessWidget {
         borderRadius: BorderRadius.circular(5.0),
         scrollDirection: Axis.vertical,
         physics: NeverScrollableScrollPhysics(),
-        advertise: activities?.list?.toList(),
+        advertise: activities.list?.toList(),
         itemBuilder: (BuildContext context, int index) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,7 +37,7 @@ class BBLiveHomeActivityView extends StatelessWidget {
                           bottomLeft: Radius.circular(5.0),
                         ),
                         child: BBNetworkImage(
-                          activities.list[index].logoUrl,
+                          activities.list?[index].logoUrl,
                           placeholder: Images.placeholder,
                         ),
                       ),
@@ -51,11 +51,11 @@ class BBLiveHomeActivityView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            activities.list[index].title ?? "",
+                            activities.list?[index].title ?? "",
                             maxLines: 1,
                           ),
                           Text(
-                            activities.list[index].timeText ?? "",
+                            activities.list?[index].timeText ?? "",
                             style: TextStyle(fontSize: 12.0),
                           ),
                         ],

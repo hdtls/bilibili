@@ -7,7 +7,7 @@ import '../models/bb_channel.dart';
 
 class BBChannelListEntryItemView extends StatelessWidget {
   final Channel channel;
-  BBChannelListEntryItemView({this.channel});
+  const BBChannelListEntryItemView({Key? key, required this.channel}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class BBChannelListEntryItemView extends StatelessWidget {
       children: <Widget>[
         channel.coverLabel != null
             ? Text(
-                channel.coverLabel,
+                channel.coverLabel!,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15.0,
@@ -66,7 +66,7 @@ class BBChannelListEntryItemView extends StatelessWidget {
             : SizedBox.shrink(),
         channel.coverLabel2 != null
             ? Text(
-                channel.coverLabel2,
+                channel.coverLabel2!,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 8.0,

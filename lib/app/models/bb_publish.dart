@@ -9,29 +9,29 @@ part 'bb_publish.g.dart';
 
 abstract class Publish implements Built<Publish, PublishBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "is_finish")
-  int get isFinish;
-  @nullable
+  int? get isFinish;
+
   @BuiltValueField(wireName: "is_started")
-  int get isStarted;
-  @nullable
+  int? get isStarted;
+
   @BuiltValueField(wireName: "pub_time")
-  String get pubTime;
-  @nullable
+  String? get pubTime;
+
   @BuiltValueField(wireName: "pub_time_show")
-  String get pubTimeShow;
-  @nullable
+  String? get pubTimeShow;
+
   @BuiltValueField(wireName: "release_date_show")
-  String get releaseDateShow;
-  @nullable
+  String? get releaseDateShow;
+
   @BuiltValueField(wireName: "time_length_show")
-  String get timeLengthShow;
-  @nullable
+  String? get timeLengthShow;
+
   @BuiltValueField(wireName: "unknow_pub_date")
-  int get unknowPubDate;
-  @nullable
-  int get weekday;
+  int? get unknowPubDate;
+  
+  int? get weekday;
 
   Publish._();
 
@@ -41,7 +41,7 @@ abstract class Publish implements Built<Publish, PublishBuilder> {
     return json.encode(serializers.serializeWith(Publish.serializer, this));
   }
 
-  static Publish fromJson(String jsonString) {
+  static Publish? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Publish.serializer, json.decode(jsonString));
   }

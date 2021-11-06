@@ -10,13 +10,12 @@ part 'bb_module_follow.g.dart';
 abstract class ModuleFollow
     implements Built<ModuleFollow, ModuleFollowBuilder> {
   // Fields
-  @nullable
-  int get count;
-  @nullable
-  int get type;
-  @nullable
+  int? get count;
+  
+  int? get type;
+
   @BuiltValueField(wireName: "update")
-  int get upgrade;
+  int? get upgrade;
 
   ModuleFollow._();
 
@@ -28,7 +27,7 @@ abstract class ModuleFollow
         .encode(serializers.serializeWith(ModuleFollow.serializer, this));
   }
 
-  static ModuleFollow fromJson(String jsonString) {
+  static ModuleFollow? fromJson(String jsonString) {
     return serializers.deserializeWith(
         ModuleFollow.serializer, json.decode(jsonString));
   }

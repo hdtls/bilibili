@@ -8,7 +8,7 @@ class BangumiHomePaginationLoadEvent extends BangumiHomeEvent {
   final int page;
   final int pageSize;
 
-  BangumiHomePaginationLoadEvent({this.path, this.page = 1, this.pageSize = 20});
+  BangumiHomePaginationLoadEvent({this.path = "", this.page = 1, this.pageSize = 20});
 
   @override
   List<Object> get props => [path, page, pageSize];

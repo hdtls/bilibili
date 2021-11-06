@@ -9,10 +9,9 @@ part 'bb_rating.g.dart';
 
 abstract class Rating implements Built<Rating, RatingBuilder> {
   // Fields
-  @nullable
-  int get count;
-  @nullable
-  double get score;
+  int? get count;
+
+  double? get score;
 
   Rating._();
 
@@ -22,7 +21,7 @@ abstract class Rating implements Built<Rating, RatingBuilder> {
     return json.encode(serializers.serializeWith(Rating.serializer, this));
   }
 
-  static Rating fromJson(String jsonString) {
+  static Rating? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Rating.serializer, json.decode(jsonString));
   }

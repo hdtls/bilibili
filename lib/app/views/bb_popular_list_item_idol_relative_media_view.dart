@@ -6,6 +6,8 @@ import '../compenents/bb_ui.dart';
 import 'bb_popular_list_item_idol_relative_media_item_view.dart';
 
 class BBPopularListItemIdolRelativeMediaView extends StatefulWidget {
+  const BBPopularListItemIdolRelativeMediaView({Key? key}) : super(key: key);
+
   @override
   _BBPopularListItemIdolRelativeMediaViewState createState() =>
       _BBPopularListItemIdolRelativeMediaViewState();
@@ -56,8 +58,7 @@ class _BBPopularListItemIdolRelativeMediaViewState
                     "+ 关注",
                     style: Theme.of(context)
                         .textTheme
-                        .button
-                        .copyWith(color: Theme.of(context).accentColor),
+                        .button?.copyWith(color: Theme.of(context).accentColor),
                   ),
                 ),
               ),
@@ -68,7 +69,7 @@ class _BBPopularListItemIdolRelativeMediaViewState
           ],
         ),
         SizedBox(height: defaultMargin.top),
-        Container(
+        SizedBox(
           height: 140,
           child: GridView.builder(
             scrollDirection: Axis.horizontal,

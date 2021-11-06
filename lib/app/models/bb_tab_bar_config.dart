@@ -7,27 +7,30 @@ import 'bb_serializers.dart';
 
 part 'bb_tab_bar_config.g.dart';
 
-abstract class TabBarConfig implements Built<TabBarConfig, TabBarConfigBuilder> {
+abstract class TabBarConfig
+    implements Built<TabBarConfig, TabBarConfigBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "no_login_avatar_type")
-  int get noLoginAvatarType;
-  @nullable
+  int? get noLoginAvatarType;
+
   @BuiltValueField(wireName: "popup_style")
-  int get popupStyle;
-  @nullable
+  int? get popupStyle;
+
   @BuiltValueField(wireName: "no_login_avatar")
-  String get noLoginAvatar;
+  String? get noLoginAvatar;
 
   TabBarConfig._();
 
-  factory TabBarConfig([void Function(TabBarConfigBuilder) updates]) = _$TabBarConfig;
+  factory TabBarConfig([void Function(TabBarConfigBuilder) updates]) =
+      _$TabBarConfig;
 
   String toJson() {
-    return json.encode(serializers.serializeWith(TabBarConfig.serializer, this));
+    return json
+        .encode(serializers.serializeWith(TabBarConfig.serializer, this));
   }
 
-  static TabBarConfig fromJson(String jsonString) {
+  static TabBarConfig? fromJson(String jsonString) {
     return serializers.deserializeWith(
         TabBarConfig.serializer, json.decode(jsonString));
   }

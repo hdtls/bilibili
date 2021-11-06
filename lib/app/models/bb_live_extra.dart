@@ -10,32 +10,32 @@ part 'bb_live_extra.g.dart';
 
 abstract class LiveExtra implements Built<LiveExtra, LiveExtraBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: 'total_count')
-  int get totalCount;
-  @nullable
+  int? get totalCount;
+
   @BuiltValueField(wireName: 'time_desc')
-  String get timeDesc;
-  @nullable
+  String? get timeDesc;
+
   @BuiltValueField(wireName: 'uwireName_desc')
-  String get uwireNameDesc;
-  @nullable
+  String? get uwireNameDesc;
+
   @BuiltValueField(wireName: 'tags_desc')
-  String get tagsDesc;
-  @nullable
+  String? get tagsDesc;
+
   @BuiltValueField(wireName: 'card_type')
-  int get cardType;
-  @nullable
+  int? get cardType;
+
   @BuiltValueField(wireName: 'relation_page')
-  int get relationPage;
-  @nullable
+  int? get relationPage;
+
   @BuiltValueField(wireName: 'show_type')
-  int get showType;
-  @nullable
-  BuiltList get offline;
-  @nullable
+  int? get showType;
+
+  BuiltList? get offline;
+
   @BuiltValueField(wireName: "sub_title")
-  String get subtitle;
+  String? get subtitle;
 
   LiveExtra._();
 
@@ -45,7 +45,7 @@ abstract class LiveExtra implements Built<LiveExtra, LiveExtraBuilder> {
     return json.encode(serializers.serializeWith(LiveExtra.serializer, this));
   }
 
-  static LiveExtra fromJson(String jsonString) {
+  static LiveExtra? fromJson(String jsonString) {
     return serializers.deserializeWith(
         LiveExtra.serializer, json.decode(jsonString));
   }

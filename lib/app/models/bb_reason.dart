@@ -9,10 +9,10 @@ part 'bb_reason.g.dart';
 
 abstract class Reason implements Built<Reason, ReasonBuilder> {
   // Fields
-  @nullable
+  
   int get id;
-  @nullable
-  String get name;
+
+  String? get name;
 
   Reason._();
 
@@ -22,7 +22,7 @@ abstract class Reason implements Built<Reason, ReasonBuilder> {
     return json.encode(serializers.serializeWith(Reason.serializer, this));
   }
 
-  static Reason fromJson(String jsonString) {
+  static Reason? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Reason.serializer, json.decode(jsonString));
   }

@@ -5,13 +5,15 @@ import '../utils/bb_utils.dart';
 import 'bb_related_media_list_view.dart';
 
 class BBMediaView extends StatefulWidget {
+  const BBMediaView({Key? key}) : super(key: key);
+
   @override
   _BBMediaViewState createState() => _BBMediaViewState();
 }
 
 class _BBMediaViewState extends State<BBMediaView>
     with SingleTickerProviderStateMixin {
-  TabController _tabCtr;
+  late TabController _tabCtr;
 
   @override
   void initState() {
@@ -48,7 +50,7 @@ class _BBMediaViewState extends State<BBMediaView>
                           Expanded(
                             child: TabBar(
                               isScrollable: true,
-                              tabs: <Widget>[
+                              tabs: const <Widget>[
                                 Tab(
                                   child: Text(
                                     "简介",
@@ -111,17 +113,19 @@ class BBDanmakuComposeButton extends StatefulWidget {
   final double radius = 16.0;
   final bool on = false;
 
+  const BBDanmakuComposeButton({Key? key}) : super(key: key);
+
   @override
   _BBDanmakuComposeButtonState createState() => _BBDanmakuComposeButtonState();
 }
 
 class _BBDanmakuComposeButtonState extends State<BBDanmakuComposeButton>
     with SingleTickerProviderStateMixin {
-  bool on;
+  late bool on;
+  late AnimationController _animation;
+  late Animation _widthAnimation;
+  late Animation _opacityAnimation;
 
-  AnimationController _animation;
-  Animation _widthAnimation;
-  Animation _opacityAnimation;
   @override
   void initState() {
     super.initState();
@@ -152,7 +156,7 @@ class _BBDanmakuComposeButtonState extends State<BBDanmakuComposeButton>
       width: _widthAnimation.value,
       decoration: BoxDecoration(
         color: Colors.grey[100],
-        border: Border.all(color: Colors.grey[200]),
+        border: Border.all(color: Colors.grey[200]!),
         borderRadius: BorderRadius.circular(widget.radius),
       ),
       child: Row(

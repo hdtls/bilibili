@@ -64,12 +64,12 @@ class Images {
     return brightness == Brightness.light ? bigVLightMode : bigVDarkMode;
   }
 
-  static String themeMiscUserLevel(Brightness brightness, int lv) {
+  static String themeMiscUserLevel(Brightness brightness, int? lv) {
     int solvedLevel = lv == null ? 0 : 0 <= lv && lv <= 9 ? lv : 0;
     return "$_path/misc_level_${brightness == Brightness.dark ? "white" : "colorful"}Lv${solvedLevel}28x14.png";
   }
 
-  static String sex(int input) {
+  static String sex(int? input) {
     switch (input) {
       case 1:
         return "$_path/misc_sex_female13x13.png";

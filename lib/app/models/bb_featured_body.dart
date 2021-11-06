@@ -16,10 +16,10 @@ part 'bb_featured_body.g.dart';
 abstract class FeaturedBody
     implements Built<FeaturedBody, FeaturedBodyBuilder> {
   // Fields
-  @nullable
-  BuiltList<Media> get items;
-  @nullable
-  Config get config;
+
+  BuiltList<Media>? get items;
+
+  Config? get config;
 
   FeaturedBody._();
 
@@ -31,7 +31,7 @@ abstract class FeaturedBody
         .encode(serializers.serializeWith(FeaturedBody.serializer, this));
   }
 
-  static FeaturedBody fromJson(String jsonString) {
+  static FeaturedBody? fromJson(String jsonString) {
     return serializers.deserializeWith(
         FeaturedBody.serializer, json.decode(jsonString));
   }

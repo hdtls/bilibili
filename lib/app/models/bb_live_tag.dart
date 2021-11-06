@@ -9,23 +9,22 @@ part 'bb_live_tag.g.dart';
 
 abstract class LiveTag implements Built<LiveTag, LiveTagBuilder> {
   // Fields
-  @nullable
-  int get id;
-  @nullable
-  String get link;
-  @nullable
-  String get pic;
-  @nullable
-  String get title;
-  @nullable
+  int? get id;
+  
+  String? get link;
+
+  String? get pic;
+
+  String? get title;
+
   @BuiltValueField(wireName: 'area_v2_id')
-  int get areaV2Id;
-  @nullable
+  int? get areaV2Id;
+
   @BuiltValueField(wireName: 'area_v2_parent_id')
-  int get areaV2ParentId;
-  @nullable
+  int? get areaV2ParentId;
+
   @BuiltValueField(wireName: 'tag_type')
-  int get tagType;
+  int? get tagType;
 
   LiveTag._();
 
@@ -35,7 +34,7 @@ abstract class LiveTag implements Built<LiveTag, LiveTagBuilder> {
     return json.encode(serializers.serializeWith(LiveTag.serializer, this));
   }
 
-  static LiveTag fromJson(String jsonString) {
+  static LiveTag? fromJson(String jsonString) {
     return serializers.deserializeWith(
         LiveTag.serializer, json.decode(jsonString));
   }

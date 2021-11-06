@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:bilibili/app/utils/bb_args.dart';
 
 class BBNotFoundView extends StatelessWidget {
+  const BBNotFoundView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

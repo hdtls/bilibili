@@ -9,29 +9,29 @@ part 'bb_tab_bar_item.g.dart';
 
 abstract class TabBarItem implements Built<TabBarItem, TabBarItemBuilder> {
   // Fields
-  @nullable
-  int get id;
-  @nullable
-  String get name;
-  @nullable
-  String get uri;
-  @nullable
+  
+  int? get id;
+
+  String? get name;
+  
+  String? get uri;
+
   @BuiltValueField(wireName: "tab_id")
-  String get tabId;
-  @nullable
-  int get pos;
-  @nullable
+  String? get tabId;
+
+  int? get pos;
+
   @BuiltValueField(wireName: "icon")
-  String get image;
-  @nullable
+  String? get image;
+
   @BuiltValueField(wireName: "icon_selected")
-  String get selectedImage;
-  @nullable
+  String? get selectedImage;
+
   @BuiltValueField(wireName: "default_selected")
-  int get selected;
-  @nullable
+  int? get selected;
+
   @BuiltValueField(wireName: "extension")
-  ExtTabBarItem get ext;
+  ExtTabBarItem? get ext;
 
   TabBarItem._();
 
@@ -41,7 +41,7 @@ abstract class TabBarItem implements Built<TabBarItem, TabBarItemBuilder> {
     return json.encode(serializers.serializeWith(TabBarItem.serializer, this));
   }
 
-  static TabBarItem fromJson(String jsonString) {
+  static TabBarItem? fromJson(String jsonString) {
     return serializers.deserializeWith(
         TabBarItem.serializer, json.decode(jsonString));
   }
@@ -52,12 +52,12 @@ abstract class TabBarItem implements Built<TabBarItem, TabBarItemBuilder> {
 abstract class ExtTabBarItem
     implements Built<ExtTabBarItem, ExtTabBarItemBuilder> {
   // Fields
-  @nullable
+
   @BuiltValueField(wireName: "inactive_icon")
-  String get inactiveIcon;
-  @nullable
+  String? get inactiveIcon;
+
   @BuiltValueField(wireName: "active_icon")
-  String get activeIcon;
+  String? get activeIcon;
 
   ExtTabBarItem._();
 
@@ -69,7 +69,7 @@ abstract class ExtTabBarItem
         .encode(serializers.serializeWith(ExtTabBarItem.serializer, this));
   }
 
-  static ExtTabBarItem fromJson(String jsonString) {
+  static ExtTabBarItem? fromJson(String jsonString) {
     return serializers.deserializeWith(
         ExtTabBarItem.serializer, json.decode(jsonString));
   }

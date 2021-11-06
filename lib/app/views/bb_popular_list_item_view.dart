@@ -5,6 +5,8 @@ import '../compenents/bb_media_tag_view.dart';
 import '../utils/bb_args.dart';
 
 class BBPopularListItemView extends StatefulWidget {
+  const BBPopularListItemView({Key? key}) : super(key: key);
+
   @override
   _BBPopularListItemViewState createState() => _BBPopularListItemViewState();
 }
@@ -55,13 +57,14 @@ class _BBPopularListItemViewState extends State<BBPopularListItemView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Row(
-                      children: <Widget>[
-                        BBMediaTagView(
-                          textAttributes: TextAttributes((b) => b
-                            ..text = "百万播放"
-                            ..textColor = "#F69E67"
-                            ..borderColor = "#F69E67"),
-                        ),
+                      children: const <Widget>[
+                        // BBMediaTagView(
+                        // textAttributes: TextAttributes(
+                        //   (b) => b
+                        //     ..text = "百万播放"
+                        //     ..textColor = "#F69E67"
+                        //     ..borderColor = "#F69E67"),
+                        // ),
                       ],
                     ),
                     Text(
