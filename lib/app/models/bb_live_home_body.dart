@@ -9,7 +9,6 @@ import 'bb_live_home_ad.dart';
 import 'bb_live_tag.dart';
 import 'bb_live_group.dart';
 import 'bb_room.dart';
-import 'bb_serializers.dart';
 
 export 'bb_live_home_activity.dart';
 export 'bb_live_home_ad.dart';

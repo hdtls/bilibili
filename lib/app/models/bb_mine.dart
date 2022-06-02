@@ -6,7 +6,6 @@ import 'package:built_value/serializer.dart';
 
 import 'bb_module.dart';
 import 'bb_official_verify.dart';
-import 'bb_serializers.dart';
 import 'bb_service.dart';
 import 'bb_vip.dart';
 import 'bb_pendent.dart';

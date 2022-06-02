@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:collection';
 import 'package:bilibili/app/blocs/bb_bangumi_home_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../utils/bb_utils.dart';
-import '../api/bb_api.dart';
 import '../compenents/bb_ui.dart';
 import '../models/bb_models.dart';
 import 'bb_bangumi_card_view.dart';
@@ -309,7 +307,6 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
             height: constraints.maxWidth - 50.0,
             child: NotificationListener(
               onNotification: (note) {
-                print(note);
                 return true;
               },
               child: GridView.builder(

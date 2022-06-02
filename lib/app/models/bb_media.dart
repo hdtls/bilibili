@@ -8,7 +8,6 @@ import 'package:built_value/serializer.dart';
 import 'bb_advertisement.dart';
 import 'bb_argument.dart';
 import 'bb_button_description.dart';
-import 'bb_serializers.dart';
 import 'bb_three_point.dart';
 import 'bb_text_attributes.dart';
 

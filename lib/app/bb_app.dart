@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'compenents/bb_pull_down_indicator_view.dart';
 import 'utils/bb_utils.dart';
-import 'utils/bb_args.dart';
 
 // This widget is the root of your application.
 class BBApp extends StatelessWidget {

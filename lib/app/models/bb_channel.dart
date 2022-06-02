@@ -4,9 +4,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-import 'bb_button_description.dart';
 import 'bb_media.dart';
-import 'bb_serializers.dart';
 
 export 'bb_button_description.dart';
 export 'bb_media.dart';

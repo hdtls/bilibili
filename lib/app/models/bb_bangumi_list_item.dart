@@ -8,7 +8,6 @@ import 'bb_bangumi_follow.dart';
 import 'bb_bangumi_status.dart';
 import 'bb_bangumi_user_status.dart';
 import 'bb_report.dart';
-import 'bb_serializers.dart';
 import 'bb_source_content.dart';
 import 'bb_trailer.dart';
 import 'bb_watch_progress.dart';

@@ -5,7 +5,6 @@ import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 
 import 'bb_advertisement.dart';
-import 'bb_serializers.dart';
 
 export 'bb_advertisement.dart';
 

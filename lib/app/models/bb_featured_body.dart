@@ -6,7 +6,6 @@ import 'package:built_value/serializer.dart';
 
 import 'bb_config.dart';
 import 'bb_media.dart';
-import 'bb_serializers.dart';
 
 export 'bb_config.dart';
 export 'bb_media.dart';

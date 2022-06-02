@@ -4,8 +4,6 @@ import '../utils/bb_args.dart';
 import '../utils/bb_utils.dart';
 import '../api/bb_api.dart';
 import '../compenents/bb_ui.dart';
-import '../models/bb_http_body.dart';
-import '../models/bb_partation.dart';
 
 class BBPartationListView extends StatefulWidget {
   const BBPartationListView({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
+
 import 'package:flutter/material.dart';
 
-import '../utils/bb_args.dart';
 import '../utils/bb_utils.dart';
 import '../compenents/bb_ui.dart';
 import 'bb_popular_list_item_idol_relative_media_item_view.dart';
@@ -63,7 +63,7 @@ class _BBPopularListItemIdolRelativeMediaViewState
                 ),
               ),
               onTap: () {
-                print("Follow button clicked.");
+                debugPrint("Follow button clicked.");
               },
             ),
           ],

@@ -5,7 +5,6 @@ import 'package:fluro/fluro.dart';
 import '../compenents/bb_ui.dart';
 import '../api/bb_api.dart';
 import '../routers/bb_route_mgr.dart';
-import '../models/bb_tab_bar_http_body.dart';
 import '../utils/bb_app_mgr.dart';
 import '../utils/bb_additions.dart';
 

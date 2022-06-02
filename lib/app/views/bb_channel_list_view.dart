@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../utils/bb_args.dart';
 import '../utils/bb_utils.dart';
 import '../api/bb_api.dart';
 import '../compenents/bb_ui.dart';
@@ -174,7 +173,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
           prefixMode: OverlayVisibilityMode.always,
           readOnly: true,
           onTap: () {
-            print("search ...............");
+
           },
         ),
       ),
