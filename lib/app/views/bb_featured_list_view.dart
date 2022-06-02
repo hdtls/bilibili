@@ -53,26 +53,22 @@ class _BBFeaturedListViewState extends State<BBFeaturedListView>
           subview = SmartRefresher(
             controller: _refreshController,
             onRefresh: () => _bLoC.add(FeaturedLoadEvent()),
-            child: StaggeredGridView.countBuilder(
-              crossAxisCount: 2,
-              staggeredTileBuilder: (int index) {
-                // If card type is equal to 'cm_v2' means this is an ad.
-                // need more info to choose item type for each media.
-                Media media = state.value[index];
-                if (media.cardType == "cm_v2" && media.adInfo?.cardType == 2) {
-                  return StaggeredTile.fit(2);
-                }
-                return StaggeredTile.fit(1);
-              },
-              itemBuilder: (BuildContext context, int index) {
-                return BBFeaturedListItemMultipleColumView(
-                  media: state.value[index],
-                );
-              },
-              itemCount: state.value.length,
-              mainAxisSpacing: defaultMargin.left,
-              crossAxisSpacing: defaultMargin.left,
-              padding: defaultMargin,
+            child: SingleChildScrollView(
+              child: StaggeredGrid.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: defaultMargin.left,
+                crossAxisSpacing: defaultMargin.bottom,
+                children: state.value
+                    .map((media) => StaggeredGridTile.fit(
+                        crossAxisCellCount: media.cardType == "cm_v2" &&
+                                media.adInfo?.cardType == 2
+                            ? 2
+                            : 1,
+                        child: BBFeaturedListItemMultipleColumView(
+                          media: media,
+                        )))
+                    .toList(),
+              ),
             ),
           );
         } else {
