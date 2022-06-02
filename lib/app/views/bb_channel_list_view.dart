@@ -14,7 +14,7 @@ class BBChannelListView extends StatefulWidget {
   const BBChannelListView({Key? key}) : super(key: key);
 
   @override
-  _BBChannelListViewState createState() => _BBChannelListViewState();
+  State<BBChannelListView> createState() => _BBChannelListViewState();
 }
 
 class _BBChannelListViewState extends State<BBChannelListView> {
@@ -108,8 +108,8 @@ class _BBChannelListViewState extends State<BBChannelListView> {
                     children: <Widget>[
                       Padding(
                         padding: defaultMargin + defaultMargin,
-                        child: _buildExchange(
-                            context, Theme.of(context).accentColor, e),
+                        child: _buildExchange(context,
+                            Theme.of(context).colorScheme.secondary, e),
                       ),
                     ],
                   ),
@@ -172,9 +172,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
           ),
           prefixMode: OverlayVisibilityMode.always,
           readOnly: true,
-          onTap: () {
-
-          },
+          onTap: () {},
         ),
       ),
     );
@@ -349,8 +347,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
           _groups = body.data?.toList() ?? [];
         });
       }
-    } catch (e) {
-      // TODO: Error handling
-    }
+      // ignore: empty_catches
+    } catch (e) {}
   }
 }

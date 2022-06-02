@@ -7,7 +7,7 @@ class BBRelatedMediaListView extends StatefulWidget {
   const BBRelatedMediaListView({Key? key}) : super(key: key);
 
   @override
-  _BBRelatedMediaListViewState createState() => _BBRelatedMediaListViewState();
+  State<BBRelatedMediaListView> createState() => _BBRelatedMediaListViewState();
 }
 
 class _BBRelatedMediaListViewState extends State<BBRelatedMediaListView> {

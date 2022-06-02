@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../utils/bb_args.dart';
 import '../utils/bb_utils.dart';
 import '../compenents/bb_ui.dart';
 import '../models/bb_mine.dart';
 
 class BBMineHeaderView extends StatelessWidget {
   final Mine mine;
-  const BBMineHeaderView({Key? key, required this.mine}): super(key: key);
+  const BBMineHeaderView({Key? key, required this.mine}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +42,7 @@ class BBMineHeaderView extends StatelessWidget {
                     pendant: mine.pendant?.image,
                     placeholder: Images.defaultAvatar,
                     extra: mine.vip?.type == 2
-                        ? Image.asset(
-                            Images.bigV(Theme.of(context).brightness))
+                        ? Image.asset(Images.bigV(Theme.of(context).brightness))
                         : null,
                     radius: 20.0,
                   ),
@@ -178,7 +176,7 @@ class BBMineHeaderView extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .subtitle1
-                    ?.copyWith(color: Theme.of(context).accentColor),
+                    ?.copyWith(color: Theme.of(context).colorScheme.secondary),
               ),
               SizedBox(width: defaultMargin.left / 2),
               Text(mine.vipSectionV2?.subtitle ?? "",

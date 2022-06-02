@@ -7,7 +7,8 @@ import '../models/bb_channel.dart';
 
 class BBChannelListSection extends StatelessWidget {
   final Channel channel;
-  const BBChannelListSection({Key? key, required this.channel}): super(key: key);
+  const BBChannelListSection({Key? key, required this.channel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,8 @@ class BBChannelListSection extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline6,
                       maxLines: 1,
                     ),
-                    Text(channel.desc1 ?? "", style: Theme.of(context).textTheme.caption),
+                    Text(channel.desc1 ?? "",
+                        style: Theme.of(context).textTheme.caption),
                   ],
                 ),
               ),
@@ -40,15 +42,15 @@ class BBChannelListSection extends StatelessWidget {
                           vertical: defaultMargin.top / 4,
                         ),
                         decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Theme.of(context).accentColor),
+                          border: Border.all(
+                              color: Theme.of(context).colorScheme.secondary),
                           borderRadius: BorderRadius.circular(4.0),
                         ),
                         child: Center(
                           child: Text(
                             channel.descButton?.text ?? "",
-                            style: Theme.of(context).textTheme.button
-                                ?.copyWith(color: Theme.of(context).accentColor),
+                            style: Theme.of(context).textTheme.button?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                       ),
@@ -75,11 +77,17 @@ class BBChannelListSection extends StatelessWidget {
                     child: BBThumbnailView(
                       url: media.cover,
                       topLeftIconAndDescriptions: [
-                        ThumbnailImageLabel(icon: media.badge?.imageUrl, label: media.badge?.text),
+                        ThumbnailImageLabel(
+                            icon: media.badge?.imageUrl,
+                            label: media.badge?.text),
                       ],
                       bottomLeftIconAndDescriptions: [
-                        ThumbnailImageLabel(icon: media.coverLeftIcon1, label: media.coverLeftText1),
-                        ThumbnailImageLabel(icon: media.coverLeftIcon2, label: media.coverLeftText2),
+                        ThumbnailImageLabel(
+                            icon: media.coverLeftIcon1,
+                            label: media.coverLeftText1),
+                        ThumbnailImageLabel(
+                            icon: media.coverLeftIcon2,
+                            label: media.coverLeftText2),
                       ],
                       bottomRightIconAndDescriptions: [
                         ThumbnailImageLabel(label: media.coverLeftText3),

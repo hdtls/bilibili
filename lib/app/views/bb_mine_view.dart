@@ -10,7 +10,7 @@ class BBMineView extends StatefulWidget {
   const BBMineView({Key? key}) : super(key: key);
 
   @override
-  _BBMineViewState createState() => _BBMineViewState();
+  State<BBMineView> createState() => _BBMineViewState();
 }
 
 class _BBMineViewState extends State<BBMineView> {
@@ -25,36 +25,34 @@ class _BBMineViewState extends State<BBMineView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Column(
-          children: <Widget>[
-            BBMineHeaderView(mine: _mine),
-            Expanded(
-              child: CustomScrollView(
-                slivers: (_mine.sections?.toList() ?? [])
-                        .map((services) => <Widget>[
-                              _sliverSectionHeader(context, services),
-                              _sliverGrid(services.items?.toList() ?? []),
-                              SliverToBoxAdapter(
-                                child: services != _mine.sections?.toList().last
-                                    ? Container(
-                                        height: defaultMargin.bottom,
-                                        color:
-                                            Theme.of(context).backgroundColor,
-                                      )
-                                    : const SizedBox.shrink(),
-                              )
-                            ])
-                        .expand((sliver) => sliver)
-                        .toList(),
-              ),
-            )
-          ],
-        ),
+      child: Column(
+        children: <Widget>[
+          BBMineHeaderView(mine: _mine),
+          Expanded(
+            child: CustomScrollView(
+              slivers: (_mine.sections?.toList() ?? [])
+                  .map((services) => <Widget>[
+                        _sliverSectionHeader(context, services),
+                        _sliverGrid(services.items?.toList() ?? []),
+                        SliverToBoxAdapter(
+                          child: services != _mine.sections?.toList().last
+                              ? Container(
+                                  height: defaultMargin.bottom,
+                                  color: Theme.of(context).backgroundColor,
+                                )
+                              : const SizedBox.shrink(),
+                        )
+                      ])
+                  .expand((sliver) => sliver)
+                  .toList(),
+            ),
+          )
+        ],
+      ),
     );
   }
 
-  Widget _sliverSectionHeader(
-      BuildContext context, Module<Service> services) {
+  Widget _sliverSectionHeader(BuildContext context, Module<Service> services) {
     return SliverToBoxAdapter(
       child: Column(
         children: <Widget>[
@@ -92,7 +90,9 @@ class _BBMineViewState extends State<BBMineView> {
                                 margin: EdgeInsets.all(4.0),
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: Theme.of(context).accentColor),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                                   borderRadius: BorderRadius.circular(3.0),
                                 ),
                                 child: Row(
@@ -103,9 +103,11 @@ class _BBMineViewState extends State<BBMineView> {
                                       "投稿",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .button?.copyWith(
+                                          .button
+                                          ?.copyWith(
                                               color: Theme.of(context)
-                                                  .accentColor),
+                                                  .colorScheme
+                                                  .secondary),
                                     ),
                                   ],
                                 ),

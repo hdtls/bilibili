@@ -5,7 +5,7 @@ class BBRefreshHeader extends RefreshIndicator {
   const BBRefreshHeader({Key? key}) : super(key: key, height: 60.0, refreshStyle: RefreshStyle.Follow);
 
   @override
-  _BBRefreshHeaderState createState() => _BBRefreshHeaderState();
+  State<BBRefreshHeader> createState() => _BBRefreshHeaderState();
 }
 
 class _BBRefreshHeaderState extends RefreshIndicatorState<BBRefreshHeader>

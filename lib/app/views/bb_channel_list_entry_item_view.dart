@@ -6,7 +6,8 @@ import '../models/bb_channel.dart';
 
 class BBChannelListEntryItemView extends StatelessWidget {
   final Channel channel;
-  const BBChannelListEntryItemView({Key? key, required this.channel}): super(key: key);
+  const BBChannelListEntryItemView({Key? key, required this.channel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,7 @@ class BBChannelListEntryItemView extends StatelessWidget {
         ? Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 width: 1.5,
               ),
               shape: BoxShape.circle,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../utils/bb_utils.dart';
@@ -9,7 +8,7 @@ class BBPopularListItemIdolRelativeMediaView extends StatefulWidget {
   const BBPopularListItemIdolRelativeMediaView({Key? key}) : super(key: key);
 
   @override
-  _BBPopularListItemIdolRelativeMediaViewState createState() =>
+  State<BBPopularListItemIdolRelativeMediaView> createState() =>
       _BBPopularListItemIdolRelativeMediaViewState();
 }
 
@@ -50,15 +49,15 @@ class _BBPopularListItemIdolRelativeMediaViewState
                     horizontal: defaultMargin.left * 1.5,
                     vertical: defaultMargin.top / 4),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Theme.of(context).accentColor),
+                  border: Border.all(
+                      color: Theme.of(context).colorScheme.secondary),
                   borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Center(
                   child: Text(
                     "+ 关注",
-                    style: Theme.of(context)
-                        .textTheme
-                        .button?.copyWith(color: Theme.of(context).accentColor),
+                    style: Theme.of(context).textTheme.button?.copyWith(
+                        color: Theme.of(context).colorScheme.secondary),
                   ),
                 ),
               ),

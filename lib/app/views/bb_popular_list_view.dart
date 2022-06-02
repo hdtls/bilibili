@@ -11,7 +11,7 @@ class BBPopularListView extends StatefulWidget {
   const BBPopularListView({Key? key}) : super(key: key);
 
   @override
-  _BBPopularListViewState createState() => _BBPopularListViewState();
+  State<BBPopularListView> createState() => _BBPopularListViewState();
 }
 
 class _BBPopularListViewState extends State<BBPopularListView>

@@ -77,7 +77,7 @@ class BBChannelListSliverDynamics extends StatelessWidget {
                         horizontal: defaultMargin.left * 2,
                       ),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         borderRadius: BorderRadius.circular(4.0),
                       ),
                       child: Center(

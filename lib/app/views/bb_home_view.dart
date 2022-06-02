@@ -9,7 +9,7 @@ class BBHomeView extends StatefulWidget {
   const BBHomeView({Key? key}) : super(key: key);
 
   @override
-  _BBHomeViewState createState() => _BBHomeViewState();
+  State<BBHomeView> createState() => _BBHomeViewState();
 }
 
 class _BBHomeViewState extends State<BBHomeView>
@@ -22,7 +22,8 @@ class _BBHomeViewState extends State<BBHomeView>
     super.initState();
 
     _tabBarItems =
-        BBAppMgr.shared.tabLayout?.tab?.where((e) => e.uri != null).toList() ?? [];
+        BBAppMgr.shared.tabLayout?.tab?.where((e) => e.uri != null).toList() ??
+            [];
 
     _tabCtr = TabController(length: _tabBarItems.length, vsync: this);
   }
@@ -54,8 +55,7 @@ class _BBHomeViewState extends State<BBHomeView>
                   tabBar: TabBar(
                     tabs: _tabBarItems.map((e) {
                       return Tab(
-                        text:
-                            e.ext?.inactiveIcon != null ? null : e.name,
+                        text: e.ext?.inactiveIcon != null ? null : e.name,
                         icon: e.ext?.inactiveIcon != null
                             ? BBNetworkImage(
                                 e.ext?.inactiveIcon,
@@ -80,15 +80,17 @@ class _BBHomeViewState extends State<BBHomeView>
             ];
           },
           body: TabBarView(
+            controller: _tabCtr,
             children: _tabBarItems.map((e) {
               if (e.uri != null) {
                 AppRouteMatch? match = FluroRouter.appRouter.match(e.uri!);
-                Handler handler = match?.route.handler ?? FluroRouter.appRouter.notFoundHandler;
-                return handler.handlerFunc(context, match?.parameters ?? {}) ?? Container();
+                Handler handler = match?.route.handler ??
+                    FluroRouter.appRouter.notFoundHandler;
+                return handler.handlerFunc(context, match?.parameters ?? {}) ??
+                    Container();
               }
               return Container();
             }).toList(),
-            controller: _tabCtr,
           ),
         ),
       ),
@@ -126,7 +128,7 @@ class _BBHomeViewState extends State<BBHomeView>
           prefixMode: OverlayVisibilityMode.always,
           readOnly: true,
           onTap: () {
-            print("search ...............");
+            debugPrint("search ...............");
           },
         ),
       ),
@@ -163,7 +165,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).appBarTheme.color,
+        color: Theme.of(context).appBarTheme.backgroundColor,
         border: Border(
           bottom: BorderSide(
             color: Theme.of(context).dividerTheme.color ?? Colors.grey[200]!,

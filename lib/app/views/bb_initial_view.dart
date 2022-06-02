@@ -12,7 +12,7 @@ class BBInitialView extends StatefulWidget {
   const BBInitialView({Key? key}) : super(key: key);
 
   @override
-  _BBInitialViewState createState() => _BBInitialViewState();
+  State<BBInitialView> createState() => _BBInitialViewState();
 }
 
 class _BBInitialViewState extends State<BBInitialView> {
@@ -58,7 +58,8 @@ class _BBInitialViewState extends State<BBInitialView> {
     // Default `CupertinoTabScaffold with CupertinoTabBar` requires tab items >= 2,
     // but we request tab by send a http request and maybe response with only one
     // item, so we need a new `BBCupertinoTabScaffold` and `BBCupertinoTabBar`.
-    int initialIndex = tabBarItems.firstWhereOrNull((e) => e.selected == 1)?.pos ?? 1;
+    int initialIndex =
+        tabBarItems.firstWhereOrNull((e) => e.selected == 1)?.pos ?? 1;
     initialIndex = initialIndex < 1 ? 1 : initialIndex;
     return CupertinoTabScaffold(
       controller: CupertinoTabController(initialIndex: initialIndex - 1),
@@ -78,7 +79,9 @@ class _BBInitialViewState extends State<BBInitialView> {
             .toList(),
         // backgroundColor: Theme.of(context).appBarTheme.color,
         activeColor: Theme.of(context).tabBarTheme.labelColor,
-        inactiveColor: Theme.of(context).tabBarTheme.unselectedLabelColor ?? CupertinoDynamicColor.withBrightness(color: Color(0x4C000000), darkColor: Color(0x29000000)),
+        inactiveColor: Theme.of(context).tabBarTheme.unselectedLabelColor ??
+            CupertinoDynamicColor.withBrightness(
+                color: Color(0x4C000000), darkColor: Color(0x29000000)),
       ),
       tabBuilder: (BuildContext context, int index) {
         var tabBarItem = tabBarItems[index].uri;
@@ -86,7 +89,8 @@ class _BBInitialViewState extends State<BBInitialView> {
           AppRouteMatch? match = FluroRouter.appRouter.match(tabBarItem);
           Handler handler =
               match?.route.handler ?? FluroRouter.appRouter.notFoundHandler;
-          return handler.handlerFunc(context, match?.parameters ?? {}) ?? Container();
+          return handler.handlerFunc(context, match?.parameters ?? {}) ??
+              Container();
         }
         return Container();
       },

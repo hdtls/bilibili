@@ -7,7 +7,7 @@ class BBRelatedBangumiRow extends StatefulWidget {
   const BBRelatedBangumiRow({Key? key}) : super(key: key);
 
   @override
-  _BBRelatedBangumiRowState createState() => _BBRelatedBangumiRowState();
+  State<BBRelatedBangumiRow> createState() => _BBRelatedBangumiRowState();
 }
 
 class _BBRelatedBangumiRowState extends State<BBRelatedBangumiRow> {

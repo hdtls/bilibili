@@ -4,7 +4,7 @@ class BBLoadingView extends StatefulWidget {
   const BBLoadingView({Key? key}) : super(key: key);
 
   @override
-  _BBLoadingViewState createState() => _BBLoadingViewState();
+  State<BBLoadingView> createState() => _BBLoadingViewState();
 }
 
 class _BBLoadingViewState extends State<BBLoadingView>

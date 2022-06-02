@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils/bb_args.dart';
 import '../utils/bb_utils.dart';
 import 'bb_related_media_list_view.dart';
 
@@ -8,7 +7,7 @@ class BBMediaView extends StatefulWidget {
   const BBMediaView({Key? key}) : super(key: key);
 
   @override
-  _BBMediaViewState createState() => _BBMediaViewState();
+  State<BBMediaView> createState() => _BBMediaViewState();
 }
 
 class _BBMediaViewState extends State<BBMediaView>
@@ -83,11 +82,11 @@ class _BBMediaViewState extends State<BBMediaView>
                     ),
                     Expanded(
                         child: TabBarView(
+                      controller: _tabCtr,
                       children: <Widget>[
                         BBRelatedMediaListView(),
                         Container(),
                       ],
-                      controller: _tabCtr,
                     )),
                   ],
                 ),
@@ -116,7 +115,7 @@ class BBDanmakuComposeButton extends StatefulWidget {
   const BBDanmakuComposeButton({Key? key}) : super(key: key);
 
   @override
-  _BBDanmakuComposeButtonState createState() => _BBDanmakuComposeButtonState();
+  State<BBDanmakuComposeButton> createState() => _BBDanmakuComposeButtonState();
 }
 
 class _BBDanmakuComposeButtonState extends State<BBDanmakuComposeButton>
@@ -172,6 +171,13 @@ class _BBDanmakuComposeButtonState extends State<BBDanmakuComposeButton>
             ),
           ),
           GestureDetector(
+            onTap: () {
+              setState(() {
+                on = !on;
+                on ? _animation.forward() : _animation.reverse();
+              });
+            },
+            behavior: HitTestBehavior.opaque,
             child: Container(
               width: widget.radius * 2.5,
               decoration: BoxDecoration(
@@ -187,13 +193,6 @@ class _BBDanmakuComposeButtonState extends State<BBDanmakuComposeButton>
                   child:
                       Image.asset(on ? Images.danmakuOn : Images.danmakuOff)),
             ),
-            onTap: () {
-              setState(() {
-                on = !on;
-                on ? _animation.forward() : _animation.reverse();
-              });
-            },
-            behavior: HitTestBehavior.opaque,
           ),
         ],
       ),

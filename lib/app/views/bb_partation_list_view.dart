@@ -9,7 +9,7 @@ class BBPartationListView extends StatefulWidget {
   const BBPartationListView({Key? key}) : super(key: key);
 
   @override
-  _BBPartationListViewState createState() => _BBPartationListViewState();
+  State<BBPartationListView> createState() => _BBPartationListViewState();
 }
 
 class _BBPartationListViewState extends State<BBPartationListView> {
@@ -56,7 +56,5 @@ class _BBPartationListViewState extends State<BBPartationListView> {
     }
   }
 
-  void _handleError(Object e) {
-
-  }
+  void _handleError(Object e) {}
 }

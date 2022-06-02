@@ -28,7 +28,6 @@ class BBNavigationLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: child,
       onTapUp: (TapUpDetails d) {
         if (onTap != null) {
           onTap!();
@@ -52,6 +51,7 @@ class BBNavigationLink extends StatelessWidget {
         }
       },
       behavior: HitTestBehavior.opaque,
+      child: child,
     );
   }
 }

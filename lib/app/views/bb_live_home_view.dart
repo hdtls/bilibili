@@ -15,7 +15,7 @@ class BBLiveHomeView extends StatefulWidget {
   const BBLiveHomeView({Key? key}) : super(key: key);
 
   @override
-  _BBLiveHomeViewState createState() => _BBLiveHomeViewState();
+  State<BBLiveHomeView> createState() => _BBLiveHomeViewState();
 }
 
 class _BBLiveHomeViewState extends State<BBLiveHomeView> {
@@ -152,7 +152,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
                 aspectRatio: 1.2,
                 itemBuilder: (BuildContext context, Room liveRoom) {
                   return BBNavigationLink(
-                    destination: BBRouteMgr.video + "${liveRoom.roomid}",
+                    destination: "${BBRouteMgr.video}${liveRoom.roomid}",
                     child: BBLiveHomeCardView(
                       item: liveRoom,
                       showAvatar: section.module?.id == 13,

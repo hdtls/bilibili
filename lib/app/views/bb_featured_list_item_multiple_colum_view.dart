@@ -227,7 +227,7 @@ class BBFeaturedListItemMultipleColumView extends StatelessWidget {
           child:
               Image.asset("assets/images/pegasus_card_vertical_more16x16.png"),
           onTap: () {
-            print("Accessory action triggle.");
+            debugPrint("Accessory action triggle.");
           },
         ),
       ],

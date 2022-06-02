@@ -15,7 +15,7 @@ class BBFeaturedListView extends StatefulWidget {
   const BBFeaturedListView({Key? key}) : super(key: key);
 
   @override
-  _BBFeaturedListViewState createState() => _BBFeaturedListViewState();
+  State<BBFeaturedListView> createState() => _BBFeaturedListViewState();
 }
 
 class _BBFeaturedListViewState extends State<BBFeaturedListView>
@@ -59,8 +59,7 @@ class _BBFeaturedListViewState extends State<BBFeaturedListView>
                 // If card type is equal to 'cm_v2' means this is an ad.
                 // need more info to choose item type for each media.
                 Media media = state.value[index];
-                if (media.cardType == "cm_v2" &&
-                    media.adInfo?.cardType == 2) {
+                if (media.cardType == "cm_v2" && media.adInfo?.cardType == 2) {
                   return StaggeredTile.fit(2);
                 }
                 return StaggeredTile.fit(1);

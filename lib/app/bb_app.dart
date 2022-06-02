@@ -9,7 +9,6 @@ import 'utils/bb_utils.dart';
 class BBApp extends StatelessWidget {
   const BBApp({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
 
