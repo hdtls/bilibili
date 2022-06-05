@@ -46,7 +46,8 @@ class Images {
   static const String rank1 = "$_path/rank_no124x22.png";
   static const String rank2 = "$_path/rank_no224x22.png";
   static const String rank3 = "$_path/rank_no324x22.png";
-  
+  static const String magnifyingglass = "$_path/topic_search_ico22x22.png";
+
   static const List<String> thumbnailOverlays = [
     thumbnailStar,
     thumbnailPlay,

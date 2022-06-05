@@ -168,7 +168,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
           ),
           prefix: Padding(
             padding: EdgeInsets.symmetric(horizontal: defaultMargin.left),
-            child: Image.asset("assets/images/topic_search_ico22x22.png"),
+            child: Image.asset(Images.magnifyingglass),
           ),
           prefixMode: OverlayVisibilityMode.always,
           readOnly: true,
