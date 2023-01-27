@@ -121,7 +121,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
                       children: <InlineSpan>[
                         TextSpan(
                           text: " ${section.extra?.subtitle}",
-                          style: Theme.of(context).textTheme.caption,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],
                     ),
@@ -169,7 +169,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
                           Text(
                             "更多${section.module?.count}个${section.module?.title}",
                             style:
-                                Theme.of(context).textTheme.button?.copyWith(color: pinkColor),
+                                Theme.of(context).textTheme.labelLarge?.copyWith(color: pinkColor),
                           ),
                           Image.asset(Images.rightArrow, color: pinkColor),
                         ],
@@ -197,7 +197,7 @@ class _BBLiveHomeViewState extends State<BBLiveHomeView> {
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 4.0),
-                child: Text("全部直播", style: Theme.of(context).textTheme.button,),
+                child: Text("全部直播", style: Theme.of(context).textTheme.labelLarge,),
               ),
             )
           ],

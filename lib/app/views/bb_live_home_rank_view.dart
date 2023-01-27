@@ -59,7 +59,7 @@ class BBLiveHomeRankView extends StatelessWidget {
         Text(rank.uname ?? ""),
         Text(
           rank.areaV2ParentName ?? "",
-          style: Theme.of(context).textTheme.caption?.copyWith(color: Theme.of(context).hintColor),
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).hintColor),
         ),
       ],
     );

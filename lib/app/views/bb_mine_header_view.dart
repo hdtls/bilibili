@@ -93,13 +93,13 @@ class BBMineHeaderView extends StatelessWidget {
             "${num ?? 0}",
             style: Theme.of(context)
                 .textTheme
-                .caption
+                .bodySmall
                 ?.copyWith(color: Colors.black),
           ),
           SizedBox(height: defaultMargin.bottom / 2),
           Text(
             title,
-            style: Theme.of(context).textTheme.caption,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
       ),
@@ -155,10 +155,10 @@ class BBMineHeaderView extends StatelessWidget {
     return Row(
       children: <Widget>[
         Text("B币：${mine.bcoin ?? 0}",
-            style: Theme.of(context).textTheme.caption),
+            style: Theme.of(context).textTheme.bodySmall),
         SizedBox(width: defaultMargin.left * 2),
         Text("硬币：${mine.coin ?? 0}",
-            style: Theme.of(context).textTheme.caption),
+            style: Theme.of(context).textTheme.bodySmall),
       ],
     );
   }
@@ -175,12 +175,12 @@ class BBMineHeaderView extends StatelessWidget {
                 mine.vipSectionV2?.title ?? "",
                 style: Theme.of(context)
                     .textTheme
-                    .subtitle1
+                    .titleMedium
                     ?.copyWith(color: Theme.of(context).colorScheme.secondary),
               ),
               SizedBox(width: defaultMargin.left / 2),
               Text(mine.vipSectionV2?.subtitle ?? "",
-                  style: Theme.of(context).textTheme.caption),
+                  style: Theme.of(context).textTheme.bodySmall),
             ],
           ),
           Image.asset(Images.rightArrow),

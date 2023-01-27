@@ -32,14 +32,14 @@ class BBHeadView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        leading ?? Text(title ?? "", style: Theme.of(context).textTheme.headline6,),
+        leading ?? Text(title ?? "", style: Theme.of(context).textTheme.titleLarge,),
         BBNavigationLink(
           destination: destination,
           arguments: arguments,
           onTap: onTap,
           child: Row(
             children: <Widget>[
-              accessoryView ?? Text(accessory ?? "", style: Theme.of(context).textTheme.button,),
+              accessoryView ?? Text(accessory ?? "", style: Theme.of(context).textTheme.labelLarge,),
               image != null ? Image.asset(image!) : SizedBox.shrink(),
             ],
           ),

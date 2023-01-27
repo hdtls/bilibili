@@ -64,7 +64,7 @@ class _BBMineViewState extends State<BBMineView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(services.title ?? "",
-                      style: Theme.of(context).textTheme.headline6),
+                      style: Theme.of(context).textTheme.titleLarge),
                   // Creative center need a post button to support user contribution.
                   services.type == 1 && _mine.showCreative == 1
                       ? GestureDetector(
@@ -103,7 +103,7 @@ class _BBMineViewState extends State<BBMineView> {
                                       "投稿",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .button
+                                          .labelLarge
                                           ?.copyWith(
                                               color: Theme.of(context)
                                                   .colorScheme
@@ -160,7 +160,7 @@ class _BBMineViewState extends State<BBMineView> {
                 SizedBox(height: defaultMargin.bottom),
                 Text(
                   services[index].title ?? "",
-                  style: Theme.of(context).textTheme.caption,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const Spacer(),
               ],

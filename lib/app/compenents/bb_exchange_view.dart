@@ -29,7 +29,7 @@ class BBExchangeView extends StatelessWidget {
             SizedBox(width: defaultMargin.left),
             Text(
               "换一换",
-              style: Theme.of(context).textTheme.caption?.copyWith(color: color),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: color),
             ),
             Spacer(),
           ],

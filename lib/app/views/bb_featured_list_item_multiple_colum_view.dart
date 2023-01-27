@@ -89,7 +89,7 @@ class BBFeaturedListItemMultipleColumView extends StatelessWidget {
             child: Center(
               child: Text(
                 textAttributes?.text ?? "",
-                style: Theme.of(context).textTheme.overline?.copyWith(
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: BBColor.fromHexString(
                         Theme.of(context).brightness == Brightness.light
                             ? textAttributes?.textColor
@@ -160,7 +160,7 @@ class BBFeaturedListItemMultipleColumView extends StatelessWidget {
                 media.coverLeftText1 ?? "-",
                 style: Theme.of(context)
                     .textTheme
-                    .overline
+                    .labelSmall
                     ?.copyWith(color: Colors.white),
               )
             ],
@@ -170,7 +170,7 @@ class BBFeaturedListItemMultipleColumView extends StatelessWidget {
                 text,
                 style: Theme.of(context)
                     .textTheme
-                    .overline
+                    .labelSmall
                     ?.copyWith(color: Colors.white),
               )
             : SizedBox.shrink();
@@ -218,7 +218,7 @@ class BBFeaturedListItemMultipleColumView extends StatelessWidget {
                   ? media.adInfo?.creativeContent?.description ?? ""
                   : media.descButton?.text ?? "",
               maxLines: 1,
-              style: Theme.of(context).textTheme.caption),
+              style: Theme.of(context).textTheme.bodySmall),
         ),
         SizedBox(
           width: defaultMargin.left / 2,

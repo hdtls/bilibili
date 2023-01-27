@@ -64,7 +64,7 @@ class BBLiveHomeCardView extends StatelessWidget {
         Expanded(child: 
           Text(
             item.areaV2Name ?? "",
-            style: Theme.of(context).textTheme.caption,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ),
       ],

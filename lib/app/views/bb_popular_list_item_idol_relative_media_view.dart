@@ -56,7 +56,7 @@ class _BBPopularListItemIdolRelativeMediaViewState
                 child: Center(
                   child: Text(
                     "+ 关注",
-                    style: Theme.of(context).textTheme.button?.copyWith(
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: Theme.of(context).colorScheme.secondary),
                   ),
                 ),

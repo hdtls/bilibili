@@ -277,7 +277,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
                               SizedBox(height: defaultMargin.bottom / 2),
                               Text(
                                 channel.desc ?? "",
-                                style: Theme.of(context).textTheme.caption,
+                                style: Theme.of(context).textTheme.bodySmall,
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -304,7 +304,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(e.label ?? "", style: Theme.of(context).textTheme.headline6),
+            Text(e.label ?? "", style: Theme.of(context).textTheme.titleLarge),
             accessoryView ?? SizedBox.shrink(),
           ],
         ),
@@ -318,7 +318,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
         children: <Widget>[
           Text("换一换",
               style:
-                  Theme.of(context).textTheme.button?.copyWith(color: color)),
+                  Theme.of(context).textTheme.labelLarge?.copyWith(color: color)),
           SizedBox(width: defaultMargin.left / 2),
           Image.asset(Images.exchange, color: color),
         ],
@@ -331,7 +331,7 @@ class _BBChannelListViewState extends State<BBChannelListView> {
       child: Row(
         children: <Widget>[
           Text(e.descButton?.text ?? "",
-              style: Theme.of(context).textTheme.button),
+              style: Theme.of(context).textTheme.labelLarge),
           Image.asset(Images.rightArrow),
         ],
       ),

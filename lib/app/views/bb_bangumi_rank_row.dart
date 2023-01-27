@@ -33,7 +33,7 @@ class BBBangumiRankRow extends StatelessWidget {
                 ),
                 Text(
                   bangumi.pts ?? "",
-                  style: Theme.of(context).textTheme.caption,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),

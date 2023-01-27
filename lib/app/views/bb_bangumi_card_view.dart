@@ -24,7 +24,7 @@ class BBBangumiCardView extends StatelessWidget {
         ),
         Text(
           bangumi.desc ?? "",
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.bodySmall,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),

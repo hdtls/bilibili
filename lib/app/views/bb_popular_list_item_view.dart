@@ -69,14 +69,14 @@ class _BBPopularListItemViewState extends State<BBPopularListItemView> {
                     ),
                     Text(
                       "努力的小青",
-                      style: Theme.of(context).textTheme.caption,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
                           "7.9万观看•01-12",
-                          style: Theme.of(context).textTheme.caption,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                         Image.asset(
                             "assets/images/pegasus_card_vertical_more16x16.png"),

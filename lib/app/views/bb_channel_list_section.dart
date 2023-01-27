@@ -26,11 +26,11 @@ class BBChannelListSection extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       channel.title ?? channel.name ?? "",
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                       maxLines: 1,
                     ),
                     Text(channel.desc1 ?? "",
-                        style: Theme.of(context).textTheme.caption),
+                        style: Theme.of(context).textTheme.bodySmall),
                   ],
                 ),
               ),
@@ -49,7 +49,7 @@ class BBChannelListSection extends StatelessWidget {
                         child: Center(
                           child: Text(
                             channel.descButton?.text ?? "",
-                            style: Theme.of(context).textTheme.button?.copyWith(
+                            style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                 color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
@@ -111,7 +111,7 @@ class BBChannelListSection extends StatelessWidget {
           channel.descButton2?.text != null
               ? Text(
                   channel.descButton2!.text!,
-                  style: Theme.of(context).textTheme.button,
+                  style: Theme.of(context).textTheme.labelLarge,
                 )
               : SizedBox.shrink(),
         ],

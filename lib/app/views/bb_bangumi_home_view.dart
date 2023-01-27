@@ -151,7 +151,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                     SizedBox(height: defaultMargin.bottom / 2),
                     Text(
                       module.items?.first.desc ?? "",
-                      style: Theme.of(context).textTheme.caption,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ),
@@ -224,7 +224,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                             isSelected ? "周$d" : d,
                             style: Theme.of(context)
                                 .textTheme
-                                .caption
+                                .bodySmall
                                 ?.copyWith(
                                     color: isSelected
                                         ? Colors.white
@@ -272,7 +272,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                   Text(bangumi.title ?? "", maxLines: 2),
                   Text(
                     "更新至${bangumi.pubIndex ?? "-"}",
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.bodySmall,
                     maxLines: 1,
                   ),
                 ],
@@ -289,7 +289,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
           Spacer(),
           Text(
             "查看完整时间表",
-            style: Theme.of(context).textTheme.caption?.copyWith(
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Color(0xFFF6749A),
                 ),
           ),
@@ -381,7 +381,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
           Spacer(),
           Text(
             "查看完整榜单",
-            style: Theme.of(context).textTheme.caption?.copyWith(
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Color(0xFFF6749A),
                 ),
           ),
@@ -585,7 +585,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                             Text(bangumi.title ?? ""),
                             Text(
                               bangumi.desc ?? "",
-                              style: Theme.of(context).textTheme.caption,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ],
                         ),
@@ -655,7 +655,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                               child: Center(
                                 child: Text(
                                   bangumi.hat ?? "",
-                                  style: Theme.of(context).textTheme.caption,
+                                  style: Theme.of(context).textTheme.bodySmall,
                                 ),
                               ),
                             ),
@@ -769,7 +769,7 @@ class _BBBangumiHomeViewState extends State<BBBangumiHomeView>
                         ),
                         child: Text(
                           bangumi.title ?? "",
-                          style: Theme.of(context).textTheme.caption,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
                     )

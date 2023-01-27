@@ -61,7 +61,7 @@ class BBChannelListSliverDynamics extends StatelessWidget {
                     Text(channel.title ?? ""),
                     Text(
                       channel.desc ?? "",
-                      style: Theme.of(context).textTheme.caption,
+                      style: Theme.of(context).textTheme.bodySmall,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -84,7 +84,7 @@ class BBChannelListSliverDynamics extends StatelessWidget {
                         child: Text(
                           channel.button?.text ?? "",
                           style:
-                              Theme.of(context).textTheme.button?.copyWith(color: Colors.white),
+                              Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.white),
                         ),
                       ),
                     ),
