@@ -38,7 +38,7 @@ class _BBMineViewState extends State<BBMineView> {
                           child: services != _mine.sections?.toList().last
                               ? Container(
                                   height: defaultMargin.bottom,
-                                  color: Theme.of(context).backgroundColor,
+                                  color: Theme.of(context).colorScheme.background,
                                 )
                               : const SizedBox.shrink(),
                         )

@@ -67,7 +67,7 @@ class BBMineHeaderView extends StatelessWidget {
         ),
         _vip(context),
         Container(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           padding: EdgeInsets.symmetric(vertical: defaultMargin.bottom),
           child: Container(
             color: Theme.of(context).scaffoldBackgroundColor,

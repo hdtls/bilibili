@@ -11,7 +11,6 @@ class BBApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return RefreshConfiguration(
       headerBuilder: () => BBRefreshHeader(),
       child: MaterialApp(
@@ -34,8 +33,10 @@ class BBApp extends StatelessWidget {
             color: Color(0xFFF0F0F0),
             space: 1,
           ),
-          backgroundColor: Colors.grey[100],
-          scaffoldBackgroundColor: Colors.white, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Color(0xFFF6749A)),
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme: ColorScheme.fromSwatch()
+              .copyWith(secondary: Color(0xFFF6749A))
+              .copyWith(background: Colors.grey[100]),
         ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,
