@@ -18,12 +18,13 @@ class _BBLoadingViewState extends State<BBLoadingView>
     _controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 600))
       ..repeat();
-    _animation = IntTween(begin: 1, end: 3)
-        .animate(CurvedAnimation(parent: _controller!, curve: Curves.easeInOut));
+    _animation = IntTween(begin: 1, end: 3).animate(
+        CurvedAnimation(parent: _controller!, curve: Curves.easeInOut));
   }
 
   @override
   void dispose() {
+    _controller!.stop();
     _controller!.dispose();
     _controller = null;
     super.dispose();
